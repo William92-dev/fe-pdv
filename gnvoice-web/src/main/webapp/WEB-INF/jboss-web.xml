@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+	<!--reemplazar gnvoice por facturacionGPF para FARCOMED -->
+	<max-active-sessions>1000</max-active-sessions>
+	<context-root>facturacionGPF</context-root>
+	<security-domain>java:/jaas/gnvoiceSecurity</security-domain>
+</jboss-web>

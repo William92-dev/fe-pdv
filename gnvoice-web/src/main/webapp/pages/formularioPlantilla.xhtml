@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+
+
+	<ui:define name="contenidoAplicacion">
+		<h:form prependId="true">
+			<div id="pestanas">
+				<a href="#">Formulario Plantilla</a>
+			</div>
+			<div id="contenido">
+				<rich:panel id="panel_plantilla">
+
+					<h:panelGrid columns="3" width="100%">
+						<h:outputLabel value="#{msg['plantilla.codigo']}: *"
+							for="codigoInput" styleClass="etiquetas" />
+						<h:inputText id="codigoInput"
+							value="#{plantillaDataBean.plantillaSeleccionada.codigo}"
+							styleClass="textfield_form" required="true"
+							requiredMessage="#{msg['plantilla.codigo']} es requerido" />
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['plantilla.descripcion']}: "
+							for="desInput" styleClass="etiquetas" />
+						<h:inputText id="desInput"
+							value="#{plantillaDataBean.plantillaSeleccionada.descripcion}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['plantilla.titulo']}: *"
+							for="tituloInput" styleClass="etiquetas" />
+						<h:inputText id="tituloInput"
+							value="#{plantillaDataBean.plantillaSeleccionada.titulo}"
+							styleClass="textfield_form" required="true"
+							requiredMessage="#{msg['plantilla.titulo']} es requerido" />
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['plantilla.valor']}: *"
+							for="valorInput" styleClass="etiquetas" />
+
+						<rich:editor id="valorInput" toolbar="full"
+							value="#{plantillaDataBean.plantillaSeleccionada.valor}"
+							style="margin-bottom: 1em" required="true"
+							requiredMessage="#{msg['plantilla.valor']} es requerido">
+						</rich:editor>
+						<h:outputLabel value="" />
+					</h:panelGrid>
+
+					<div id="espacio2"></div>
+					<h:outputLabel styleClass="texto2"
+						style="text-align: center; width:100%"
+						value="* Campos requeridos u obligatorios" />
+
+				</rich:panel>
+				<h:panelGrid columns="2" width="20%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="#{msg['boton.guardar']}" execute="@form"
+							render="panel_plantilla" action="#{plantillaBean.guardar()}" />
+					</a4j:outputPanel>
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton immediate="true"
+							action="#{plantillaBean.regresar()}"
+							value="#{msg['boton.regresar']}" />
+					</a4j:outputPanel>
+
+				</h:panelGrid>
+
+
+				<rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+				<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseover"
+					query="jQuery(this).addClass('active-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseout"
+					query="jQuery(this).removeClass('active-row')" />
+				<p class="texto1"></p>
+			</div>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+

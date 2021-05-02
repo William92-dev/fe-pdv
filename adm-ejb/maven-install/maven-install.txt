@@ -1,0 +1,6 @@
+mvn install:install-file -Dfile=alfresco-remote-api-4.2.d.jar -DgroupId=org.alfresco -DartifactId=alfresco-remote-api -Dversion=4.2.d -Dpackaging=jar
+mvn install:install-file -Dfile=alfresco-web-client-4.2.d.jar -DgroupId=org.alfresco -DartifactId=alfresco-web-service-client -Dversion=4.2.d -Dpackaging=jar
+mvn install:install-file -Dfile=alfresco-web-service-client-4.2.d.jar -DgroupId=org.alfresco -DartifactId=alfresco-web-client -Dversion=4.2.d -Dpackaging=jar
+
+
+mvn install:install-file -Dfile=ojdbc6_g.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.4 -Dpackaging=jar

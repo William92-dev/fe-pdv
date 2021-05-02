@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+
+
+	<ui:define name="contenidoAplicacion">
+		<h:form>
+			<div id="pestanas">
+				<a href="#">Formulario Catalogo</a>
+			</div>
+			<div id="contenido">
+				<rich:panel id="panel_catalogo">
+
+					<div id="espacio2"></div>
+					<h:panelGrid columns="3" width="100%">
+						<h:outputLabel value="#{msg['tipoCatalogo.codigo']}: *"
+							for="codigoInput" styleClass="etiquetas" />
+						<h:inputText id="codigoInput"
+							value="#{catalogoDataBean.catalogoSeleccionada.codigo}"
+							styleClass="textfield_form" required="true"
+							requiredMessage="#{msg['tipoCatalogo.codigo']} es Requerido"
+							maxlength="5" />
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['tipoCatalogo.nombre']}: *"
+							for="nombreInput" styleClass="etiquetas" />
+						<h:inputText id="nombreInput"
+							value="#{catalogoDataBean.catalogoSeleccionada.nombre}"
+							styleClass="textfield_form" required="true"
+							requiredMessage="#{msg['tipoCatalogo.nombre']} es Requerido" />
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['catalogo.tipoCatalogo']}: *"
+							for="tipoCatalogoInput" styleClass="etiquetas" />
+						<h:selectOneMenu id="tipoCatalogoInput" required="true"
+							requiredMessage="#{msg['catalogo.tipoCatalogo']} es requerido"
+							value="#{catalogoDataBean.catalogoSeleccionada.idCatalogo}">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{applicationBean.liTipoCatalogos}"
+								var="tipoCatalogo" itemLabel="#{tipoCatalogo.nombre}"
+								itemValue="#{tipoCatalogo.id}" />
+						</h:selectOneMenu>
+						<h:outputText value="" />
+
+						<h:outputLabel value="#{msg['tipoCatalogo.descripcion']}: "
+							for="descripcionInput" styleClass="etiquetas" />
+						<h:inputText id="descripcionInput"
+							value="#{catalogoDataBean.catalogoSeleccionada.descripcion}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="" />
+					</h:panelGrid>
+					<h:outputLabel styleClass="texto2"
+						style="text-align: center; width:100%"
+						value="* Campos requeridos u obligatorios" />
+				</rich:panel>
+
+				<div id="espacio2"></div>
+
+				<h:panelGrid columns="2" width="20%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="#{msg['boton.guardar']}" execute="@form"
+							render="panel_catalogo" action="#{catalogoBean.guardar()}" />
+					</a4j:outputPanel>
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton immediate="true"
+							action="#{catalogoBean.regresar()}"
+							value="#{msg['boton.regresar']}" />
+					</a4j:outputPanel>
+				</h:panelGrid>
+
+
+
+
+				<rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+				<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseover"
+					query="jQuery(this).addClass('active-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseout"
+					query="jQuery(this).removeClass('active-row')" />
+				<p class="texto1"></p>
+			</div>
+			<a4j:jsFunction name="postContruct"
+				action="#{applicationBean.postContruct()}" execute="@this"
+				render="panel_catalogo" />
+		</h:form>
+
+		<script>
+postContruct();
+</script>
+	</ui:define>
+</ui:composition>
+

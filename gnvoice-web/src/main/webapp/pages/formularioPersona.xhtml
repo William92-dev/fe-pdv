@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+
+
+	<ui:define name="contenidoAplicacion">
+		<h:form>
+			<div id="pestanas">
+				<a href="#">Lista Persona</a>
+			</div>
+			<div id="contenido">
+				
+    		<rich:panel id="panel_persona">
+					
+					
+					<div id="espacio2"></div>
+					
+					<h:panelGrid columns="3" width="100%">
+						<h:outputLabel value="#{msg['persona.identificacion']}: *" for="identificacionInput" styleClass="etiquetas" />
+						<h:inputText id="identificacionInput" value="#{personaDataBean.personaSeleccionada.identificacion}" styleClass="textfield_form" 
+									 maxlength="10" required="true"
+									 validatorMessage="#{msg['persona.identificacion']} debe tener 10 digitos"
+									 requiredMessage="#{msg['persona.identificacion']} es requerido"
+									 onkeypress="if((event.which &lt; 48 || event.which &gt; 57) &amp; event.which != 0  &amp; event.which != 9 &amp; event.which != 46 &amp; event.which != 8) return false;" >
+							<f:validateLength minimum="10" maximum="10" />
+						</h:inputText>
+						<h:outputLabel value="" />
+						
+						<h:outputLabel value="#{msg['persona.apellidos']}: *" for="apellidoInput" styleClass="etiquetas" />
+						<h:inputText id="apellidoInput" value="#{personaDataBean.personaSeleccionada.apellidos}" styleClass="textfield_form" />
+						<h:outputLabel value="" />
+						
+						<h:outputLabel value="#{msg['persona.nombres']}: *" for="nombreInput" styleClass="etiquetas" />
+						<h:inputText id="nombreInput" value="#{personaDataBean.personaSeleccionada.nombres}" styleClass="textfield_form" />
+						<h:outputLabel value="" />
+						
+						<h:outputLabel value="#{msg['persona.telefono']}" for="telefonoInput" styleClass="etiquetas" />
+						<h:inputText id="telefonoInput" value="#{personaDataBean.personaSeleccionada.telefono}" styleClass="textfield_form" 
+									 onkeypress="if((event.which &lt; 48 || event.which &gt; 57) &amp; event.which != 0  &amp; event.which != 9 &amp; event.which != 46 &amp; event.which != 8) return false;"/>
+						<h:outputLabel value="" />
+						
+						<h:outputLabel value="#{msg['persona.celular']}" for="celularInput" styleClass="etiquetas" />
+						<h:inputText id="celularInput" value="#{personaDataBean.personaSeleccionada.celular}" styleClass="textfield_form" 
+									 maxlength="10" required="true"
+									 validatorMessage="#{msg['persona.celular']} debe tener 10 digitos"
+									 requiredMessage="#{msg['persona.celular']} es requerido"
+									 onkeypress="if((event.which &lt; 48 || event.which &gt; 57) &amp; event.which != 0  &amp; event.which != 9 &amp; event.which != 46 &amp; event.which != 8) return false;" >
+									 <f:validateLength minimum="10" maximum="10" />
+						</h:inputText>
+						<h:outputLabel value="" />
+						
+						<h:outputLabel value="#{msg['persona.mail']}: *" for="correoInput" styleClass="etiquetas" />
+						<h:inputText id="correoInput" value="#{personaDataBean.personaSeleccionada.correoElectronico}" styleClass="textfield_form" 
+									 validatorMessage="#{msg['persona.mail']} invalido ">
+							<f:validateRegex pattern="^(([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+([;.](([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+)*$" />
+						</h:inputText>
+						<h:outputLabel value="" />
+						
+						<h:outputLabel value="#{msg['persona.fechaNacimiento']}" for="idFechaNicimiento" styleClass="etiquetas" />
+						<rich:calendar id="idFechaNicimiento" value="#{personaDataBean.personaSeleccionada.fechaNacimiento}" 
+								       enableManualInput="true" datePattern="#{msg['patron_fecha']}" inputSize="18" />
+	                    <h:outputText value=" " />
+						
+						<h:outputLabel value="#{msg['persona.genero']}: *" for="generoSelect" styleClass="etiquetas" />
+						<h:selectOneMenu id="generoSelect" required="true" requiredMessage="#{msg['persona.genero']} es requerido" value="#{personaDataBean.personaSeleccionada.idGenero}">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}" itemValue="" />
+							<f:selectItems value="#{applicationBean.catalogosGenero}" var="genero" itemLabel="#{genero.nombre}" itemValue="#{genero.id}" />
+						</h:selectOneMenu>
+						<h:outputText value=""/>
+						
+						<h:outputLabel value="#{msg['persona.estadoCivil']}: *" for="estadoCivilSelect" styleClass="etiquetas" />
+						<h:selectOneMenu id="estadoCivilSelect" required="true" requiredMessage="#{msg['persona.estadoCivil']} es requerido" value="#{personaDataBean.personaSeleccionada.idEstadoCivil}">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}" itemValue="" />
+							<f:selectItems value="#{applicationBean.catalogosEstadoCivil}" var="estadoCivil" itemLabel="#{estadoCivil.nombre}" itemValue="#{estadoCivil.id}" />
+						</h:selectOneMenu>
+						<h:outputText value=""/>
+						
+						<h:outputLabel value="#{msg['persona.tipoIdentificacion']}: *" for="tipoIdentificacionSelect" styleClass="etiquetas" />
+						<h:selectOneMenu id="tipoIdentificacionSelect" required="true" requiredMessage="#{msg['persona.tipoIdentificacion']} es requerido" value="#{personaDataBean.personaSeleccionada.idTipoIdentificacion}">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}" itemValue="" />
+							<f:selectItems value="#{applicationBean.catalogosTipoIdentificacion}" var="identificacion" itemLabel="#{identificacion.nombre}" itemValue="#{identificacion.id}" />
+						</h:selectOneMenu>
+						<h:outputText value=""/>
+						
+					</h:panelGrid>
+					<h:outputLabel styleClass="texto2" style="text-align: center; width:100%" value="* Campos requeridos u obligatorios" />
+				</rich:panel>
+				<div id="espacio2"></div>
+				
+				<h:panelGrid columns="2" width="20%">	
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="#{msg['boton.guardar']}" execute="@form" render="panel_persona" action="#{personaBean.guardar()}" />
+					</a4j:outputPanel>
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton immediate="true" action="#{personaBean.regresar()}" value="#{msg['boton.regresar']}" />
+					</a4j:outputPanel>
+				</h:panelGrid>
+	
+				<rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+				<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseover" query="jQuery(this).addClass('active-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseout" query="jQuery(this).removeClass('active-row')" />
+				<p class="texto1"></p>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+

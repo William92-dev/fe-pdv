@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listaNotaCreditoReim" pageWidth="2559" pageHeight="595" orientation="Landscape" columnWidth="2519" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="fec2923d-2a7f-4e6e-aadc-19d0c878f665">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="prueba" class="java.lang.String" isForPrompting="false"/>
+	<field name="codSecuencial" class="java.lang.String"/>
+	<field name="identificacionComprador" class="java.lang.String"/>
+	<field name="razonSocialComprador" class="java.lang.String"/>
+	<field name="totalSinImpuestos" class="java.math.BigDecimal"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="tareaActual.descripcion" class="java.lang.String"/>
+	<field name="numeroAutorizacion" class="java.lang.String"/>
+	<field name="fechaAutorizacion" class="java.util.Date"/>
+	<field name="fechaEmisionDb" class="java.util.Date"/>
+	<field name="ptoEmision" class="java.lang.String"/>
+	<field name="codPuntoEmision" class="java.lang.String"/>
+	<field name="ruc" class="java.lang.String"/>
+	<field name="correoNotificacion" class="java.lang.String"/>
+	<field name="infoAdicional" class="java.lang.String"/>
+	<field name="mensajeErrorReim" class="java.lang.String"/>
+	<field name="fechaRecepcionMail" class="java.util.Date"/>
+	<field name="fechaLecturaTraductor" class="java.util.Date"/>
+	<field name="fechaEntReim" class="java.util.Date"/>
+	<field name="archivoGenReim" class="java.lang.String"/>
+	<field name="subTotal" class="java.math.BigDecimal"/>
+	<field name="valorTotal" class="java.math.BigDecimal"/>
+	<field name="iva" class="java.math.BigDecimal"/>
+	<field name="claveAcceso" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement x="670" y="0" width="243" height="20" uuid="25e43367-0fa0-4160-a4b4-77a5acdf16f7"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Razon Social Comprador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1509" y="0" width="83" height="20" uuid="2a6b9dd1-63f8-499e-aa05-375fffe443a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="0" width="110" height="20" uuid="f0b01e9a-c0e3-44d4-9213-e46d37faf137"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Autorización]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="172" height="20" uuid="494aee4c-d565-468c-944e-9dd12758358e"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ruc Proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1592" y="0" width="55" height="20" uuid="6cd2d0ce-4ad2-4748-b19f-7499f152d47b"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Traducido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="173" y="0" width="225" height="20" uuid="3c7f1afa-c681-4a4a-99a4-3378db1b3e09"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre Emisor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="508" y="0" width="162" height="20" uuid="a06ca6f6-11dc-48e1-b12f-0da1bf80d6d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° Factura referencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1647" y="0" width="110" height="20" uuid="7c501af9-c77e-41b4-a131-ee9a3ca2f19a"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<text><![CDATA[F. Traductor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="913" y="0" width="100" height="20" uuid="81e2b9bd-87bb-4791-a48e-b650dc2b7e70"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[subTotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1013" y="0" width="100" height="20" uuid="8ae17334-1d58-430b-97c2-9304a1abb60e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[iva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1113" y="0" width="100" height="20" uuid="151a8cc4-93be-47e6-8a22-854d333f1adb"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Valor Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1213" y="0" width="296" height="20" uuid="eab2927c-40ed-4103-817d-e6c096af4a9e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Clave Acceso]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="670" y="0" width="243" height="20" uuid="1cdba95a-59ea-4b78-b4a5-4ac1ae6c254f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{razonSocialComprador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1509" y="0" width="83" height="20" uuid="154a917f-f3b1-4b6d-ba00-a69a1222679f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="398" y="0" width="110" height="20" uuid="47325d5b-591f-40ac-bae6-dc0f86d6e1ce"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fechaAutorizacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="0" width="172" height="20" uuid="779d8078-7007-4961-84bc-83c34db70e75"/>
+				<textFieldExpression><![CDATA[$F{identificacionComprador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1592" y="0" width="55" height="20" uuid="48521ec9-2745-4174-94e1-e1a16789913e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{estado}.equals("AUTORIZADO") ? "SI" : "NO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="173" y="0" width="225" height="20" uuid="9ba568e2-263b-4c73-a9f8-5927460a292e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{infoAdicional}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="508" y="0" width="162" height="20" uuid="a973bd59-171b-4795-95ca-c6f0288858b4"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{codPuntoEmision}+"-"+$F{ptoEmision}+"-"+$F{codSecuencial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="1647" y="0" width="110" height="20" uuid="af7ae8b7-028b-4b20-8b47-3de654240669"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fechaLecturaTraductor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="913" y="0" width="100" height="20" uuid="fc27cdfd-e4cd-4ff6-8eee-0eae6933227d"/>
+				<textFieldExpression><![CDATA[$F{subTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1013" y="0" width="100" height="20" uuid="9f110dad-7b96-4179-b44e-5d357e075df5"/>
+				<textFieldExpression><![CDATA[$F{iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1113" y="0" width="100" height="20" uuid="28ff3082-f3b2-4edd-b7b0-b3e08ff9d959"/>
+				<textFieldExpression><![CDATA[$F{valorTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1213" y="0" width="296" height="20" uuid="9fe717c6-79c2-40e8-8957-d51e43c24e73"/>
+				<textFieldExpression><![CDATA[$F{claveAcceso}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

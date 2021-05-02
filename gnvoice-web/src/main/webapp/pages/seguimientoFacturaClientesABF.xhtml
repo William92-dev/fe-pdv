@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+	<ui:define name="contenidoAplicacion">
+		<h:form prependId="false">
+			<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61882165-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+			<div id="pestanas">
+				<a href="#">Factura</a>
+			</div>
+			<div id="contenido">
+			<rich:collapsiblePanel header="Parametros de Busqueda"
+					switchType="client">
+					<h:panelGrid columns="4" width="100%">
+						<h:outputLabel value="#{msg['comprobante.numero']}:"
+							for="nameInput" styleClass="etiquetas" />
+						<h:inputText id="nameInput"
+							value="#{facturaBeanClientesABF.numeroComprobante}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="#{msg['comprobante.codExterno']}:"
+							for="codExtInput" styleClass="etiquetas" />
+						<h:inputText id="codExtInput" value="#{facturaBeanClientesABF.codigoExterno}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="#{msg['comprobante.fechaDesde']}:"
+							for="fechaInput" styleClass="etiquetas" />
+						<rich:calendar value="#{facturaBeanClientesABF.fechaDesde}" id="fechaInput"
+							datePattern="dd/MM/yyyy" enableManualInput="true"
+							styleClass="textfield_form" />
+						<h:outputLabel value="#{msg['comprobante.fechaHasta']}:"
+							for="fechaHastaInput" styleClass="etiquetas" />
+						<rich:calendar value="#{facturaBeanClientesABF.fechaHasta}"
+							id="fechaHastaInput" datePattern="dd/MM/yyyy"
+							enableManualInput="true" styleClass="textfield_form" />
+						<h:outputLabel value="#{msg['comprobante.empresa']}:"
+							for="tipoCatalogoInput" styleClass="etiquetas" />
+						<h:selectOneMenu id="tipoCatalogoInput"
+							value="#{facturaBeanClientesABF.emisor}">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{applicationBean.organizaciones}"
+								var="tipoCatalogo" itemLabel="#{tipoCatalogo.nombre}"
+								itemValue="#{tipoCatalogo.ruc}" />
+						</h:selectOneMenu>
+					</h:panelGrid>
+				</rich:collapsiblePanel>
+				<div id="espacio2"></div>
+				<h:panelGrid columns="2" width="25%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="Buscar" execute="@form"
+							render="facturas, reportePanel"
+							action="#{facturaBeanClientesABF.buscarFacturaSeguimiento()}" />
+					</a4j:outputPanel>
+					<h:commandLink  styleClass="no-decor" immediate="true"
+									value="Descarga Masiva"
+									title="Descarga Masiva" execute="@form"
+									action="#{facturaBeanClientesABF.descargarComprobantePDFMasivo()}">
+									<h:graphicImage value="/resources/images/pdf.jpg" alt="cargar"
+										width="20" height="20" />
+					</h:commandLink>
+
+					<h:panelGrid columns="3" width="10%" id="reportePanel">
+						<a4j:outputPanel layout="block">
+							<h:commandButton value="#{msg['boton.descargarXLS']}"
+								rendered="#{not empty facturaBeanClientesABF.facturas}" execute="@form"
+								action="#{facturaBeanClientesABF.descargarXLS()}" />
+						</a4j:outputPanel>
+						<a4j:outputPanel layout="block">
+							<h:commandButton value="#{msg['boton.descargarPDF']}"
+								rendered="#{not empty facturaBeanClientesABF.facturas}" execute="@form"
+								action="#{facturaBeanClientesABF.descargarPDF()}" />
+						</a4j:outputPanel>
+						<a4j:outputPanel layout="block">
+							<h:commandButton value="RIDE Unificado"
+								rendered="#{not empty facturaBeanClientesABF.facturas}" execute="@form"
+								action="#{facturaBeanClientesABF.descargarComprobantePDFMasivo}" />
+						</a4j:outputPanel>
+					</h:panelGrid>
+				</h:panelGrid>
+				<div id="espacio2"></div>
+				<h:panelGrid columnClasses="acent" id="facturas" width="100%">
+					<rich:dataTable keepSaved="true" rendered="#{facturaBeanClientesABF.buscarSegumiento}"
+						rowClasses="odd-row, even-row" styleClass="stable"
+						value="#{facturaBeanClientesABF.listFacturas}"  id="table_facutra"
+						style="width: 100%"  var="factura" rows="20">
+						
+						<rich:column styleClass="center-aligned-text">
+								<f:facet name="header">
+              					  <h:selectBooleanCheckbox value  ="#{facturaBeanClientesABF.selectUne}" >
+                   				 	   <a4j:ajax event="click" listener="#{facturaBeanClientesABF.selectAllRow}" execute="@this" render="facturas" />              
+    							      
+               					  </h:selectBooleanCheckbox>
+            					</f:facet>
+            
+    							<h:selectBooleanCheckbox value="#{factura.selectFactura}">
+    								<a4j:ajax event="click" listener="#{facturaBeanClientesABF.selectSingleRow}" execute="@this" />              
+    							    <f:attribute name="selectedFactura" value="#{factura}" /> 
+								</h:selectBooleanCheckbox>
+						</rich:column>
+						
+						
+						<rich:column>
+							<f:facet name="header">#{msg['factura.fecha']} Emision</f:facet>
+							<h:outputText value="#{factura['fechaEmisionBase']}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</rich:column>
+						
+						<rich:column >	
+							<f:facet name="header">
+								<h:outputText value="#{msg['factura.numero']}" />
+							</f:facet> 				    
+				        	<h:outputText value="#{factura['codSecuencial']}" />
+				    	</rich:column>
+				    	
+				    	<rich:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['comprobante.codExterno']}" />
+							</f:facet>
+							<h:outputText value="#{factura['claveInterna']}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['factura.identificacionComprador']}" />
+							</f:facet>
+							<h:outputText value="#{factura['identificacionComprador']}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['factura.razonComprador']}" />
+							</f:facet>
+							<h:outputText value="#{factura['razonSocialComprador']}"
+								escape="false" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['factura.total']}</f:facet>
+							<h:outputText value="#{factura['importeTotal']}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Estado</f:facet>
+							<h:outputText value="#{factura['estado']}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Ambiente</f:facet>
+							<h:outputText value="PRUEBAS"
+								rendered="#{factura['tipoAmbiente'] == '1'}" />
+							<h:outputText value="PRODUCCION"
+								rendered="#{factura['tipoAmbiente'] == '2'}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Tipo Emision</f:facet>
+							<h:outputText value="NORMAL"
+								rendered="#{factura['tipoEmision'] == '1'}" />
+							<h:outputText value="INDISPONIBILIDAD DE SISTEMA"
+								rendered="#{factura['tipoEmision'] == '2'}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Punto Emision</f:facet>
+							<h:outputText value="#{factura['ptoEmision']}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Correo Electronico</f:facet>
+							<h:outputText value="#{factura['correoNotificacion']}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['factura.numeroAutorizacion']}</f:facet>
+							<h:outputText value="#{factura['numeroAutorizacion']}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['factura.fechaAutorizacion']}</f:facet>
+							<h:outputText value="#{factura['fechaAutorizacion']}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header"></f:facet>
+							<h:panelGrid columns="3">
+								<h:commandLink styleClass="no-decor" immediate="true"
+									rendered="#{not empty factura['archivoLegible'] or factura['estado'] == 'AUTORIZADO'}"
+									title="Comprobante Legible" execute="@form"
+									action="#{facturaBeanClientesABF.descargarComprobantePDF()}">
+									<h:graphicImage value="/resources/images/pdf.jpg" alt="cargar"
+										width="22" height="22" />
+									<f:setPropertyActionListener target="#{facturaBeanClientesABF.objFactura}" value="#{factura}" />
+								</h:commandLink>
+								<h:commandLink styleClass="no-decor"
+									title="Comprobante Electronico" immediate="true"
+									execute="@form"
+									action="#{facturaBeanClientesABF.descargarComprobanteXML()}">
+									<h:graphicImage value="/resources/images/xml.png" alt="cargar"
+										width="22" height="22" />
+									<f:setPropertyActionListener target="#{facturaBeanClientesABF.objFactura}"
+										value="#{factura}" />
+								</h:commandLink>
+								<a4j:commandLink styleClass="no-decor" title="Envio"
+									execute="@this" id="envioC"
+									action="#{facturaBeanClientesABF.enviarCorreo()}">
+									<h:graphicImage value="/resources/images/mail.gif"
+										alt="renviar correo" />
+									<f:setPropertyActionListener target="#{facturaBeanClientesABF.objFactura}"
+										value="#{factura}" />
+								</a4j:commandLink>
+							</h:panelGrid>
+						</rich:column>
+			           
+						
+					</rich:dataTable>
+					<rich:dataScroller for="table_facutra" maxPages="5" rendered="#{facturaBeanClientesABF.buscarSegumiento}" render="facturas" />
+				</h:panelGrid>
+				<rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+				<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseover"
+					query="jQuery(this).addClass('active-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseout"
+					query="jQuery(this).removeClass('active-row')" />
+				<p class="texto1"></p>
+			</div>
+		</h:form>
+
+		
+
+
+	</ui:define>
+</ui:composition>
+

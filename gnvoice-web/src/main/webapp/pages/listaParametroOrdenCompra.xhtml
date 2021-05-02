@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/template.xhtml">
+
+
+
+	<ui:define name="contenidoAplicacion">
+		<h:form prependId="false">
+			<div id="pestanas">
+				<a href="#">Parametro - Orden Compra</a>
+			</div>
+			<div id="contenido">
+				<rich:panel>
+					<h:panelGrid columns="4" width="100%">
+						<h:outputLabel value="#{msg['parametro.codigo']}:"
+							for="codigoInput" styleClass="etiquetas" />
+						<h:inputText id="codigoInput"
+							value="#{parametroOrdenesCompraBean.codigo}"
+							styleClass="textfield_form" />
+
+						<h:outputLabel value="#{msg['parametro.estado']}:"
+							for="estadoInput" styleClass="etiquetas" />
+						<h:selectOneMenu value="#{parametroOrdenesCompraBean.estado}"
+							id="estadoInput">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{parametroOrdenesCompraBean.estados}" />
+						</h:selectOneMenu>
+					</h:panelGrid>
+				</rich:panel>
+
+				<div id="espacio2"></div>
+				<h:panelGrid columns="3" width="20%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="#{msg['boton.buscar']}" execute="@form"
+							render="parametros"
+							action="#{parametroOrdenesCompraBean.buscarParametro()}" />
+					</a4j:outputPanel>
+
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="Nuevo Parametro" execute="@form"
+							render="parametros"
+							action="#{parametroOrdenesCompraBean.agregarParametro()}">
+							<f:setPropertyActionListener
+								target="#{parametroOrdenCompraDataBean.opcion}" value="0" />
+						</a4j:commandButton>
+					</a4j:outputPanel>
+
+					<a4j:outputPanel layout="block">
+						<h:commandButton value="#{msg['boton.descargarXLS']}"
+							 execute="@form"
+							action="#{parametroOrdenesCompraBean.descargarDetalleXLS()}" />
+					</a4j:outputPanel>
+
+				</h:panelGrid>
+
+
+
+
+				<div id="espacio2"></div>
+				<h:panelGrid columnClasses="acent" id="parametros" width="100%">
+					<rich:extendedDataTable  style="height:300px; width:800px;" rendered="#{not empty parametroOrdenCompraDataBean.parametros}"
+					              value="#{parametroOrdenCompraDataBean.parametros}" var="parametro" id="table_parametro">
+					              
+					              
+						<rich:column width="300px" filterValue="#{parametro.descripcion}"
+							filterExpression="#{fn:containsIgnoreCase(parametro.descripcion,parametroOrdenesCompraBean.nombrelFilter)}"
+							filterType="custom">
+							<f:facet name="header">
+								<h:panelGroup>
+									<f:facet name="header">#{msg['parametro.descripcion']}</f:facet>
+									<h:inputText value="#{parametroOrdenesCompraBean.nombrelFilter}">
+										<a4j:ajax event="blur" render="table_parametro"
+											execute="@this" />
+									</h:inputText>
+								</h:panelGroup>
+							</f:facet>
+							<h:outputText value="#{parametro.descripcion}" />
+						</rich:column>
+						
+						
+						
+						
+						<rich:column width="150px">
+							<f:facet name="header">#{msg['parametro.valor']}</f:facet>
+							<h:outputText value="#{parametro.valor}" />
+
+						</rich:column>
+						
+						<rich:column width="200px" filterValue="#{parametro.proveedor}"
+							filterExpression="#{fn:containsIgnoreCase(parametro.proveedor,parametroOrdenesCompraBean.rucFilter)}"
+							filterType="custom">
+							<f:facet name="header">
+								<h:panelGroup>
+									<f:facet name="header">Ruc Proveedor</f:facet>
+									<h:inputText value="#{parametroOrdenesCompraBean.rucFilter}">
+										<a4j:ajax event="blur" render="table_parametro"
+											execute="@this" />
+									</h:inputText>
+								</h:panelGroup>
+							</f:facet>
+							<h:outputText value="#{parametro.proveedor}" />
+						</rich:column>
+						
+
+						<rich:column width="150px">
+							<f:facet name="header">#{msg['parametro.estado']}</f:facet>
+							<h:outputText value="#{parametro.estado.descripcion}" />
+						</rich:column>
+
+						<rich:column width="150px">
+							<f:facet name="header">#{msg['parametro.acciones']}</f:facet>
+							<a4j:commandLink styleClass="no-decor" execute="@this"
+								render="@none"
+								action="#{parametroOrdenesCompraBean.verParametro()}">
+								<rich:tooltip id="tt1" styleClass="tooltip" layout="block">Editar Parametro</rich:tooltip>
+								<h:graphicImage value="/resources/images/edit.png" alt="Editar" />
+								<f:setPropertyActionListener
+									target="#{parametroOrdenCompraDataBean.parametro}"
+									value="#{parametro}" />
+								<f:setPropertyActionListener
+									target="#{parametroOrdenCompraDataBean.opcion}" value="1" />
+							</a4j:commandLink>
+						</rich:column>
+					</rich:extendedDataTable>
+					<rich:dataScroller for="table_parametro" maxPages="5"
+						render="parametros"
+						rendered="#{not empty parametroOrdenCompraDataBean.parametros}" />
+				</h:panelGrid>
+
+				<rich:popupPanel id="confirmPane" autosized="true"
+					domElementAttachment="parent">
+					<f:facet name="header">
+						<h:outputText value="Desea eliminar la fila?" />
+					</f:facet>
+					<h:panelGrid columns="2">
+						<a4j:commandButton value="Borrar"
+							action="#{parametroOrdenesCompraBean.eliminarParametro}"
+							render="table_parametro" execute="@this"
+							oncomplete="#{rich:component('confirmPane')}.hide();" />
+						<a4j:commandButton value="Cancelar"
+							onclick="#{rich:component('confirmPane')}.hide(); return false;" />
+					</h:panelGrid>
+				</rich:popupPanel>
+				<rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+				<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseover"
+					query="jQuery(this).addClass('active-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseout"
+					query="jQuery(this).removeClass('active-row')" />
+				<p class="texto1"></p>
+			</div>
+			<a4j:jsFunction name="postContruct"
+				action="#{usuarioBean.postContruct()}" execute="@this"
+				render="parametros" />
+		    </h:form>
+		<script>
+       postContruct();
+</script>
+
+
+	</ui:define>
+</ui:composition>
+

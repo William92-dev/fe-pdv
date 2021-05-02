@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+
+
+	<ui:define name="contenidoAplicacion">
+		<h:form prependId="false">
+			<div id="pestanas">
+				<a href="#">Administracion Clave Contigencia</a>
+			</div>
+			<div id="contenido">
+				<rich:panel>
+					<h:panelGrid columns="4" width="100%">
+						<h:outputLabel value="Emisor:" for="orgInput"
+							styleClass="etiquetas" />
+						<h:selectOneMenu id="orgInput" required="true"
+							requiredMessage="Seleccione un Emisor"
+							value="#{claveContingBean.idOrganizacion}">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{claveContingBean.organizaciones}"
+								var="org" itemLabel="#{org.nombre}" itemValue="#{org.id}" />
+						</h:selectOneMenu>
+
+						<h:outputLabel value="#{msg['clave.tipoAmbiente']}:"
+							for="ambienteInput" styleClass="etiquetas" />
+						<h:selectOneMenu id="ambienteInput"
+							value="#{claveContingBean.tipoAmbiente}">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{claveContingenciaDataBean.tiposAmbiente}" />
+						</h:selectOneMenu>
+
+						<h:outputLabel value="#{msg['clave.estado']}:" for="estadoInput"
+							styleClass="etiquetas" />
+						<h:selectOneMenu value="#{claveContingBean.estado}"
+							id="estadoInput">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{claveContingenciaDataBean.opciones}" />
+						</h:selectOneMenu>
+					</h:panelGrid>
+				</rich:panel>
+
+				<div id="espacio2"></div>
+				<h:panelGrid columns="3" width="20%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="#{msg['boton.buscar']}" execute="@form"
+							render="claves, reportePanel"
+							action="#{claveContingBean.buscarClaves()}" />
+					</a4j:outputPanel>
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="#{msg['boton.nuevo']}" execute="@form"
+							immediate="true"
+							action="#{claveContingBean.agregarClaveContingenciaEm()}" />
+					</a4j:outputPanel>
+					<h:panelGrid columns="2" width="10%" id="reportePanel">
+						<a4j:outputPanel layout="block">
+							<h:commandButton value="#{msg['boton.descargarPDF']}"
+								immediate="true" execute="@form"
+								action="#{claveContingBean.descargarPDF()}"
+								rendered="#{not empty claveContingenciaDataBean.claves}" />
+						</a4j:outputPanel>
+						<a4j:outputPanel layout="block">
+							<h:commandButton value="#{msg['boton.descargarXLS']}"
+								immediate="true" execute="@form"
+								action="#{claveContingBean.descargarXLS()}"
+								rendered="#{not empty claveContingenciaDataBean.claves}" />
+						</a4j:outputPanel>
+					</h:panelGrid>
+				</h:panelGrid>
+
+				<div id="espacio2"></div>
+				<h:panelGrid columnClasses="acent" id="claves" width="100%">
+					<rich:dataTable
+						rendered="#{not empty claveContingenciaDataBean.claves}" rows="6"
+						rowClasses="odd-row, even-row" styleClass="stable"
+						value="#{claveContingenciaDataBean.claves}" var="clave"
+						id="table_clave" style="width: 100%">
+						<rich:column>
+							<f:facet name="header">#{msg['clave.clave']}</f:facet>
+							<h:outputText value="#{clave.clave}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['clave.organizacion']}</f:facet>
+							<h:outputText value="#{clave.organizacionObj.nombre}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['clave.tipoAmbiente']}</f:facet>
+							<h:outputText value="#{clave.tipoAmbienteObj}" />
+
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['clave.estado']}</f:facet>
+							<h:outputText value="#{clave.usada.identificador}" />
+						</rich:column>
+					</rich:dataTable>
+					<rich:dataScroller for="table_clave" maxPages="5" render="claves"
+						rendered="#{not empty claveContingenciaDataBean.claves}" />
+				</h:panelGrid>
+
+				<rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+				<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseover"
+					query="jQuery(this).addClass('active-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseout"
+					query="jQuery(this).removeClass('active-row')" />
+				<p class="texto1"></p>
+			</div>
+			<a4j:jsFunction name="postContruct"
+				action="#{usuarioBean.postContruct()}" execute="@this"
+				render="claves" />
+		</h:form>
+		<script>
+postContruct();
+</script>
+
+
+	</ui:define>
+</ui:composition>
+

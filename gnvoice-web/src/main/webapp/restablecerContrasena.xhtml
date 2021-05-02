@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/templateExterno.xhtml">
+
+	<ui:define name="contenidoAplicacion">
+		<h:form>
+			<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61882165-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+			<div id="pestanas_completa">
+				<a href="#">Restablece Contraseña</a>
+			</div>
+			<div id="contenido">
+				<div>
+					<rich:panel id="panel_catalogo">
+						<h:outputLabel styleClass="texto2"
+							style="text-align: center; width:100%"
+							rendered="#{!restablecerContrasenaBean.reContrasenaDataBean.envioMail}"
+							value="Ingresar su nombre de usuario y haga click en el boton Enviar Contraseña." />
+						<h:outputLabel styleClass="texto2"
+							style="text-align: center; width:100%"
+							rendered="#{restablecerContrasenaBean.reContrasenaDataBean.envioMail}"
+							value="Ingrese su contraseña provisional (enviada a su correo electronico), su nueva contraseña y haga click en el boton Restablecer Contraseña. NOTA: la contraseña provicional no funciona para ingresar a la aplicacion; es necesario restablecerla." />
+						<div id="espacio2"></div>
+
+						<h:panelGrid columns="3" width="50%">
+							<h:outputLabel value="Usuario: " for="codigoInput"
+								styleClass="etiquetas" />
+							<h:inputText id="codigoInput"
+								value="#{restablecerContrasenaBean.reContrasenaDataBean.usuario}"
+								styleClass="textfield_form" required="true"
+								requiredMessage="Usuario es Requerido" maxlength="20" />
+							<h:outputLabel value="" />
+
+							<h:outputLabel value="Contrasena Actual: " styleClass="etiquetas"
+								rendered="#{restablecerContrasenaBean.reContrasenaDataBean.envioMail}" />
+							<h:inputSecret
+								value="#{restablecerContrasenaBean.reContrasenaDataBean.contrasenaActual}"
+								styleClass="textfield_form" maxlength="20"
+								rendered="#{restablecerContrasenaBean.reContrasenaDataBean.envioMail}" />
+							<h:outputLabel value=""
+								rendered="#{restablecerContrasenaBean.reContrasenaDataBean.envioMail}" />
+
+							<h:outputLabel value="Nueva Contrasena: " styleClass="etiquetas"
+								rendered="#{restablecerContrasenaBean.reContrasenaDataBean.envioMail}" />
+							<h:inputSecret
+								value="#{restablecerContrasenaBean.reContrasenaDataBean.contrasena}"
+								styleClass="textfield_form" maxlength="20"
+								rendered="#{restablecerContrasenaBean.reContrasenaDataBean.envioMail}" />
+							<h:outputLabel value=""
+								rendered="#{restablecerContrasenaBean.reContrasenaDataBean.envioMail}" />
+
+							<h:outputLabel value="Confirmar Contrasena: "
+								styleClass="etiquetas"
+								rendered="#{restablecerContrasenaBean.reContrasenaDataBean.envioMail}" />
+							<h:inputSecret
+								value="#{restablecerContrasenaBean.reContrasenaDataBean.confirmarContrasena}"
+								styleClass="textfield_form" maxlength="20"
+								rendered="#{restablecerContrasenaBean.reContrasenaDataBean.envioMail}" />
+							<h:outputLabel value=""
+								rendered="#{restablecerContrasenaBean.reContrasenaDataBean.envioMail}" />
+
+
+						</h:panelGrid>
+
+					</rich:panel>
+
+					<div id="espacio2"></div>
+
+					<h:panelGrid columns="2" width="20%" id="panel_boton">
+						<a4j:outputPanel layout="block">
+							<a4j:commandButton value="Enviar Contraseña" style="width:110px;"
+								render="panel_catalogo, panel_boton"
+								action="#{restablecerContrasenaBean.enviarCorreo()}"
+								rendered="#{!restablecerContrasenaBean.reContrasenaDataBean.envioMail}" />
+						</a4j:outputPanel>
+
+						<a4j:outputPanel layout="block">
+							<a4j:commandButton value="Restablecer Contraseña"
+								style="width:140px;"
+								action="#{restablecerContrasenaBean.guardar()}"
+								rendered="#{restablecerContrasenaBean.reContrasenaDataBean.envioMail}" />
+						</a4j:outputPanel>
+
+					</h:panelGrid>
+
+					<p class="texto1"></p>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+

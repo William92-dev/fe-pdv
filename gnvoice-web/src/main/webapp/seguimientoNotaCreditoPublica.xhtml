@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/templateExterno.xhtml">
+
+	<ui:define name="contenidoAplicacion">
+		<h:form>
+			<div id="pestanas">
+				<a href="#">NotaCredito</a>
+			</div>
+			<div id="contenido">
+				<rich:collapsiblePanel header="Parametros de Busqueda"
+					switchType="client">
+					<h:panelGrid columns="6" width="100%">
+						<h:outputLabel value="#{msg['comprobante.numero']}:"
+							for="nameInput" styleClass="etiquetas" />
+						<h:inputText id="nameInput"
+							value="#{notaCreditoBean.numeroComprobante}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="#{msg['leyenda.publica.comporbante']}"/>	
+						
+						<h:outputLabel value="#{msg['comprobante.codExterno']}:"
+							for="codExtInput" styleClass="etiquetas" />
+						<h:inputText id="codExtInput"
+							value="#{notaCreditoBean.codigoExterno}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="#{msg['leyenda.publica.documento']}"/>
+						
+						<h:outputLabel value="#{msg['comprobante.fechaDesde']} Emision:"
+							for="fechaInput" styleClass="etiquetas" />
+						<rich:calendar value="#{notaCreditoBean.fechaDesde}"
+							id="fechaInput" datePattern="dd/MM/yyyy" enableManualInput="true"
+							styleClass="textfield_form" />
+						<h:outputLabel value=""/>
+						
+						<h:outputLabel value="#{msg['comprobante.fechaHasta']} Emision:"
+							for="fechaHastaInput" styleClass="etiquetas" />
+						<rich:calendar value="#{notaCreditoBean.fechaHasta}"
+							id="fechaHastaInput" datePattern="dd/MM/yyyy"
+							enableManualInput="true" styleClass="textfield_form" />
+						<h:outputLabel value=""/>
+
+						
+					</h:panelGrid>
+				</rich:collapsiblePanel>
+				<div id="espacio2"></div>
+				<h:panelGrid columns="2" width="10%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="#{msg['boton.buscar']}" execute="@form"
+							render="notaCreditos,reportePanel"
+							action="#{notaCreditoBean.buscarNotaCreditoSeguimiento()}" />
+					</a4j:outputPanel>
+				
+				</h:panelGrid>
+				<div id="espacio2"></div>
+				<h:panelGrid columnClasses="acent" id="notaCreditos" width="100%">
+					<rich:dataTable
+						rendered="#{not empty notaCreditoBean.notaCreditos}" rows="6"
+						rowClasses="odd-row, even-row" styleClass="stable"
+						value="#{notaCreditoBean.notaCreditos}" var="notaCredito"
+						id="table_facutra" style="width: 100%">
+						<rich:column>
+							<f:facet name="header">#{msg['notaCredito.fecha']}  Emision</f:facet>
+							<h:outputText value="#{notaCredito.fechaEmisionDb}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['notaCredito.numero']}</f:facet>
+							<h:outputText value="#{notaCredito.codSecuencial}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['comprobante.numRelacionado']}</f:facet>
+							<h:outputText value="#{notaCredito.numDocModificado}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['comprobante.codExterno']}" />
+							</f:facet>
+							<h:outputText value="#{notaCredito.claveInterna}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText
+									value="#{msg['notaCredito.identificacionComprador']}" />
+							</f:facet>
+							<h:outputText value="#{notaCredito.identificacionComprador}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['notaCredito.razonComprador']}" />
+							</f:facet>
+							<h:outputText value="#{notaCredito.razonSocialComprador}"
+								escape="false" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['notaCredito.total']}</f:facet>
+							<h:outputText value="#{notaCredito.valorModificacion}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Estado</f:facet>
+							<h:outputText value="#{notaCredito.estado}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Tarea Actual</f:facet>
+							<h:outputText value="#{notaCredito.tareaActual.descripcion}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Ambiente</f:facet>
+							<h:outputText value="PRUEBAS"
+								rendered="#{notaCredito.tipoAmbiente == '1'}" />
+							<h:outputText value="PRODUCCION"
+								rendered="#{notaCredito.tipoAmbiente == '2'}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Tipo Emision</f:facet>
+							<h:outputText value="NORMAL"
+								rendered="#{notaCredito.tipoEmision == '1'}" />
+							<h:outputText value="INDISPONIBILIDAD DE SISTEMA"
+								rendered="#{notaCredito.tipoEmision == '2'}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Punto Emision</f:facet>
+							<h:outputText value="#{notaCredito.ptoEmision}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Correo Electronico</f:facet>
+							<h:outputText value="#{notaCredito.correoNotificacion}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['notaCredito.numeroAutorizacion']}</f:facet>
+							<h:outputText value="#{notaCredito.numeroAutorizacion}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['notaCredito.fechaAutorizacion']}n</f:facet>
+							<h:outputText value="#{notaCredito.fechaAutorizacion}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header"></f:facet>
+							<h:panelGrid columns="3">
+								<h:commandLink styleClass="no-decor" immediate="true"
+									rendered="#{not empty notaCredito.archivoLegible or notaCredito.estado == 'AUTORIZADO'}"
+									title="Comprobante Legible" execute="@form"
+									action="#{notaCreditoBean.descargarComprobantePDF()}">
+									<h:graphicImage value="/resources/images/pdf.jpg" alt="cargar"
+										width="22" height="22" />
+									<f:setPropertyActionListener
+										target="#{notaCreditoBean.notaCredito}" value="#{notaCredito}" />
+								</h:commandLink>
+								<h:commandLink styleClass="no-decor"
+									title="Comprobante Electronico" immediate="true"
+									execute="@form"
+									action="#{notaCreditoBean.descargarComprobanteXML()}">
+									<h:graphicImage value="/resources/images/xml.png" alt="cargar"
+										width="22" height="22" />
+									<f:setPropertyActionListener
+										target="#{notaCreditoBean.notaCredito}" value="#{notaCredito}" />
+								</h:commandLink>
+								
+							</h:panelGrid>
+						</rich:column>
+
+					</rich:dataTable>
+					<rich:dataScroller for="table_facutra" maxPages="5"
+						render="notaCreditos"
+						rendered="#{not empty notaCreditoBean.notaCreditos}" />
+				</h:panelGrid>
+				<rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+				<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseover"
+					query="jQuery(this).addClass('active-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseout"
+					query="jQuery(this).removeClass('active-row')" />
+				<p class="texto1"></p>
+			</div>
+		</h:form>
+
+		
+
+	</ui:define>
+</ui:composition>
+

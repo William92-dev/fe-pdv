@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subreport_requerimientos" language="groovy" pageWidth="922" pageHeight="595" orientation="Landscape" columnWidth="922" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4729152a-b2d0-4bce-8fce-00cf5028eed2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="clave" class="java.lang.String"/>
+	<field name="organizacion" class="java.lang.String">
+		<fieldDescription><![CDATA[organizacionObj.nombre]]></fieldDescription>
+	</field>
+	<field name="tipoAmbienteObj" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String">
+		<fieldDescription><![CDATA[usada.identificador]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement uuid="40359f07-e21b-474a-a7ff-f2e711c88bd1" x="289" y="1" width="457" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{organizacion} == null ? "" : $F{organizacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c98542ef-2a10-4b08-a2c2-c2b0bad37745" x="843" y="1" width="80" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{estado} == null ? "" : $F{estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fa1a1914-ffe9-42eb-a22a-3056e0b9d854" x="0" y="1" width="289" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{clave} == null ? "" : $F{clave}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5cf53424-ee3c-400c-91b7-06b16bd0afac" x="747" y="1" width="96" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tipoAmbienteObj} == null ? "" : $F{tipoAmbienteObj}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

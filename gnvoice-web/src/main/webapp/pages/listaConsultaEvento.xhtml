@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+	<ui:define name="contenidoAplicacion">
+		<h:form>
+			<div id="pestanas">
+				<a href="#">Consulta Eventos</a>
+			</div>
+			<div id="contenido">
+				<rich:panel>
+					<h:panelGrid columns="4" width="100%">
+						<h:outputLabel value="#{msg['bitacora.usuario']}:"
+							for="codigoInput" styleClass="etiquetas" />
+						<h:inputText id="codigoInput" value="#{bitacoraDataBean.usuario}"
+							styleClass="textfield_form" />
+
+						<h:outputLabel value="#{msg['bitacora.evento']}:"
+							for="eventoInput" styleClass="etiquetas" />
+						<h:selectOneMenu id="eventoInput"
+							value="#{bitacoraDataBean.idEvento}">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{applicationBean.catalogosEventos}"
+								var="tipoCatalogo" itemLabel="#{tipoCatalogo.nombre}"
+								itemValue="#{tipoCatalogo.id}" />
+						</h:selectOneMenu>
+
+						<h:outputLabel value="#{msg['comprobante.fechaDesde']}:"
+							for="fechaInput" styleClass="etiquetas" />
+						<rich:calendar value="#{bitacoraDataBean.fechaDesde}"
+							showApplyButton="false" id="fechaInput"
+							datePattern="dd/MM/yyyy HH:mm" enableManualInput="true"
+							styleClass="textfield_form" />
+						<h:outputLabel value="#{msg['comprobante.fechaHasta']}:"
+							for="fechaHastaInput" styleClass="etiquetas" />
+						<rich:calendar value="#{bitacoraDataBean.fechaHasta}"
+							showApplyButton="false" id="fechaHastaInput"
+							datePattern="dd/MM/yyyy HH:mm" enableManualInput="true"
+							styleClass="textfield_form" />
+
+						<h:outputLabel value="#{msg['bitacora.detalle']}:"
+							for="detalleInput" styleClass="etiquetas" />
+						<h:inputText id="detalleInput" value="#{bitacoraDataBean.detalle}"
+							styleClass="textfield_form" />
+					</h:panelGrid>
+				</rich:panel>
+
+				<div id="espacio2"></div>
+				<h:panelGrid columns="2" width="20%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="#{msg['boton.buscar']}" execute="@form"
+							render="tablaBitacoras,reportePanel"
+							action="#{bitacoraBean.consultarBitacoraEvento()}" />
+					</a4j:outputPanel>
+					<h:panelGrid columns="3" width="10%" id="reportePanel">
+						<a4j:outputPanel layout="block">
+							<h:commandButton value="#{msg['boton.descargarXLS']}"
+								rendered="#{not empty bitacoraDataBean.listBitacoraEventos}"
+								execute="@form" action="#{bitacoraBean.descargarXLS()}" />
+						</a4j:outputPanel>
+						<a4j:outputPanel layout="block">
+							<h:commandButton value="#{msg['boton.descargarPDF']}"
+								rendered="#{not empty bitacoraDataBean.listBitacoraEventos}"
+								execute="@form" action="#{bitacoraBean.descargarPDF()}" />
+						</a4j:outputPanel>
+					</h:panelGrid>
+
+				</h:panelGrid>
+
+				<div id="espacio2"></div>
+
+				<h:panelGrid columnClasses="acent" id="tablaBitacoras" width="100%">
+
+					<rich:dataTable
+						rendered="#{not empty bitacoraDataBean.listBitacoraEventos}"
+						rows="6" rowClasses="odd-row, even-row" styleClass="stable"
+						value="#{bitacoraDataBean.listBitacoraEventos}" var="bitacora"
+						id="table_bitacora" style="width: 100%">
+
+						<rich:column>
+							<f:facet name="header">#{msg['bitacora.fecha']}</f:facet>
+							<h:outputText value="#{bitacora.fecha}">
+								<f:convertDateTime pattern="dd-MM-yyyy HH:mm" />
+							</h:outputText>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['bitacora.evento']}</f:facet>
+							<h:outputText value="#{bitacora.evento.nombre}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['bitacora.usuario']}</f:facet>
+							<h:outputText value="#{bitacora.usuario}">
+							</h:outputText>
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['bitacora.detalle']}</f:facet>
+							<h:outputText value="#{bitacora.descripcion}">
+							</h:outputText>
+						</rich:column>
+
+
+					</rich:dataTable>
+					<rich:dataScroller for="table_bitacora" maxPages="5"
+						render="tablaBitacoras"
+						rendered="#{not empty bitacoraDataBean.listBitacoraEventos}" />
+				</h:panelGrid>
+				<rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+				<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseover"
+					query="jQuery(this).addClass('active-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseout"
+					query="jQuery(this).removeClass('active-row')" />
+				<p class="texto1"></p>
+			</div>
+			<a4j:jsFunction name="postContruct"
+				action="#{bitacoraBean.postContruct()}" execute="@this"
+				render="bitacoras" />
+		</h:form>
+		<script>
+postContruct();
+</script>
+
+
+	</ui:define>
+</ui:composition>
+

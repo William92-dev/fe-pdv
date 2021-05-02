@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+
+
+	<ui:define name="contenidoAplicacion">
+		<h:form prependId="false">
+			<div id="pestanas">
+				<a href="#">Relacion Organizacion</a>
+			</div>
+			<div id="contenido">
+				<rich:panel>
+					<h:panelGrid columns="4" width="100%">
+						<h:outputLabel value="#{msg['organizacion.ruc']}: " for="rucInput"
+							styleClass="etiquetas" />
+						<h:inputText id="rucInput"
+							value="#{relacionOrganizacionDataBean.ruc}"
+							styleClass="textfield_form" maxlength="13"
+							validatorMessage="#{msg['persona.identificacion']} debe tener 13 digitos"
+							onkeypress="if((event.which &lt; 48 || event.which &gt; 57) &amp; event.which != 0  &amp; event.which != 9 &amp; event.which != 46 &amp; event.which != 8) return false;" />
+
+						<h:outputLabel value="#{msg['organizacion.nombre']}: "
+							for="nombreInput" styleClass="etiquetas" />
+						<h:inputText id="nombreInput"
+							value="#{relacionOrganizacionDataBean.nombre}"
+							styleClass="textfield_form" />
+
+						<h:outputLabel value="#{msg['persona.tipoRelacion']}:"
+							for="estadoInput" styleClass="etiquetas" />
+						<h:selectOneMenu
+							value="#{relacionOrganizacionDataBean.tipoRelacion}"
+							id="estadoInput">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{relacionOrganizacionBean.tipoRelacion}" />
+						</h:selectOneMenu>
+
+					</h:panelGrid>
+
+					<h:panelGrid columns="2" width="20%">
+						<a4j:outputPanel layout="block">
+							<a4j:commandButton value="#{msg['boton.buscar']}" execute="@form"
+								render="emisores" action="#{relacionOrganizacionBean.buscar()}" />
+						</a4j:outputPanel>
+						<a4j:outputPanel layout="block">
+							<a4j:commandButton value="#{msg['boton.nuevo']}"
+								action="#{relacionOrganizacionBean.nuevoRelacionOrganizacion()}"
+								styleClass="no-decor" execute="@this">
+
+							</a4j:commandButton>
+						</a4j:outputPanel>
+					</h:panelGrid>
+				</rich:panel>
+
+				<div id="espacio2"></div>
+
+
+
+				<h:panelGrid columnClasses="acent" id="emisores" width="100%">
+
+					<rich:dataTable
+						rendered="#{not empty relacionOrganizacionDataBean.listRelacionOrganizaciones}"
+						rows="6" rowClasses="odd-row, even-row" styleClass="stable"
+						value="#{relacionOrganizacionDataBean.listRelacionOrganizaciones}"
+						var="relacion" id="table_persona" style="width: 100%">
+
+						<rich:column>
+							<f:facet name="header">Ruc Organizacion</f:facet>
+							<h:outputText value="#{relacion.organizacionRelacion.ruc}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">Nombre Organizacion</f:facet>
+							<h:outputText
+								value="#{relacion.organizacionRelacion.nombreComercial}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Tipo de Relacion</f:facet>
+							<h:outputText value="Cliente"
+								rendered="#{relacion.tipoRelacion == 'CLI'}" />
+							<h:outputText value="Proveedor"
+								rendered="#{relacion.tipoRelacion == 'PRO'}" />
+						</rich:column>
+
+
+						<rich:column>
+							<f:facet name="header">Accion</f:facet>
+							<a4j:commandLink styleClass="no-decor" execute="@this"
+								action="#{relacionOrganizacionBean.editarRelacionOrganizacion()}">
+								<h:graphicImage value="/resources/images/edit.png"
+									alt="Editar R" />
+								<f:setPropertyActionListener
+									target="#{relacionOrganizacionDataBean.relacionOrganizacion}"
+									value="#{relacion}" />
+							</a4j:commandLink>
+						</rich:column>
+
+					</rich:dataTable>
+					<rich:dataScroller for="table_persona" maxPages="5"
+						render="emisores"
+						rendered="#{not empty relacionOrganizacionDataBean.listRelacionOrganizaciones}" />
+				</h:panelGrid>
+
+				<div id="espacio2"></div>
+
+
+				<rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+				<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseover"
+					query="jQuery(this).addClass('active-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseout"
+					query="jQuery(this).removeClass('active-row')" />
+				<p class="texto1"></p>
+			</div>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+

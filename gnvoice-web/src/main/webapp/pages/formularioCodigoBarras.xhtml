@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+
+
+	<ui:define name="contenidoAplicacion">
+		<h:form>
+			<div id="pestanas">
+				<a href="#">Formulario Parametro</a>
+			</div>
+			<div id="contenido">
+				<rich:panel id="panel_parametro">
+
+					<h:panelGrid columns="3" width="100%" id="editGrid">
+						<h:outputLabel value="#{msg['parametro.codigo']}: *"
+							for="codigoInput" styleClass="etiquetas" />
+						<h:inputText id="codigoInput"
+							value="#{codigoBarrasDataBean.codigoBarrasSelecionado.codigoArticulo}"
+							styleClass="textfield_form" required="true"
+							requiredMessage="#{msg['parametro.codigo']} es requerido" />
+						<h:outputLabel value="" />
+						
+						<h:outputLabel value="Tipo Articulo: "
+							for="articuloInput" styleClass="etiquetas" />
+						<h:inputText id="articuloInput"
+							value="#{codigoBarrasDataBean.codigoBarrasSelecionado.tipoArticulo}"
+							styleClass="textfield_form" required="true"
+							requiredMessage="Tipo Articulo es requerido" />
+						<h:outputLabel value="" />
+						
+						<h:outputLabel value="#{msg['organizacion.ruc']}: "  for="rucInput"
+							styleClass="etiquetas" />
+						<h:inputText id="rucInput"
+							value="#{codigoBarrasDataBean.codigoBarrasSelecionado.ruc}"
+							styleClass="textfield_form" maxlength="13" required="true"
+							validatorMessage="#{msg['persona.identificacion']} debe tener 10 o 13 digitos"
+							requiredMessage="#{msg['persona.identificacion']} es requerido"
+							onkeypress="if((event.which &lt; 48 || event.which &gt; 57) &amp; event.which != 0  &amp; event.which != 9 &amp; event.which != 46 &amp; event.which != 8) return false;">
+							<f:validateLength minimum="10" maximum="13" />
+						</h:inputText>
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['parametro.estado']}:" for="estadoInput"
+							styleClass="etiquetas" />
+						<h:selectOneMenu
+							value="#{codigoBarrasDataBean.codigoBarrasSelecionado.estado}"
+							id="estadoInput">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{parametrizacionCodigoBarrasBean.estados}" />
+						</h:selectOneMenu>
+						<h:outputText value="" />
+					</h:panelGrid>
+
+					<div id="espacio2"></div>
+					<h:outputLabel styleClass="texto2"
+						style="text-align: center; width:100%"
+						value="* Campos requeridos u obligatorios" />
+
+				</rich:panel>
+				<h:panelGrid columns="2" width="20%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="#{msg['boton.guardar']}" execute="@form"
+							render="editGrid evento"
+							action="#{parametrizacionCodigoBarrasBean.guardar}" />
+					</a4j:outputPanel>
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton immediate="true"
+							action="#{parametrizacionCodigoBarrasBean.regresar()}"
+							value="#{msg['boton.regresar']}" />
+					</a4j:outputPanel>
+				</h:panelGrid>
+
+				<p class="texto1"></p>
+			</div>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+

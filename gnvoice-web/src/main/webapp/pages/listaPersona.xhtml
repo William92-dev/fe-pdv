@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+
+
+	<ui:define name="contenidoAplicacion">
+		<h:form>
+			<div id="pestanas">
+				<a href="#">Lista Persona</a>
+			</div>
+			<div id="contenido">
+				<rich:panel>
+					<h:panelGrid columns="4" width="100%">
+						<h:outputLabel value="#{msg['persona.nombres']}: "
+							for="nombreInput" styleClass="etiquetas" />
+						<h:inputText id="nombreInput" value="#{personaDataBean.nombre}"
+							styleClass="textfield_form" />
+
+						<h:outputLabel value="#{msg['persona.apellidos']}: "
+							for="apellidoInput" styleClass="etiquetas" />
+						<h:inputText id="apellidoInput"
+							value="#{personaDataBean.apellido}" styleClass="textfield_form" />
+
+						<h:outputLabel value="#{msg['persona.identificacion']}: "
+							for="identificacionInput" styleClass="etiquetas" />
+						<h:inputText id="identificacionInput"
+							value="#{personaDataBean.identificacion}"
+							styleClass="textfield_form" maxlength="10"
+							validatorMessage="#{msg['persona.identificacion']} debe tener 10 digitos"
+							onkeypress="if((event.which &lt; 48 || event.which &gt; 57) &amp; event.which != 0  &amp; event.which != 9 &amp; event.which != 46 &amp; event.which != 8) return false;" />
+					</h:panelGrid>
+
+					<div id="espacio2"></div>
+
+					<h:panelGrid columns="2" width="20%">
+						<a4j:outputPanel layout="block">
+							<a4j:commandButton value="#{msg['boton.buscar']}" execute="@form"
+								render="gridPersona" action="#{personaBean.buscarPersona()}" />
+						</a4j:outputPanel>
+
+						<a4j:outputPanel layout="block">
+							<a4j:commandButton value="#{msg['boton.nuevo']}" execute="@form"
+								action="#{personaBean.nuevoPersona()}" />
+						</a4j:outputPanel>
+					</h:panelGrid>
+				</rich:panel>
+
+
+				<h:panelGrid columnClasses="acent" id="gridPersona" width="100%">
+
+					<rich:dataTable
+						rendered="#{not empty personaDataBean.listPersonas}" rows="6"
+						rowClasses="odd-row, even-row" styleClass="stable"
+						value="#{personaDataBean.listPersonas}" var="persona"
+						id="table_persona" style="width: 100%">
+
+						<rich:column>
+							<f:facet name="header">#{msg['persona.apellidos']}</f:facet>
+							<h:outputText value="#{persona.apellidos}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['persona.nombres']}</f:facet>
+							<h:outputText value="#{persona.nombres}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['persona.identificacion']}</f:facet>
+							<h:outputText value="#{persona.identificacion}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">Accion</f:facet>
+							<a4j:commandLink styleClass="no-decor" execute="@this"
+								action="#{personaBean.editarPersona()}">
+								<h:graphicImage value="/resources/images/edit.png" alt="Editar" />
+								<f:setPropertyActionListener
+									target="#{personaDataBean.personaSeleccionada}"
+									value="#{persona}" />
+							</a4j:commandLink>
+						</rich:column>
+
+					</rich:dataTable>
+					<rich:dataScroller for="table_persona" maxPages="5"
+						render="gridPersona"
+						rendered="#{not empty personaDataBean.listPersonas}" />
+				</h:panelGrid>
+				<rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+				<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseover"
+					query="jQuery(this).addClass('active-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseout"
+					query="jQuery(this).removeClass('active-row')" />
+				<p class="texto1"></p>
+			</div>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+

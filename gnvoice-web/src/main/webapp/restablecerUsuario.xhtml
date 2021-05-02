@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/templateExterno.xhtml">
+
+	<ui:define name="contenidoAplicacion">
+		<h:form>
+			<div id="pestanas_completa">
+				<a href="#">Actualizar Datos Usuario</a>
+			</div>
+			<div id="contenido">
+				<rich:panel id="panel_usuario">
+
+					<h:outputLabel styleClass="texto2"
+						style="text-align: center; width:100%"
+						value="Actualice su información e ingrese su nueva contraseña para ingresar al sistema. Una vez actualizado los datos seleccione el boton regresar." />
+
+					<h:panelGrid columns="3" width="100%">
+						<h:outputLabel value="#{msg['usuario.identificacion']}: *"
+							for="nameInput" styleClass="etiquetas" />
+						<h:inputText id="identificacionInput" maxlength="20"
+							required="true"
+							value="#{restablecerUsuarioBean.usuarioExternoSeleccionada.persona.identificacion}"
+							requiredMessage="#{msg['usuario.identificacion']} es requerido"
+							styleClass="textfield_form" disabled="true">
+							<a4j:ajax event="blur" execute="@this"
+								listener="#{restablecerUsuarioBean.consultaPersona()}"
+								render="panel_usuario" oncomplete="nameInput.focus();"></a4j:ajax>
+						</h:inputText>
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['usuario.nombre']}: *" for="nameInput"
+							styleClass="etiquetas" />
+						<h:inputText id="nameInput"
+							requiredMessage="#{msg['usuario.nombre']} es requerido"
+							required="true"
+							value="#{restablecerUsuarioBean.usuarioExternoSeleccionada.persona.nombres}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['usuario.apellido']}: *"
+							for="apellidoInput" styleClass="etiquetas" />
+						<h:inputText id="apellidoInput" required="true"
+							requiredMessage="#{msg['usuario.apellido']} es requerido"
+							value="#{restablecerUsuarioBean.usuarioExternoSeleccionada.persona.apellidos}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['usuario.correo']}: *"
+							for="correoInput" styleClass="etiquetas" />
+						<h:inputText id="correoInput" required="true"
+							requiredMessage="#{msg['usuario.correo']} es requerido"
+							validatorMessage="#{msg['usuario.correo']} invalido "
+							value="#{restablecerUsuarioBean.usuarioExternoSeleccionada.persona.correoElectronico}"
+							styleClass="textfield_form">
+							<f:validateRegex
+								pattern="^(([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+([;.](([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+)*$" />
+						</h:inputText>
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['usuario.nombreUsuario']}: *"
+							for="usuarioInput" styleClass="etiquetas" />
+						<h:inputText id="usuarioInput" required="true"
+							requiredMessage="#{msg['usuario.nombreUsuario']} es requerido"
+							disabled="true"
+							value="#{restablecerUsuarioBean.usuarioExternoSeleccionada.username}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['usuario.contrasenia']}: *"
+							for="passInput" styleClass="etiquetas" />
+						<h:inputSecret id="passInput" required="true"
+							requiredMessage="#{msg['usuario.contrasenia']} es requerido"
+							value="#{restablecerUsuarioBean.password}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="" />
+
+					</h:panelGrid>
+
+					<div id="espacio2"></div>
+					<h:outputLabel styleClass="texto2"
+						style="text-align: center; width:100%"
+						value="* Campos requeridos u obligatorios" />
+
+				</rich:panel>
+				<h:panelGrid columns="2" width="20%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="Guardar" execute="@form"
+							render="panel_usuario evento"
+							action="#{restablecerUsuarioBean.guardar()}" />
+
+					</a4j:outputPanel>
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton immediate="true"
+							action="#{restablecerUsuarioBean.regresar()}"
+							value="#{msg['boton.regresar']}" />
+					</a4j:outputPanel>
+				</h:panelGrid>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+

@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+	<ui:define name="contenidoAplicacion">
+		<h:form>
+			<div id="pestanas">
+				<a href="#">Formulario Usuario</a>
+			</div>
+			<div id="contenido">
+				<rich:panel id="panel_usuario">
+
+					<h:panelGrid columns="3" width="100%">
+						<h:outputLabel value="#{msg['usuario.identificacion']}: *"
+							for="nameInput" styleClass="etiquetas" />
+						<h:inputText id="identificacionInput" maxlength="20"
+							disabled="#{!usuarioDataBean.esIngreso}" required="true"
+							value="#{usuarioDataBean.usuarioExternoSeleccionada.persona.identificacion}"
+							requiredMessage="#{msg['usuario.identificacion']} es requerido"
+							styleClass="textfield_form">
+							<a4j:ajax event="blur"
+								listener="#{usuarioBean.consultaPersona()}"
+								render="panel_usuario"></a4j:ajax>
+						</h:inputText>
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['usuario.nombre']}: *" for="nameInput"
+							styleClass="etiquetas" />
+						<h:inputText id="nameInput"
+							requiredMessage="#{msg['usuario.nombre']} es requerido"
+							required="true"
+							value="#{usuarioDataBean.usuarioExternoSeleccionada.persona.nombres}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['usuario.apellido']}: *"
+							for="apellidoInput" styleClass="etiquetas" />
+						<h:inputText id="apellidoInput" required="true"
+							requiredMessage="#{msg['usuario.apellido']} es requerido"
+							value="#{usuarioDataBean.usuarioExternoSeleccionada.persona.apellidos}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['usuario.correo']}: *"
+							for="correoInput" styleClass="etiquetas" />
+						<h:inputText id="correoInput" required="true"
+							requiredMessage="#{msg['usuario.correo']} es requerido"
+							validatorMessage="#{msg['usuario.correo']} invalido "
+							value="#{usuarioDataBean.usuarioExternoSeleccionada.persona.correoElectronico}"
+							styleClass="textfield_form">
+							<f:validateRegex
+								pattern="^(([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+([;.](([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+)*$" />
+						</h:inputText>
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['usuario.nombreUsuario']}: *"
+							for="usuarioInput" styleClass="etiquetas" />
+						<h:inputText id="usuarioInput" required="true"
+							requiredMessage="#{msg['usuario.nombreUsuario']} es requerido"
+							disabled="#{!usuarioDataBean.esIngreso}"
+							value="#{usuarioDataBean.usuarioExternoSeleccionada.username}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['usuario.contrasenia']}: *"
+							for="passInput" styleClass="etiquetas" />
+						<h:inputSecret id="passInput" required="true"
+							requiredMessage="#{msg['usuario.contrasenia']} es requerido"
+							value="#{usuarioDataBean.usuarioExternoSeleccionada.password}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="Rol: *" for="rolInput"
+							styleClass="etiquetas"
+							rendered="#{sessionBean.codigoRol == 'ADMIN'}" />
+						<h:selectOneMenu id="rolInput" required="true"
+							requiredMessage="Rol es requerido"
+							rendered="#{sessionBean.codigoRol == 'ADMIN'}"
+							value="#{usuarioDataBean.rol.id}">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{usuarioBean.roles}" />
+						</h:selectOneMenu>
+						<h:outputText value=""
+							rendered="#{sessionBean.codigoRol == 'ADMIN'}" />
+
+						<h:outputLabel value="#{msg['parametro.estado']}:"
+							rendered="#{sessionBean.codigoRol == 'ADMIN'}" for="estadoInput"
+							styleClass="etiquetas" />
+						<h:selectOneMenu
+							value="#{usuarioDataBean.usuarioExternoSeleccionada.estado}"
+							rendered="#{sessionBean.codigoRol == 'ADMIN'}" id="estadoInput">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{usuarioBean.estados}" />
+						</h:selectOneMenu>
+						<h:outputText value=""
+							rendered="#{sessionBean.codigoRol == 'ADMIN'}" />
+							
+						
+
+						<h:outputLabel value="Foto: " for="upload" styleClass="etiquetas" />
+						<rich:fileUpload
+							fileUploadListener="#{usuarioBean.cargarDocumentoEm}" id="upload"
+							acceptedTypes="gif, png, jpg" listHeight="50px"
+							addLabel="Agregar" clearLabel="Limpiar" doneLabel="Cargado"
+							clearAllLabel="Limpiar Todos" uploadLabel="Cargar"
+							ontyperejected="alert('Solo se aceptan archivos GIF,PNG y JGP');"
+							maxFilesQuantity="1" style="height:80px">
+							<a4j:ajax event="uploadcomplete" execute="@this" />
+						</rich:fileUpload>
+						<h:outputLabel value="" />
+					</h:panelGrid>
+
+					<div id="espacio2"></div>
+					<h:outputLabel styleClass="texto2"
+						style="text-align: center; width:100%"
+						value="* Campos requeridos u obligatorios" />
+
+				</rich:panel>
+				<h:panelGrid columns="2" width="20%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="Guardar" execute="@form"
+							render="panel_usuario evento" action="#{usuarioBean.guardar()}" />
+
+					</a4j:outputPanel>
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton immediate="true"
+							action="#{usuarioBean.regresarEm()}"
+							value="#{msg['boton.regresar']}" />
+					</a4j:outputPanel>
+				</h:panelGrid>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+

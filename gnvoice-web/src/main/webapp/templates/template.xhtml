@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>#{messages.titulo}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet name="css/template#{sessionBean.skin}.css" />
+	<script type="text/javascript"></script>
+</h:head>
+<h:body>
+	<h:outputStylesheet target="head" id="main">
+	
+.rf-pm-top-gr {
+	border-width: 0px;
+}
+
+.rf-pm-gr{
+	border-width: 0px;
+}
+
+.rf-pm-gr-hdr:hover{
+   font-family: "Century Gothic";
+	font-size: 13px;
+	color: #666;
+	font-weight: normal;
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 39px;
+	line-height: 50px;
+	text-decoration: none;
+	border-width: 0px;
+	font-weight: bold;
+}
+
+.rf-pm-gr-hdr{
+   	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #666;
+	font-weight: normal;
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 39px;
+	line-height: 50px;
+	text-decoration: none;
+	border-width: 0px;
+	font-weight: bold;
+}
+
+.rf-pm-itm{
+	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #666;
+	font-weight: normal;
+	background-image: url("#{resource['images/boton_desplegable.jpg']}");
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 39px;
+	line-height: 50px;
+	text-decoration: none;
+	border-width: 0px;
+}
+
+.rf-pm-itm:hover{
+	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #666;
+	font-weight: normal;
+	background-image: url("#{resource['images/boton_desplegable.jpg']}");
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 39px;
+	line-height: 50px;
+	text-decoration: none;
+	border-width: 0px;
+	font-weight: bold;
+}
+
+.rich-pmenu-selected-element{
+}
+
+.rf-cp-hdr {
+   	cursor: pointer;
+   	font-weight: bold;
+   	white-space: nowrap;
+   	border-style:none
+}
+
+.rf-cp{
+    background-color:none;
+    padding:0px;
+  }
+
+  .rf-pm-gr-lbl {
+	font-size: 11px;
+	font-family: "Century Gothic";
+ }
+ 
+ .rf-pm-itm-lbl{
+ 	font-family: "Century Gothic";
+	font-size: 11px;
+ }
+ 
+ .rf-pm-top-gr-lbl {
+ 	font-family: "Century Gothic";
+	padding: 10px 0 0 0;
+	font-size: 13px;
+}
+.rf-ntf {
+ 	font-family: "Century Gothic";
+	padding: 10px 0 0 0;
+	font-size: 13px;
+}
+.rf-ntf-err{
+ 	font-family: "Century Gothic";
+	padding: 10px 0 0 0;
+	font-size: 13px;
+} 
+.rf-ntf-pos-tr{
+ 	font-family: "Century Gothic";
+	padding: 10px 0 0 0;
+	font-size: 13px;
+}
+
+.rf-dt-hdr-c{
+font-family: "Century Gothic";
+	font-size: 12px;
+}
+
+.rf-cst-c, .rf-cst-nd-c{
+	font-family: "Century Gothic";
+	font-size: 11px;
+}
+
+.rf-dt-shdr-c {
+ 	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.rf-dt-c {
+ 	font-family: "Century Gothic";
+	font-size: 11px;
+}
+
+a {
+	font-family: "Century Gothic";
+	font-size: 11px;
+}
+.rf-cp-hdr {
+ 	font-family: "Century Gothic";
+	font-size: 12px;
+	font-weight: normal;
+}
+	</h:outputStylesheet>
+
+	<h:outputStylesheet target="head" id="classic"
+		rendered="#{sessionBean.skin=='classic'}">
+.rf-pm-top-gr-hdr {
+	font-family: "Century Gothic";
+	font-size: 13px;
+    width: 230px;
+	background-repeat: no-repeat;
+	height: 52px;
+    cursor: pointer;
+    background-image: url("#{resource['images/classic/boton_ina.jpg']}");
+    white-space: nowrap;
+    background-color: white;
+    text-align: center;
+	text-decoration: none;
+	padding-left: 0px;
+	margin-left: 0px;
+	font-weight: normal;
+}
+
+.rf-pm-top-gr-hdr:hover {
+	font-family: "Century Gothic";
+	font-size: 13px;
+    width: 230px;
+	background-repeat: no-repeat;
+	height: 52px;
+    cursor: pointer;
+	background-image: url("#{resource['images/classic/boton_act.jpg']}");
+    white-space: nowrap;
+      background-color: white;
+    text-align: center;
+	text-decoration: none;
+	padding-left: 0px;
+	margin-left: 0px;
+	font-weight: normal;
+}
+
+    </h:outputStylesheet>
+
+	<h:outputStylesheet target="head" id="ruby"
+		rendered="#{sessionBean.skin=='ruby'}">
+.rf-pm-top-gr-hdr {
+	font-family: "Century Gothic";
+	font-size: 13px;
+    width: 230px;
+	background-repeat: no-repeat;
+	height: 52px;
+    cursor: pointer;
+    background-image: url("#{resource['images/ruby/boton_ina.jpg']}");
+    white-space: nowrap;
+    background-color: white;
+    text-align: center;
+	text-decoration: none;
+	padding-left: 0px;
+	margin-left: 0px;
+	font-weight: normal;
+}
+
+.rf-pm-top-gr-hdr:hover {
+	font-family: "Century Gothic";
+	font-size: 13px;
+    width: 230px;
+	background-repeat: no-repeat;
+	height: 52px;
+    cursor: pointer;
+	background-image: url("#{resource['images/ruby/boton_act.jpg']}");
+    white-space: nowrap;
+      background-color: white;
+    text-align: center;
+	text-decoration: none;
+	padding-left: 0px;
+	margin-left: 0px;
+	font-weight: normal;
+}
+    </h:outputStylesheet>
+
+	<div id="linea_sup"></div>
+
+	<div id="cabecera">
+		<div id="cab_izq">
+			<h:graphicImage value="/resources/images/logo_corporacion.png"
+				width="154" height="50" alt="logo" />
+		</div>
+		<div id="cab_der">
+			<div id="bienvenidos">Bienvenido al Sistema CorporacionGPF</div>
+			<div id="menu_sup">
+				<h:form>
+					<a
+						href="http://#{sessionBean.urlServidor}#{request.contextPath}/pages/home.jsf">Inicio</a>
+					<a
+						href="http://#{sessionBean.urlServidor}#{request.contextPath}/logout.jsp">Salir</a>
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+	<div id="cuerpo">
+		<div id="izquierda">
+			<div id="usuario">
+				<div id="avatar">
+					<h:graphicImage
+						value="/ImagenServlet?resources=#{sessionBean.usuario.persona.foto}"
+						width="90" height="120" alt="avatar" />
+				</div>
+				<div id="info_usuario">
+					<p class="texto1">
+						USUARIO:<br /> <span class="texto2">#{sessionBean.usuario.persona.nombreCompleto}</span><br />
+						<span class="linea">---------------------------------------</span>
+						ROL:<span class="texto2"><br /> #{sessionBean.roleStr}</span>
+					</p>
+				</div>
+			</div>
+			<div id="espacio"></div>
+			<div id="menuRich">
+				<h:form id="form">
+					<h:panelGrid columns="1" width="235px"
+						style="font-family:'Century Gothic';">
+						<rich:panelMenu style="width:235px" itemMode="client"
+							binding="#{menuBean.menu}" groupMode="client"
+							groupExpandedLeftIcon="none" groupCollapsedLeftIcon="none"
+							topGroupExpandedRightIcon="none"
+							topGroupCollapsedRightIcon="none" itemLeftIcon="none">
+
+						</rich:panelMenu>
+					</h:panelGrid>
+				</h:form>
+			</div>
+		</div>
+		<div id="derecha">
+			<a4j:outputPanel id="panelMensajes" ajaxRendered="true">
+				﻿<rich:notifyMessages stayTime="2000" nonblocking="true"
+					style="font-family: Arial, Helvetica, sans-serif;font-size: 12px;"
+					showCloseButton="true" />
+			</a4j:outputPanel>
+
+			<ui:insert name="contenidoAplicacion" />
+			<div id="evento">
+				<a4j:status onstart="#{rich:component('estadoDialogo')}.show();"
+					id="panelStatus"
+					onstop="#{rich:component('estadoDialogo')}.hide();" />
+				<rich:popupPanel id="estadoDialogo" autosized="true" modal="true">
+					<h:panelGrid columns="2">
+						<h:graphicImage value="/resources/images/connect_active.gif" />
+						<h:outputText value="Esperando" />
+					</h:panelGrid>
+				</rich:popupPanel>
+			</div>
+		</div>
+	</div>
+
+	<div class="pie_texto1" id="pie">
+		<div style="padding-top: 15px;">
+			Sistema CorporacionGPF<br /> <span class="pie_texto2">Gizlo
+				Cia. Ltda. 2014. Todos los derechos Reservados.</span>
+		</div>
+	</div>
+
+</h:body>
+</html>
+

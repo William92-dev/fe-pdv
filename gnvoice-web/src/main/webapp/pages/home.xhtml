@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+	<ui:define name="contenidoAplicacion">
+		<div id="pestanas">
+			<a href="#">CorporacionGPF</a>
+		</div>
+		<h:form>
+			<a4j:jsFunction name="postContruct"
+				action="#{homeBean.validarUsuario()}" execute="@this" />
+			<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61882165-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+			<script> 
+		window.onload = function(){
+			postContruct();
+		}
+		</script>
+			<div id="contenido">
+				<h1>
+					Sistema <span class="h2">CorporacionGPF</span>
+				</h1>
+				<h3>Facturación Electronica.</h3>
+				<table width="100%">
+					<tr>
+						<td valign="top">
+							<h4 style="color: #000;">Beneficios:</h4>
+							<ul>
+								<li><h4>Elimina el almacenamiento físico de los
+										comprobantes de venta.</h4></li>
+								<li><h4>Seguridad en el resguardo de los documentos.</h4></li>
+								<li><h4>Cuida el medio ambiente.</h4></li>
+								<li><h4>Consulta en línea de la validez de la
+										transacción.</h4></li>
+								<li><h4>Procesos administrativos rápidos y eficientes.</h4></li>
+							</ul>
+						</td>
+						<td><span><h:graphicImage
+									value="/resources/images/FAC_P.png" alt="FAC" /> </span></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<h4 style="color: #000;">Base Legal:</h4> <span>
+								<h4>
+									La Ley de Régimen Tributario Interno en su art. 64 expresa que
+									los contribuyentes que realicen transferencias de bienes o
+									servicios tienen la obligación de emitir comprobantes de venta.<br />
+									<br /> Mediante Resolución NAC-DGERCGC12-00105, El Servicio de
+									Rentas Internas aprueba y expide las normas para la aplicación
+									del esquema de emisión de comprobantes de venta, retención y
+									documentos complementarios, de igual forma se expone el proceso
+									de autorización y entrega de los mismos. <br /> <br /> En la
+									resolución NAC-DGERCGC13-00236, El Servicio de Rentas Internas
+									calendariza y define los grupos que obligatoriamente deben
+									emitir comprobantes de venta en forma electrónica, siendo la
+									fecha de inicio el 01 de junio de 2014. <br /> <br /> Con el
+									fin de estandarizar la estructura, procesos y esquemas, la
+									Administración Tributaria emitió un documento técnico en la
+									cual establece que cada contribuyente emisor debe enviar al SRI
+									a través de un servicio web el comprobante para su autorización
+									(se realiza en línea, en tiempo real, uno a uno). Una vez que
+									dicho documento sea verificado y autorizado debe ser entregado
+									al adquirente mediante correo electrónico o a través de un
+									portal web que el emisor considere poner a disposición de sus
+									adquirentes; y, también estará disponible en la página web del
+									Servicio de Rentas Internas. <br /> <br /> De acuerdo a la
+									normativa tributaria vigente, los Proveedores deberán entregar
+									por cada transacción dos documentos: un archivo XML que es el
+									sustento tributario para la imputación a los ingresos; y, un
+									archivo PDF que define en forma amigable los
+									códigos XML. <br /> <br /> 								
+									<br /> <br />
+								</h4>
+						</span>
+						</td>
+					</tr>
+					<tr>
+						<td><h4>
+								Para conocer más sobre facturación electrónica haga <a
+									href="http://www.sri.gob.ec/web/guest/10109" target="_blank">click
+									aquí</a>.
+							</h4></td>
+					</tr>
+				</table>
+				<br /> <br />
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

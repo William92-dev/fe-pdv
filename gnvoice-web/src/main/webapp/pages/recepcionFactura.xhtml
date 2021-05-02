@@ -1,0 +1,514 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/template.xhtml">
+
+	<ui:define name="contenidoAplicacion">
+		<h:form prependId="false">
+			<div id="pestanas">
+				<a href="#">Factura</a>
+			</div>
+			<div id="contenido">
+
+				<rich:panel>
+					<h:panelGrid columns="4" width="100%">
+						<h:outputLabel value="Numero Comprobante:" for="nameInput"
+							styleClass="etiquetas" />
+						<h:inputText id="nameInput"
+							value="#{facturaBean.numeroComprobante}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="#{msg['comprobante.fechaDesde']}:"
+							for="fechaInput" styleClass="etiquetas" />
+						<rich:calendar value="#{facturaBean.fechaDesde}" id="fechaInput"
+							datePattern="dd/MM/yyyy" enableManualInput="true"
+							styleClass="textfield_form" />
+						<h:outputLabel value="#{msg['comprobante.fechaHasta']}:"
+							for="fechaHastaInput" styleClass="etiquetas" />
+						<rich:calendar value="#{facturaBean.fechaHasta}"
+							id="fechaHastaInput" datePattern="dd/MM/yyyy"
+							enableManualInput="true" styleClass="textfield_form" />
+						<h:outputLabel value="#{msg['parametro.estado']}:"
+							for="estadoInput" styleClass="etiquetas" />
+						<h:selectOneMenu value="#{facturaBean.estado}" id="estadoInput">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{facturaBean.estados}" />
+						</h:selectOneMenu>
+
+						<h:outputLabel value="#{msg['parametro.proveedor']}:"
+							for="proveedorInput" styleClass="etiquetas" />
+						 <rich:select id="proveedorInput" value="#{facturaBean.proveedor}" 
+						 			  enableManualInput="true" 
+						 			  defaultLabel="#{msg['common.msg.select']}">
+                			<f:selectItems value="#{facturaBean.proveedores}" />
+                			<a4j:ajax event="change" execute="@this" render="proveedorInput"/>
+            			</rich:select>
+            
+
+					</h:panelGrid>
+				</rich:panel>
+				<div id="espacio2"></div>
+				<h:panelGrid columns="3" width="10%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="Buscar" execute="@form"
+							render="facturas, reportePanel"
+							action="#{facturaBean.buscarFacturaRecibidos()}" />
+					</a4j:outputPanel>
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="Resagados" execute="@form"
+							action="#{facturaBean.enviarResagados()}" />
+					</a4j:outputPanel>
+					<h:panelGrid columns="2" width="10%" id="reportePanel">
+						<a4j:outputPanel layout="block">
+							<h:commandButton value="#{msg['boton.descargarXLS']}"
+								rendered="#{facturaBean.buscarSegumiento}" execute="@form"
+								action="#{facturaBean.descargarXLSReim()}" />
+						</a4j:outputPanel>
+						<a4j:outputPanel layout="block">
+							<h:commandButton value="#{msg['boton.descargarPDF']}"
+								rendered="#{facturaBean.buscarSegumiento}" execute="@form"
+								action="#{facturaBean.descargarPDFReim()}" />
+						</a4j:outputPanel>
+
+						<a4j:outputPanel layout="block">
+							<h:commandButton value="Enciende Lectura" execute="@form"
+								action="#{facturaBean.ejecutaLecturaMail()}" />
+						</a4j:outputPanel>
+
+					</h:panelGrid>
+				</h:panelGrid>
+				<div id="espacio2"></div>
+				<h:panelGrid columnClasses="acent" id="facturas" width="100%">
+					<rich:dataTable rendered="#{facturaBean.buscarSegumiento}" rows="6"
+						rowClasses="odd-row, even-row" styleClass="stable"
+						value="#{facturaBean.dataModelRecepcion}" var="factura"
+						id="table_facutra" style="width: 100%">
+
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['factura.numero']}" />
+							</f:facet>
+							<h:outputText value="#{factura['codSecuencial']}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['factura.ruc']}</f:facet>
+							<h:outputText value="#{factura['ruc']}" />
+
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['factura.fecha']} Emision</f:facet>
+							<h:outputText value="#{factura['fechaEmisionBase']}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['factura.identificacionComprador']}" />
+							</f:facet>
+							<h:outputText value="#{factura['identificacionComprador']}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['factura.razonComprador']}" />
+							</f:facet>
+							<h:outputText value="#{factura['razonSocialComprador']}"
+								escape="false" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['factura.total']}</f:facet>
+							<h:outputText value="#{factura['importeTotal']}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">SUBTOTAL</f:facet>
+							<h:outputText value="#{factura['totalSinImpuestos']}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">Base 0</f:facet>
+							<h:outputText value="#{factura['baseCero']}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">BASE 12</f:facet>
+							<h:outputText value="#{factura['baseDoce']}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">IVA</f:facet>
+							<h:outputText value="#{factura['iva']}" />
+						</rich:column>
+
+
+
+
+						<rich:column>
+							<f:facet name="header">BASE ICE</f:facet>
+							<h:outputText value="#{factura['baseIce']}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">ice</f:facet>
+							<h:outputText value="#{factura['ice']}" />
+						</rich:column>
+
+
+
+						<rich:column>
+							<f:facet name="header">BASE IRBP</f:facet>
+							<h:outputText value="#{factura['baseIrbp']}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">IRBP</f:facet>
+							<h:outputText value="#{factura['irbp']}" />
+						</rich:column>
+
+
+
+
+						<rich:column>
+							<f:facet name="header">#{msg['factura.numeroAutorizacion']}</f:facet>
+							<h:outputText value="#{factura['numeroAutorizacion']}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['factura.fechaAutorizacion']}</f:facet>
+							<h:outputText value="#{factura['fechaAutorizacion']}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">RAZON SOCIAL EMISOR</f:facet>
+							<h:outputText value="#{factura['infoAdicional']}">
+							</h:outputText>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">TRADUCIDO</f:facet>
+							<h:outputText value="SI"
+								rendered="#{factura['estado'] == 'AUTORIZADO'}">
+							</h:outputText>
+							<h:outputText value="NO"
+								rendered="#{factura['estado'] == 'ERROR'}">
+							</h:outputText>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Mensaje Error</f:facet>
+							<h:outputText value="#{factura['mensajeErrorReim']}">
+							</h:outputText>
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Modo Envio" title="Modo Envio">
+								</h:outputText>
+							</f:facet>
+							<h:outputText value="#{factura['modoEnvio']}">
+							</h:outputText>
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="FECHA LECTURA"
+									title="Fecha de Lectura Traductor">
+								</h:outputText>
+							</f:facet>
+							<h:outputText value="#{factura['fechaLecturaTraductor']}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="FECHA ENTREGA"
+									title="Fecha de Entrega Reim">
+								</h:outputText>
+							</f:facet>
+							<h:outputText value="#{factura['fechaEntReim']}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</rich:column>
+
+
+						<rich:column>
+							<f:facet name="header"></f:facet>
+							<h:panelGrid columns="2">
+								<h:commandLink styleClass="no-decor" immediate="true"
+									title="Comprobante Legible"
+									action="#{facturaBean.descargarComprobanteRecepcionPDF()}">
+									<h:graphicImage value="/resources/images/pdf.jpg" alt="cargar"
+										width="22" height="22" />
+									<f:setPropertyActionListener target="#{facturaBean.objFactura}"
+										value="#{factura}" />
+								</h:commandLink>
+
+								<h:commandLink styleClass="no-decor"
+									title="Comprobante Electronico" immediate="true"
+									execute="@form"
+									action="#{facturaBean.descargarComprobanteRecepcionXML()}">
+									<h:graphicImage value="/resources/images/xml.png" alt="cargar"
+										width="22" height="22" />
+									<f:setPropertyActionListener target="#{facturaBean.objFactura}"
+										value="#{factura}" />
+									<f:param name="recepcion" value="1" />
+								</h:commandLink>
+
+								<a4j:commandLink
+									oncomplete="#{rich:component('segPanelOrdenCompra')}.show()"
+									execute="@this" render="segGridOrdenCompra"
+									styleClass="no-decor" title="AGREGAR ORDEN DE COMPRA"
+									rendered="#{factura['proceso'] == 'REIM' and factura['estado'] == 'ERROR'}">
+									<h:graphicImage value="/resources/images/new.png"
+										alt="ORDEN_DE_COMPRA" />
+									<f:setPropertyActionListener
+										target="#{facturaBean.facturaRecepcion}" value="#{factura}" />
+								</a4j:commandLink>
+
+
+
+								<a4j:commandLink
+									oncomplete="#{rich:component('segPanelTmp1')}.show()"
+									execute="@this" render="segGridTmp1" styleClass="no-decor"
+									title="AGREGAR NPP" action="#{facturaBean.recuperaDetalle()}">
+									<h:graphicImage value="/resources/images/new.png"
+										alt="ORDEN_DE_COMPRA" />
+									<f:setPropertyActionListener target="#{facturaBean.objFactura}"
+										value="#{factura}" />
+									<f:param name="recepcion" value="1" />
+								</a4j:commandLink>
+
+
+								<a4j:commandLink execute="@this" render="segGridOrdenCompra"
+									styleClass="no-decor" title="Cambio de estado"
+									rendered="#{factura['proceso'] == 'REIM'}"
+									action="#{facturaBean.descargarComprobanteXML()}">
+									<h:graphicImage value="/resources/images/new.png"
+										alt="CAMBIO_DE_ESTADO" />
+									<f:setPropertyActionListener
+										target="#{facturaBean.facturaRecepcion}" value="#{factura}" />
+								</a4j:commandLink>
+
+							</h:panelGrid>
+
+						</rich:column>
+					</rich:dataTable>
+					<rich:dataScroller for="table_facutra" maxPages="5"
+						render="facturas" rendered="#{facturaBean.buscarSegumiento}" />
+				</h:panelGrid>
+				<rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+				<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseover"
+					query="jQuery(this).addClass('active-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseout"
+					query="jQuery(this).removeClass('active-row')" />
+				<p class="texto1"></p>
+			</div>
+		</h:form>
+
+		<rich:popupPanel header="Orden de Compra" id="segPanelOrdenCompra"
+			modal="true" domElementAttachment="parent" autosized="true">
+
+			<f:facet name="controls">
+				<h:outputLink value="#"
+					onclick="#{rich:component('segPanelOrdenCompra')}.hide(); return false;"
+					style="color:white;"> X </h:outputLink>
+			</f:facet>
+
+			<h:form id="formOrdenCompra">
+				<h:panelGrid columns="1" id="segGridOrdenCompra">
+					<h:panelGrid columnClasses="acent" columns="3" width="100%">
+
+						<h:outputLabel value="Numero Orden de Compra:"
+							styleClass="etiquetas" />
+						<h:inputText value="#{facturaBean.ordenCompra}"
+							styleClass="textfield_form" />
+
+						<a4j:outputPanel layout="block">
+							<h:commandButton
+								oncomplete="#{rich:component('segPanelOrdenCompra')}.hide()"
+								value="Reprocesar" execute="@form"
+								action="#{facturaBean.reprocesarFactura()}" />
+						</a4j:outputPanel>
+
+					</h:panelGrid>
+				</h:panelGrid>
+			</h:form>
+		</rich:popupPanel>
+
+
+
+
+
+		<rich:popupPanel header="Detalle de la Factura" id="segPanelTmp1"
+			modal="true" domElementAttachment="parent" autosized="true">
+
+			<f:facet name="controls">
+				<h:outputLink value="#"
+					onclick="#{rich:component('segPanelTmp1')}.hide(); return false;"
+					style="color:white;">   X    </h:outputLink>
+			</f:facet>
+
+			<h:form id="formTmp1">
+				<h:panelGrid columns="1" id="segGridTmp1">
+
+					<h:panelGrid columns="2" width="10%" id="reportePanel">
+						<a4j:outputPanel layout="block">
+							<h:commandButton value="#{msg['boton.descargarXLS']}"
+								rendered="#{facturaBean.buscarSegumiento}" execute="@form"
+								action="#{facturaBean.descargarDetalleXLS()}" />
+						</a4j:outputPanel>
+
+					</h:panelGrid>
+					<br />
+
+					<rich:extendedDataTable style="height:300px; width:800px;"
+						value="#{facturaBean.facturaXMLDetalle.detalles.detalle}"
+						var="factura" id="table_detalle_facutra">
+
+						<rich:column width="150px"
+							filterValue="#{factura['codigoPrincipal']}"
+							filterExpression="#{fn:containsIgnoreCase(factura.codigoPrincipal,facturaBean.codigoPrincipalFilter)}"
+							filterType="custom">
+							<f:facet name="header">
+								<h:panelGroup>
+									<h:outputText value="Codigo Principal" />
+									<h:inputText value="#{facturaBean.codigoPrincipalFilter}">
+										<a4j:ajax event="blur" render="table_detalle_facutra"
+											execute="@this" />
+									</h:inputText>
+								</h:panelGroup>
+							</f:facet>
+							<h:outputText value="#{factura['codigoPrincipal']}" />
+						</rich:column>
+
+
+
+						<rich:column width="150px"
+							filterValue="#{factura['codigoAuxiliar']}"
+							filterExpression="#{fn:containsIgnoreCase(factura.codigoAuxiliar,facturaBean.codigoAuxiliarFilter)}"
+							filterType="custom">
+							<f:facet name="header">
+								<h:panelGroup>
+									<h:outputText value="Codigo Auxiliar" />
+									<h:inputText value="#{facturaBean.codigoAuxiliarFilter}">
+										<a4j:ajax event="blur" render="table_detalle_facutra"
+											execute="@this" />
+									</h:inputText>
+								</h:panelGroup>
+							</f:facet>
+							<h:outputText value="#{factura['codigoAuxiliar']}" />
+						</rich:column>
+
+
+						<rich:column width="300px">
+							<f:facet name="header">
+								<h:outputText value="Descripcion" />
+							</f:facet>
+							<h:outputText value="#{factura['descripcion']}" />
+						</rich:column>
+
+
+						<rich:column width="100px">
+							<f:facet name="header">
+								<h:outputText value="Cantidad" />
+							</f:facet>
+							<h:outputText value="#{factura['cantidad']}" />
+						</rich:column>
+
+
+
+						<rich:column width="100px">
+							<f:facet name="header">
+								<h:outputText value="Precio Unitario" />
+							</f:facet>
+							<h:outputText value="#{factura['precioUnitario']}" />
+						</rich:column>
+
+
+						<rich:column width="100px">
+							<f:facet name="header">
+								<h:outputText value="Precio Total Sin Impuesto" />
+							</f:facet>
+							<h:outputText value="#{factura['precioTotalSinImpuesto']}" />
+						</rich:column>
+
+
+						<rich:column width="100px">
+							<a4j:commandLink styleClass="no-decor" render="segGridNpp"
+								execute="@this"
+								oncomplete="#{rich:component('segPanelNpp')}.show()"
+								resetValues="true">
+								<h:graphicImage value="/resources/images/edit.png" alt="edit" />
+								<f:setPropertyActionListener
+									target="#{facturaBean.facturaXMLDetalleLinea}"
+									value="#{factura}" />
+
+							</a4j:commandLink>
+						</rich:column>
+					</rich:extendedDataTable>
+
+
+
+
+				</h:panelGrid>
+
+
+			</h:form>
+		</rich:popupPanel>
+
+
+
+		<rich:popupPanel header="Editar NPP" id="segPanelNpp" modal="true"
+			domElementAttachment="parent" autosized="true">
+
+			<f:facet name="controls">
+				<h:outputLink value="#"
+					onclick="#{rich:component('segPanelNpp')}.hide(); return false;"
+					style="color:white;"> X </h:outputLink>
+			</f:facet>
+
+			<h:form id="formNpp">
+				<h:panelGrid columns="1" id="segGridNpp">
+					<h:panelGrid columnClasses="acent" columns="2" width="100%">
+
+						<h:outputLabel value="Codigo Principal:" styleClass="etiquetas" />
+						<h:inputText
+							value="#{facturaBean.facturaXMLDetalleLinea.codigoPrincipal}"
+							styleClass="textfield_form" />
+
+
+						<h:outputLabel value="Codigo Auxiliar:" styleClass="etiquetas" />
+						<h:inputText
+							value="#{facturaBean.facturaXMLDetalleLinea.codigoAuxiliar}"
+							styleClass="textfield_form" />
+
+					</h:panelGrid>
+					<br />
+					<a4j:outputPanel layout="block">
+						<h:commandButton
+							oncomplete="#{rich:component('segPanelNpp')}.hide()"
+							value="Reprocesar" action="#{facturaBean.reprocesarFactura()}" />
+					</a4j:outputPanel>
+
+				</h:panelGrid>
+			</h:form>
+		</rich:popupPanel>
+
+
+
+
+
+
+	</ui:define>
+</ui:composition>
+

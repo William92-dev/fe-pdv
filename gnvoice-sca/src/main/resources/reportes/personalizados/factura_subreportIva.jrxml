@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura_subreportTotales" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="510" leftMargin="0" rightMargin="85" topMargin="0" bottomMargin="0" uuid="a2b41d4a-ee15-41c9-9a49-d0e5e3e56871">
+	<property name="ireport.zoom" value="4.177248169415657"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="baseImponible" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[baseImponible]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valor]]></fieldDescription>
+	</field>
+	<field name="codigoPorcentaje" class="java.lang.String">
+		<fieldDescription><![CDATA[codigoPorcentaje]]></fieldDescription>
+	</field>
+	<field name="codigo" class="java.lang.String">
+		<fieldDescription><![CDATA[codigo]]></fieldDescription>
+	</field>
+	<variable name="BASE_IMPONIBLE" class="java.lang.String">
+		<variableExpression><![CDATA[($F{codigo}=="2"? $F{baseImponible} :"0")]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="VALOR" class="java.lang.String">
+		<variableExpression><![CDATA[($F{codigo}=="2" ? $F{baseImponible} :"0")]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="10">
+			<printWhenExpression><![CDATA[$F{codigo}=="2"]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9c5ecc03-bed0-4a12-97ce-f7d823ebd851" x="0" y="0" width="34" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( $F{codigoPorcentaje}.equals("2") ? $F{valor} : "0" )]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

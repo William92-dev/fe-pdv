@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+	<ui:define name="contenidoAplicacion">
+		<h:form>
+			<div id="pestanas">
+				<a href="#">Formulario Clave Contingencia</a>
+			</div>
+			<div id="contenido">
+				<rich:panel id="panel_clave">
+
+					<h:panelGrid columns="3" width="100%" id="editGridForm">
+						<h:outputLabel value="Archivo: (*)" for="upload"
+							styleClass="etiquetas"
+							rendered="#{claveContingenciaDataBean.editarArchivo}" />
+						<rich:fileUpload
+							fileUploadListener="#{claveContingBean.cargarDocumentoEm}"
+							id="upload" listHeight="50px" addLabel="Agregar"
+							clearLabel="Limpiar" doneLabel="Cargado" acceptedTypes="txt"
+							clearAllLabel="Limpiar Todos" uploadLabel="Cargar"
+							ontyperejected="alert('Solo se aceptan archivos TXT');"
+							maxFilesQuantity="1" style="height:80px">
+							<a4j:ajax event="uploadcomplete" execute="@this" />
+						</rich:fileUpload>
+						<h:outputLabel value=""
+							rendered="#{claveContingenciaDataBean.editarArchivo}" />
+
+						<h:outputLabel value="#{msg['clave.organizacion']}:"
+							for="orgInput" styleClass="etiquetas" />
+						<h:selectOneMenu id="orgInput"
+							value="#{claveContingenciaDataBean.claveContingencia.idOrganizacion}">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{claveContingBean.organizaciones}"
+								var="org" itemLabel="#{org.nombre}" itemValue="#{org.id}" />
+						</h:selectOneMenu>
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['clave.tipoAmbiente']}:"
+							for="ambienteInput" styleClass="etiquetas" />
+						<h:selectOneMenu id="ambienteInput"
+							value="#{claveContingenciaDataBean.claveContingencia.tipoAmbienteObj}">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{claveContingenciaDataBean.tiposAmbiente}" />
+						</h:selectOneMenu>
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="Se cargaron: "
+							rendered="#{claveContingenciaDataBean.contador !=0}" />
+						<h:outputLabel
+							value="#{claveContingenciaDataBean.contador} claves de contingencia grabadas correctamente!"
+							rendered="#{claveContingenciaDataBean.contador !=0}" />
+						<h:outputLabel value="" />
+					</h:panelGrid>
+
+					<div id="espacio2"></div>
+					<h:outputLabel styleClass="texto2"
+						style="text-align: center; width:100%"
+						value="* Campos requeridos u obligatorios" />
+
+				</rich:panel>
+				<h:panelGrid columns="2" width="20%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="#{msg['boton.guardar']}" execute="@form"
+							render="editGridForm evento mensajeClaves"
+							action="#{claveContingBean.guardarClaveContingencia}" />
+					</a4j:outputPanel>
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton immediate="true"
+							action="#{claveContingBean.regresarEm()}"
+							value="#{msg['boton.regresar']}" />
+					</a4j:outputPanel>
+				</h:panelGrid>
+
+				<p class="texto1"></p>
+			</div>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+

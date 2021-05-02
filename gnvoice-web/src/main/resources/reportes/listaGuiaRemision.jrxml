@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listaGuiaRemision" pageWidth="1134" pageHeight="595" orientation="Landscape" columnWidth="1094" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fec2923d-2a7f-4e6e-aadc-19d0c878f665">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="85"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="prueba" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="LOGO" class="java.io.InputStream"/>
+	<parameter name="FECHA" class="java.lang.String"/>
+	<parameter name="USUARIO" class="java.lang.String"/>
+	<parameter name="TITULO" class="java.lang.String"/>
+	<field name="codSecuencial" class="java.lang.String"/>
+	<field name="fechaIniTransporteDb" class="java.util.Date"/>
+	<field name="fechaFinTransporteDb" class="java.util.Date"/>
+	<field name="rucTransportista" class="java.lang.String"/>
+	<field name="razonSocialTransportista" class="java.lang.String"/>
+	<field name="dirPartida" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="tareaActual.descripcion" class="java.lang.String"/>
+	<field name="numeroAutorizacion" class="java.lang.String"/>
+	<field name="fechaAutorizacion" class="java.util.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="120">
+			<image hAlign="Left" isUsingCache="true" onErrorType="Blank">
+				<reportElement uuid="4bf7a098-de9d-4698-80c5-6360e61fb42c" x="12" y="10" width="179" height="98"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="a14f648e-5236-4000-aef4-5209b6095bf2" x="212" y="55" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e5da3a04-52e9-4aba-a764-14d4c9ff43da" x="212" y="75" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usuario:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="fcf7159d-b7db-4f08-a94b-34b9c93b0afc" x="312" y="75" width="124" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{USUARIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0b642bb9-cb2e-4339-99e6-5b2e92110ff1" x="312" y="55" width="124" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{FECHA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="793fed53-65c3-4bdc-85d5-af2e6138ccaa" x="212" y="25" width="330" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITULO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="50">
+			<staticText>
+				<reportElement uuid="d42d9a9e-3e5c-4b43-b30e-5893ab12cf70" x="0" y="30" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Secuencial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dda82bfd-2910-4bce-a579-025210d24fa4" x="100" y="30" width="112" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Ini Transp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="39f075a6-c877-42d2-aa17-48e7922ee668" x="214" y="30" width="113" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Ini Transp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e5fc8841-e0f6-49c8-82b2-63e1e55fae6e" x="327" y="30" width="127" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ruc Transportista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3e54b59f-e7b4-4e81-8082-1f6369e0dc18" x="454" y="30" width="189" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Razon Social Transportista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="19abb9be-13da-41dc-a19f-9009ade7c908" x="643" y="30" width="180" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Partida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="33512568-088e-4b6a-970b-219e85d794a7" x="823" y="30" width="88" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="96ebc01a-a680-4167-8d79-d6388f550e44" x="911" y="30" width="91" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Num. Autorizacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9aee3bd3-f3bf-4112-915b-8e5048295b23" x="1002" y="30" width="92" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fec. Autorizacion]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="04578e88-51f6-4b9a-8d8b-334cfe1278a9" x="0" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{codSecuencial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c138e89a-a45e-4ee7-9137-1827da2f3573" x="100" y="0" width="112" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fechaIniTransporteDb}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="13cb3191-f640-437a-85e8-18910b13a6db" x="214" y="0" width="113" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fechaFinTransporteDb}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="64148125-abd5-4b20-88e6-d620342c983a" x="327" y="0" width="127" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{rucTransportista}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a7fdbad0-acfc-402c-98cf-735d86fb6703" x="454" y="0" width="189" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{razonSocialTransportista}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="284a08fc-d4ef-4a7f-aabb-94863c1d3dea" x="643" y="0" width="180" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{dirPartida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0823f670-1517-4572-8742-741b5736986e" x="823" y="0" width="88" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f8b506d5-90ec-4269-b63c-3d9ef5880229" x="911" y="0" width="91" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{numeroAutorizacion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="92536775-1a8f-4db3-aaa1-8554fb133e4e" x="1002" y="0" width="92" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fechaAutorizacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement uuid="03214b4b-de39-4c8b-8a21-873df6faac9e" x="697" y="13" width="212" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

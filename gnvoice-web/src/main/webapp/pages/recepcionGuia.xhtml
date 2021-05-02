@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+	<ui:define name="contenidoAplicacion">
+		<h:form>
+			<div id="pestanas">
+				<a href="#">Guia</a>
+			</div>
+			<div id="contenido">
+
+				<rich:panel>
+					<h:panelGrid columns="4" width="100%">
+						<h:outputLabel value="#{msg['comprobante.numero']}:"
+							for="nameInput" styleClass="etiquetas" />
+						<h:inputText id="nameInput" value="#{guiaBean.numeroComprobante}"
+							styleClass="textfield_form" />
+						<h:outputLabel value="#{msg['comprobante.fechaDesde']}:"
+							for="fechaInput" styleClass="etiquetas" />
+						<rich:calendar value="#{guiaBean.fechaDesde}" id="fechaInput"
+							datePattern="dd/MM/yyyy" enableManualInput="true"
+							styleClass="textfield_form" />
+						<h:outputLabel value="#{msg['comprobante.fechaHasta']}:"
+							for="fechaHastaInput" styleClass="etiquetas" />
+						<rich:calendar value="#{guiaBean.fechaHasta}" id="fechaHastaInput"
+							datePattern="dd/MM/yyyy" enableManualInput="true"
+							styleClass="textfield_form" />
+						<h:outputLabel value="#{msg['parametro.estado']}:"
+							for="estadoInput" styleClass="etiquetas" />
+						<h:selectOneMenu value="#{guiaBean.estado}" styleClass="etiquetas"
+							id="estadoInput">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{guiaBean.estados}" />
+						</h:selectOneMenu>
+
+					</h:panelGrid>
+				</rich:panel>
+				<div id="espacio2"></div>
+				<h:panelGrid columns="2" width="10%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="#{msg['boton.buscar']}" execute="@form"
+							render="guias, reportePanel"
+							action="#{guiaBean.buscarGuiaRecibidos()}" />
+					</a4j:outputPanel>
+					<h:panelGrid columns="2" width="10%" id="reportePanel">
+						<a4j:outputPanel layout="block">
+							<h:commandButton value="#{msg['boton.descargarXLS']}"
+								rendered="#{not empty guiaBean.guias}" execute="@form"
+								action="#{guiaBean.descargarXLS()}" />
+						</a4j:outputPanel>
+						<a4j:outputPanel layout="block">
+							<h:commandButton value="#{msg['boton.descargarPDF']}"
+								rendered="#{not empty guiaBean.guias}" execute="@form"
+								action="#{guiaBean.descargarPDF()}" />
+						</a4j:outputPanel>
+					</h:panelGrid>
+				</h:panelGrid>
+				<div id="espacio2"></div>
+				<h:panelGrid columnClasses="acent" id="guias" width="100%">
+					<rich:dataTable rendered="#{not empty guiaBean.guias}" rows="6"
+						rowClasses="odd-row, even-row" styleClass="stable"
+						value="#{guiaBean.guias}" var="guia" id="table_facutra"
+						style="width: 100%">
+
+						<rich:column>
+							<f:facet name="header">#{msg['guia.numero']}</f:facet>
+							<h:outputText value="#{guia.codSecuencial}" />
+						</rich:column>
+
+
+						<rich:column>
+							<f:facet name="header">#{msg['guia.ruc']}</f:facet>
+							<h:outputText value="#{guia.ruc}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['guia.fechaIniTrans']}</f:facet>
+							<h:outputText value="#{guia.fechaIniTransporteDb}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['guia.fechaFinTrans']}</f:facet>
+							<h:outputText value="#{guia.fechaFinTransporteDb}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['guia.rucTransportista']}" />
+							</f:facet>
+							<h:outputText value="#{guia.rucTransportista}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['guia.razonTransportista']}" />
+							</f:facet>
+							<h:outputText value="#{guia.razonSocialTransportista}"
+								escape="false" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['guia.dirPartida']}</f:facet>
+							<h:outputText value="#{guia.dirPartida}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">Estado</f:facet>
+							<h:outputText value="#{guia.estado}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">Tarea Actual</f:facet>
+							<h:outputText value="#{guia.tareaActual.descripcion}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['guia.numeroAutorizacion']}</f:facet>
+							<h:outputText value="#{guia.numeroAutorizacion}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['guia.fechaAutorizacion']}</f:facet>
+							<h:outputText value="#{guia.fechaAutorizacion}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header"></f:facet>
+							<h:panelGrid columns="2">
+								<a4j:commandLink styleClass="no-decor" immediate="true"
+									rendered="#{not empty guia.archivoLegible or guia.estado == 'AUTORIZADO'}"
+									title="Comprobante Legible"
+									onclick="window.open('http://#{sessionBean.urlServidor}/facturacionServiciosGPF/descargarDocumento/obtenerGuiaPDF/#{guia.claveAcceso}','_blank');">
+									<h:graphicImage value="/resources/images/pdf.jpg" alt="cargar"
+										width="22" height="22" />
+								</a4j:commandLink>
+								<a4j:commandLink styleClass="no-decor"
+									title="Comprobante Electronico" immediate="true"
+									onclick="window.open('http://#{sessionBean.urlServidor}/facturacionServiciosGPF/descargarDocumento/obtenerGuiaXML/#{guia.claveAcceso}','_blank');">
+									<h:graphicImage value="/resources/images/xml.png" alt="cargar"
+										width="22" height="22" />
+								</a4j:commandLink>
+							</h:panelGrid>
+						</rich:column>
+
+					</rich:dataTable>
+					<rich:dataScroller for="table_facutra" maxPages="5" render="guias"
+						rendered="#{not empty guiaBean.guias}" />
+				</h:panelGrid>
+				<rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+				<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseover"
+					query="jQuery(this).addClass('active-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseout"
+					query="jQuery(this).removeClass('active-row')" />
+				<p class="texto1"></p>
+			</div>
+		</h:form>
+
+		
+
+	</ui:define>
+</ui:composition>
+

@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+	<ui:define name="contenidoAplicacion">
+		<h:form prependId="false">
+			<div id="pestanas">
+				<a href="#">Retencion</a>
+			</div>
+			<div id="contenido">
+
+				<rich:panel>
+					<h:panelGrid columns="4" width="100%">
+						<h:outputLabel value="#{msg['comprobante.numero']}:"
+							for="nameInput" styleClass="etiquetas" />
+						<h:inputText id="nameInput"
+							value="#{retencionBean.numeroComprobante}"
+							styleClass="textfield_form" />
+
+						<h:outputLabel value="#{msg['comprobante.fechaDesde']}:"
+							for="fechaInput" styleClass="etiquetas" />
+						<rich:calendar value="#{retencionBean.fechaDesde}" id="fechaInput"
+							datePattern="dd/MM/yyyy" enableManualInput="true"
+							styleClass="textfield_form" />
+						<h:outputLabel value="#{msg['comprobante.fechaHasta']}:"
+							for="fechaHastaInput" styleClass="etiquetas" />
+						<rich:calendar value="#{retencionBean.fechaHasta}"
+							id="fechaHastaInput" datePattern="dd/MM/yyyy"
+							enableManualInput="true" styleClass="textfield_form" />
+
+						<h:outputLabel value="#{msg['parametro.estado']}:"
+							for="estadoInput" styleClass="etiquetas" />
+						<h:selectOneMenu value="#{retencionBean.estado}" id="estadoInput">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{retencionBean.estados}" />
+						</h:selectOneMenu>
+
+					</h:panelGrid>
+				</rich:panel>
+				<div id="espacio2"></div>
+				<h:panelGrid columns="2" width="10%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="#{msg['boton.buscar']}" execute="@form"
+							render="retencions, reportePanel"
+							action="#{retencionBean.buscarRetencionRecibidos()}" />
+					</a4j:outputPanel>
+					<h:panelGrid columns="2" width="10%" id="reportePanel">
+						<a4j:outputPanel layout="block">
+							<h:commandButton value="#{msg['boton.descargarXLS']}"
+								rendered="#{not empty retencionBean.retencions}" execute="@form"
+								action="#{retencionBean.descargarXLS()}" />
+						</a4j:outputPanel>
+						<a4j:outputPanel layout="block">
+							<h:commandButton value="#{msg['boton.descargarPDF']}"
+								rendered="#{not empty retencionBean.retencions}" execute="@form"
+								action="#{retencionBean.descargarPDF()}" />
+						</a4j:outputPanel>
+					</h:panelGrid>
+				</h:panelGrid>
+				<div id="espacio2"></div>
+
+
+				<h:panelGrid columnClasses="acent" id="retencions" width="100%">
+					<rich:dataTable rendered="#{not empty retencionBean.retencions}"
+						rows="6" rowClasses="odd-row, even-row" styleClass="stable"
+						value="#{retencionBean.retencions}" var="retencion"
+						id="table_facutra" style="width: 100%">
+
+						<rich:column>
+							<f:facet name="header">#{msg['retencion.numero']}</f:facet>
+							<h:outputText value="#{retencion.codSecuencial}" />
+						</rich:column>
+
+
+						<rich:column>
+							<f:facet name="header">#{msg['retencion.ruc']}</f:facet>
+							<h:outputText value="#{retencion.ruc}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['retencion.fecha']}</f:facet>
+							<h:outputText value="#{retencion.fechaEmisionDb}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['retencion.identificacionSujeto']}
+								<h:outputText value="#{msg['retencion.identificacionSujeto']}" />
+							</f:facet>
+							<h:outputText value="#{retencion.identificacionSujetoRetenido}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['retencion.razonSujeto']}
+								<h:outputText value="#{msg['retencion.razonSujeto']}" />
+							</f:facet>
+							<h:outputText value="#{retencion.razonSocialSujetoRetenido}"
+								escape="false" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['retencion.periodo']}</f:facet>
+							<h:outputText value="#{retencion.periodoFiscal}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">Estado</f:facet>
+							<h:outputText value="#{retencion.estado}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">Tarea Actual</f:facet>
+							<h:outputText value="#{retencion.tareaActual.descripcion}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['retencion.numeroAutorizacion']}</f:facet>
+							<h:outputText value="#{retencion.numeroAutorizacion}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['retencion.fechaAutorizacion']}</f:facet>
+							<h:outputText value="#{retencion.fechaAutorizacion}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header"></f:facet>
+							<h:panelGrid columns="2">
+								<a4j:commandLink styleClass="no-decor" immediate="true"
+									rendered="#{not empty retencion.archivoLegible or retencion.estado == 'AUTORIZADO'}"
+									title="Comprobante Legible"
+									onclick="window.open('http://#{sessionBean.urlServidor}/facturacionServiciosGPF/descargarDocumento/obtenerRetencionPDF/#{retencion.claveAcceso}','_blank');">
+									<h:graphicImage value="/resources/images/pdf.jpg" alt="cargar"
+										width="22" height="22" />
+								</a4j:commandLink>
+								<a4j:commandLink styleClass="no-decor"
+									title="Comprobante Electronico" immediate="true"
+									onclick="window.open('http://#{sessionBean.urlServidor}/facturacionServiciosGPF/descargarDocumento/obtenerRetencionXML/#{retencion.claveAcceso}','_blank');">
+									<h:graphicImage value="/resources/images/xml.png" alt="cargar"
+										width="22" height="22" />
+								</a4j:commandLink>
+							</h:panelGrid>
+						</rich:column>
+
+					</rich:dataTable>
+					<rich:dataScroller for="table_facutra" maxPages="5"
+						render="retencions"
+						rendered="#{not empty retencionBean.retencions}" />
+				</h:panelGrid>
+				<rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+				<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseover"
+					query="jQuery(this).addClass('active-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseout"
+					query="jQuery(this).removeClass('active-row')" />
+				<p class="texto1"></p>
+			</div>
+		</h:form>
+
+		<rich:popupPanel header="Seguimiento" id="segPane" modal="true"
+			domElementAttachment="parent" autosized="true">
+
+			<f:facet name="controls">
+				<h:outputLink value="#"
+					onclick="#{rich:component('segPane')}.hide(); return false;"
+					style="color:white;">
+                X
+            </h:outputLink>
+			</f:facet>
+
+			<h:form id="carga2" method="post">
+				<h:panelGrid columns="1" id="segGrid">
+					<h:panelGrid columnClasses="acent" width="100%">
+
+						<rich:dataTable value="#{retencionBean.seguimientoRetencions}"
+							expanded="true" var="item" id="sbtbl" expandMode="client">
+
+							<rich:column>
+								<f:facet name="header">Descripcion Tarea</f:facet>
+								<h:outputText value="#{item.tarea.descripcion}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Descripcion Respuesta</f:facet>
+								<h:outputText value="#{item.detalle}" escape="false" />
+							</rich:column>
+
+							<rich:column>
+								<f:facet name="header">Fecha Inicio Segumiente</f:facet>
+								<h:outputText value="#{item.fechaInicio}">
+									<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+								</h:outputText>
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Fecha Fin Segumiente</f:facet>
+								<h:outputText value="#{item.fechaFin}">
+									<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+								</h:outputText>
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Estado Segumiente</f:facet>
+								<h:outputText value="#{item.estado}" />
+							</rich:column>
+
+						</rich:dataTable>
+						<rich:dataScroller for="sbtbl" maxPages="5"
+							rendered="#{not empty retencionBean.seguimientoRetencions}" />
+
+					</h:panelGrid>
+				</h:panelGrid>
+			</h:form>
+
+
+		</rich:popupPanel>
+
+	</ui:define>
+</ui:composition>
+

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+	<ui:define name="contenidoAplicacion">
+		<h:form>
+			<div id="pestanas">
+				<a href="#">RECEPCION COMPROBANTES MASIVOS</a>
+			</div>
+			<div id="contenido">
+			
+			  <rich:panel id="panel_persona" style="width:70%">
+
+				
+				<h:panelGrid columns="1" id="editGrid">
+					<h:panelGrid columns="2">
+						<h:outputLabel value="* Tipo Comprobante:"  styleClass="etiquetas"/>
+						<h:selectOneMenu value="#{receptarComprobanteDataBean.tipoComprobanteDes}">
+							<f:selectItems value="#{receptarComprobanteBean.tipoComprobanteDesList}" />
+						</h:selectOneMenu>
+						<h:outputLabel value="* Proceso:"  styleClass="etiquetas"/>
+						<h:selectOneMenu value="#{receptarComprobanteDataBean.proceso}">
+							<f:selectItems value="#{receptarComprobanteBean.rim}" />
+						</h:selectOneMenu>
+						<h:outputLabel value="* Comprobante Electronico (ZIP):"  styleClass="etiquetas"/>
+						<rich:fileUpload
+							fileUploadListener="#{receptarComprobanteBean.cargarDocumentoMasivo}"
+							id="upload" acceptedTypes="zip" listHeight="120px"
+							addLabel="Agregar" clearLabel="Limpiar" doneLabel="Cargado"
+							clearAllLabel="Limpiar Todos" uploadLabel="Cargar"
+							ontyperejected="alert('Solo se aceptan archivos ZIP');"
+							maxFilesQuantity="1" style="height:120px">
+							<a4j:ajax event="uploadcomplete" execute="@form"  />
+						</rich:fileUpload>
+					</h:panelGrid>
+				</h:panelGrid>
+				
+				<ui:remove> <a4j:outputPanel layout="block">
+					<a4j:commandButton action="#{receptarComprobanteBean.prueba()}" value="prueba"  />
+				</a4j:outputPanel></ui:remove>
+				
+				<a4j:outputPanel layout="block">
+					<a4j:commandButton action="#{receptarComprobanteBean.guardarMasivo()}" value="Guardar" render="tableRespuesta"/>
+				</a4j:outputPanel>
+
+				<h:panelGrid columnClasses="acent" id="tableRespuesta" width="100%">
+					<rich:dataTable
+						rendered="#{not empty receptarComprobanteDataBean.respuestas}"
+						rows="6" rowClasses="odd-row, even-row" styleClass="stable"
+						value="#{receptarComprobanteDataBean.respuestas}" var="respuesta"
+						id="table_respuesta" style="width: 100%">
+
+						<rich:column>
+							<f:facet name="header">Archivo</f:facet>
+							<h:outputText value="#{respuesta.claveAccesoComprobante}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Estado</f:facet>
+							<h:outputText value="#{respuesta.estado}" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">Mensaje</f:facet>
+							<h:outputText value="#{respuesta.mensajeCliente}" escape="false" />
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">Detalle</f:facet>
+							<h:outputText value="#{respuesta.mensajeSistema}" />
+						</rich:column>
+
+					</rich:dataTable>
+					<rich:dataScroller for="table_respuesta" maxPages="5"
+						rendered="#{not empty receptarComprobanteDataBean.respuestas}" />
+				</h:panelGrid>
+			   </rich:panel>
+			   <div id="espacio2"></div>
+			   <div id="espacio2"></div>
+				<rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+				<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseover"
+					query="jQuery(this).addClass('active-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseout"
+					query="jQuery(this).removeClass('active-row')" />
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+

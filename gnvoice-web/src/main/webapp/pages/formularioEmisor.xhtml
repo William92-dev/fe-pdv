@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+	<ui:define name="contenidoAplicacion">
+		<h:form>
+			<div id="pestanas">
+				<a href="#">Formulario Emisor</a>
+			</div>
+			<div id="contenido">
+				<rich:panel id="panel_emisor">
+
+					<h:panelGrid columns="3" width="100%">
+						<h:outputLabel value="#{msg['organizacion.ruc']}: *"
+							rendered="#{!emisorDataBean.editarArchivo}" for="rucInput"
+							styleClass="etiquetas" />
+						<h:inputText id="rucInput"
+							rendered="#{!emisorDataBean.editarArchivo}"
+							value="#{emisorDataBean.organizacion.ruc}"
+							styleClass="textfield_form" maxlength="13" required="true"
+							validatorMessage="#{msg['persona.identificacion']} debe tener 13 digitos"
+							requiredMessage="#{msg['persona.identificacion']} es requerido"
+							onkeypress="if((event.which &lt; 48 || event.which &gt; 57) &amp; event.which != 0  &amp; event.which != 9 &amp; event.which != 46 &amp; event.which != 8) return false;">
+							<f:validateLength minimum="13" maximum="13" />
+						</h:inputText>
+						<h:outputText value="" rendered="#{!emisorDataBean.editarArchivo}" />
+
+						<h:outputLabel value="#{msg['organizacion.nombre']}: *"
+							rendered="#{!emisorDataBean.editarArchivo}" for="nombreInput"
+							styleClass="etiquetas" />
+						<h:inputText id="nombreInput"
+							rendered="#{!emisorDataBean.editarArchivo}"
+							value="#{emisorDataBean.organizacion.nombre}"
+							styleClass="textfield_form" required="true"
+							requiredMessage="#{msg['organizacion.nombre']} es requerido" />
+						<h:outputText value="" rendered="#{!emisorDataBean.editarArchivo}" />
+
+						<h:outputLabel value="#{msg['organizacion.acronimo']}: *"
+							rendered="#{!emisorDataBean.editarArchivo}" for="acronimoInput"
+							styleClass="etiquetas" />
+						<h:inputText id="acronimoInput"
+							rendered="#{!emisorDataBean.editarArchivo}"
+							value="#{emisorDataBean.organizacion.acronimo}"
+							styleClass="textfield_form" required="true"
+							requiredMessage="#{msg['organizacion.acronimo']} es requerido" />
+						<h:outputText value="" />
+
+						<h:outputLabel value="#{msg['organizacion.nombreComercial']}: *"
+							rendered="#{!emisorDataBean.editarArchivo}"
+							for="nombreComercialInput" styleClass="etiquetas" />
+						<h:inputText id="nombreComercialInput"
+							rendered="#{!emisorDataBean.editarArchivo}"
+							value="#{emisorDataBean.organizacion.nombreComercial}"
+							styleClass="textfield_form" required="true"
+							requiredMessage="#{msg['organizacion.nombreComercial']} es requerido" />
+						<h:outputText value="" rendered="#{!emisorDataBean.editarArchivo}" />
+
+						<h:outputLabel value="#{msg['organizacion.correo']}: *"
+							rendered="#{!emisorDataBean.editarArchivo}" for="correoInput"
+							styleClass="etiquetas" />
+						<h:inputText id="correoInput"
+							rendered="#{!emisorDataBean.editarArchivo}"
+							value="#{emisorDataBean.organizacion.correoElectronico}"
+							styleClass="textfield_form" required="true"
+							requiredMessage="#{msg['organizacion.correo']} es requerido"
+							validatorMessage="#{msg['organizacion.correo']} invalido ">
+							<f:validateRegex
+								pattern="^(([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+([;.](([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+)*$" />
+						</h:inputText>
+						<h:outputText value="" rendered="#{!emisorDataBean.editarArchivo}" />
+
+						<h:outputLabel value="#{msg['organizacion.direccion']}: "
+							rendered="#{!emisorDataBean.editarArchivo}" for="direccionInput"
+							styleClass="etiquetas" />
+						<h:inputText id="direccionInput"
+							value="#{emisorDataBean.organizacion.direccion}"
+							rendered="#{!emisorDataBean.editarArchivo}"
+							styleClass="textfield_form" />
+						<h:outputText value="" rendered="#{!emisorDataBean.editarArchivo}" />
+
+						<h:outputLabel value="#{msg['organizacion.puntoEmision']}: "
+							rendered="#{!emisorDataBean.editarArchivo}"
+							for="puntoEmisionInput" styleClass="etiquetas" />
+						<h:inputText id="puntoEmisionInput"
+							rendered="#{!emisorDataBean.editarArchivo}"
+							value="#{emisorDataBean.organizacion.puntoEmision}"
+							styleClass="textfield_form" maxlength="3">
+						</h:inputText>
+						<h:outputText value="" rendered="#{!emisorDataBean.editarArchivo}" />
+
+						<h:outputLabel value="#{msg['organizacion.establecimiento']}: "
+							rendered="#{!emisorDataBean.editarArchivo}"
+							for="establecimientoInput" styleClass="etiquetas" />
+						<h:inputText id="establecimientoInput"
+							rendered="#{!emisorDataBean.editarArchivo}"
+							value="#{emisorDataBean.organizacion.establecimiento}"
+							styleClass="textfield_form" maxlength="3" />
+						<h:outputText value="" rendered="#{!emisorDataBean.editarArchivo}" />
+
+						<h:outputLabel value="#{msg['organizacion.telefono']}: "
+							rendered="#{!emisorDataBean.editarArchivo}" for="telefonoInput"
+							styleClass="etiquetas" />
+						<h:inputText id="telefonoInput" maxlength="10"
+							rendered="#{!emisorDataBean.editarArchivo}"
+							value="#{emisorDataBean.organizacion.telefono}"
+							styleClass="textfield_form"
+							onkeypress="if((event.which &lt; 48 || event.which &gt; 57) &amp; event.which != 0  &amp; event.which != 9 &amp; event.which != 46 &amp; event.which != 8) return false;" />
+						<h:outputText value="" rendered="#{!emisorDataBean.editarArchivo}" />
+
+						<h:outputLabel value="Obligada a LLevar Contabilidad:"
+							for="esClienteInput" styleClass="etiquetas"
+							rendered="#{!emisorDataBean.editarArchivo}" />
+						<h:selectOneMenu
+							value="#{emisorDataBean.organizacion.esObligadoContabilidad}"
+							styleClass="etiquetas" id="esClienteInput"
+							rendered="#{!emisorDataBean.editarArchivo}">
+							<f:selectItems value="#{emisorBean.opciones}" />
+						</h:selectOneMenu>
+						<h:outputText value="" rendered="#{!emisorDataBean.editarArchivo}" />
+
+						<h:outputLabel value="Resolucion Contribuyente Especial:"
+							rendered="#{!emisorDataBean.editarArchivo}"
+							for="contribuyenteEspecialInput" styleClass="etiquetas" />
+						<h:inputText id="contribuyenteEspecialInput"
+							rendered="#{!emisorDataBean.editarArchivo}"
+							value="#{emisorDataBean.organizacion.resolContribuyenteEsp}"
+							styleClass="textfield_form"
+							requiredMessage="Resolucion Contribuyente Especial es requerido" />
+						<h:outputText value="" rendered="#{!emisorDataBean.editarArchivo}" />
+						
+						<h:outputLabel value="Esta en Contingencia:"
+							for="esClienteInput" styleClass="etiquetas"
+							rendered="#{!emisorDataBean.editarArchivo}" />
+						<h:selectOneMenu
+							value="#{emisorDataBean.organizacion.enContigencia}"
+							styleClass="etiquetas" id="esContingenciaInput"
+							rendered="#{!emisorDataBean.editarArchivo}">
+							<f:selectItems value="#{emisorBean.opciones}" />
+						</h:selectOneMenu>
+						<h:outputText value="" rendered="#{!emisorDataBean.editarArchivo}" />
+
+
+						<h:outputLabel value="#{msg['organizacion.token']}: " for="upload"
+							rendered="#{!emisorDataBean.editarArchivo}"
+							styleClass="etiquetas" />
+						<rich:fileUpload
+							fileUploadListener="#{emisorBean.cargarDocumentoEm}" id="upload"
+							acceptedTypes="p12" listHeight="50px" addLabel="Agregar"
+							clearLabel="Limpiar" doneLabel="Cargado"
+							clearAllLabel="Limpiar Todos" uploadLabel="Cargar"
+							ontyperejected="alert('Solo se aceptan archivos p12');"
+							maxFilesQuantity="1" style="height:80px">
+							<a4j:ajax event="uploadcomplete" execute="@this" />
+						</rich:fileUpload>
+						<h:outputLabel value=""
+							rendered="#{!emisorDataBean.editarArchivo}" />
+
+						<h:outputLabel value="#{msg['organizacion.claveToken']}: *"
+							rendered="#{!emisorDataBean.editarArchivo}" for="passInput"
+							styleClass="etiquetas" />
+						<h:inputSecret id="passInput" required="true"
+							rendered="#{!emisorDataBean.editarArchivo}"
+							requiredMessage="#{msg['organizacion.claveToken']} es requerido"
+							value="#{emisorDataBean.organizacion.claveToken}"
+							styleClass="textfield_form" redisplay="true" />
+						<h:outputLabel value=""
+							rendered="#{!emisorDataBean.editarArchivo}" />
+
+						<h:outputLabel value="Logo Empresa: " for="uploadLogo"
+							rendered="#{!emisorDataBean.editarArchivo}"
+							styleClass="etiquetas" />
+						<rich:fileUpload fileUploadListener="#{emisorBean.cargarLogoEm}"
+							id="uploadLogo" acceptedTypes="gif, png, jpg" listHeight="50px"
+							addLabel="Agregar" clearLabel="Limpiar" doneLabel="Cargado"
+							clearAllLabel="Limpiar Todos" uploadLabel="Cargar"
+							ontyperejected="alert('Solo se aceptan archivos GIF,PNG y JGP');"
+							maxFilesQuantity="1" style="height:80px">
+							<a4j:ajax event="uploadcomplete" execute="@this" />
+						</rich:fileUpload>
+						<h:outputLabel value=""
+							rendered="#{!emisorDataBean.editarArchivo}" />
+
+						<h:outputLabel value="#{msg['parametro.estado']}:"
+							for="estadoInput" styleClass="etiquetas" />
+						<h:selectOneMenu value="#{emisorDataBean.organizacion.estado}"
+							id="estadoInput">
+							<f:selectItem itemLabel="#{msg['common.msg.select']}"
+								itemValue="" />
+							<f:selectItems value="#{emisorBean.estados}" />
+						</h:selectOneMenu>
+						<h:outputText value="" rendered="#{!emisorDataBean.editarArchivo}" />
+
+					</h:panelGrid>
+					<h:outputLabel styleClass="texto2"
+						style="text-align: center; width:100%"
+						value="* Campos requeridos u obligatorios" />
+				</rich:panel>
+
+				<div id="espacio2"></div>
+
+				<h:panelGrid columns="2" width="20%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="#{msg['boton.guardar']}"
+							action="#{emisorBean.guardarEmisor()}" styleClass="no-decor"
+							render="panel_emisor evento" execute="@form">
+						</a4j:commandButton>
+					</a4j:outputPanel>
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton immediate="true"
+							action="#{emisorBean.regresarEm()}"
+							value="#{msg['boton.regresar']}" />
+					</a4j:outputPanel>
+				</h:panelGrid>
+
+				<p class="texto1"></p>
+			</div>
+		</h:form>
+
+
+
+	</ui:define>
+</ui:composition>
+

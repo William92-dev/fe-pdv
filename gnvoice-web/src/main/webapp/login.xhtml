@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>#{messages.titulo}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- cambiarn loginfybeca para FARCOMED -->
+	<h:outputStylesheet name="css/login#{sessionBean.skin}.css"
+		rendered="false" />
+	<h:outputStylesheet name="css/loginfybeca.css" />
+	<script type="text/javascript"></script>
+</h:head>
+<h:body>
+	<h:outputStylesheet target="head" id="main">
+	
+.rf-pm-top-gr {
+	border-width: 0px;
+}
+
+.rf-pm-gr{
+	border-width: 0px;
+}
+
+.rf-pm-gr-hdr:hover{
+   font-family: "Century Gothic";
+	font-size: 13px;
+	color: #666;
+	font-weight: normal;
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 39px;
+	line-height: 50px;
+	text-decoration: none;
+	border-width: 0px;
+	font-weight: bold;
+}
+
+.rf-pm-gr-hdr{
+   	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #666;
+	font-weight: normal;
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 39px;
+	line-height: 50px;
+	text-decoration: none;
+	border-width: 0px;
+	font-weight: bold;
+}
+
+.rf-pm-itm{
+	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #666;
+	font-weight: normal;
+	background-image: url("#{resource['images/boton_desplegable.jpg']}");
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 39px;
+	line-height: 50px;
+	text-decoration: none;
+	border-width: 0px;
+}
+
+.rf-pm-itm:hover{
+	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #666;
+	font-weight: normal;
+	background-image: url("#{resource['images/boton_desplegable.jpg']}");
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 39px;
+	line-height: 50px;
+	text-decoration: none;
+	border-width: 0px;
+	font-weight: bold;
+}
+
+.rich-pmenu-selected-element{
+}
+
+.rf-cp-hdr {
+   	cursor: pointer;
+   	font-weight: bold;
+   	white-space: nowrap;
+   	border-style:none
+}
+
+.rf-cp{
+    background-color:none;
+    padding:0px;
+  }
+
+  .rf-pm-gr-lbl {
+	font-size: 11px;
+	font-family: "Century Gothic";
+ }
+ 
+ .rf-pm-itm-lbl{
+ 	font-family: "Century Gothic";
+	font-size: 11px;
+ }
+ 
+ .rf-pm-top-gr-lbl {
+ 	font-family: "Century Gothic";
+	padding: 10px 0 0 0;
+	font-size: 13px;
+}
+.rf-ntf {
+ 	font-family: "Century Gothic";
+	padding: 10px 0 0 0;
+	font-size: 13px;
+}
+.rf-ntf-err{
+ 	font-family: "Century Gothic";
+	padding: 10px 0 0 0;
+	font-size: 13px;
+} 
+.rf-ntf-pos-tr{
+ 	font-family: "Century Gothic";
+	padding: 10px 0 0 0;
+	font-size: 13px;
+}
+
+.rf-dt-hdr-c{
+font-family: "Century Gothic";
+	font-size: 12px;
+}
+
+.rf-cst-c, .rf-cst-nd-c{
+	font-family: "Century Gothic";
+	font-size: 11px;
+}
+
+.rf-dt-shdr-c {
+ 	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.rf-dt-c {
+ 	font-family: "Century Gothic";
+	font-size: 11px;
+}
+
+a {
+	font-family: "Century Gothic";
+	font-size: 11px;
+}
+	</h:outputStylesheet>
+
+	<h:outputStylesheet target="head" id="classic"
+		rendered="#{sessionBean.skin=='classic'}">
+.rf-pm-top-gr-hdr {
+	font-family: "Century Gothic";
+	font-size: 13px;
+    width: 230px;
+	background-repeat: no-repeat;
+	height: 52px;
+    cursor: pointer;
+    background-image: url("#{resource['images/classic/boton_ina.jpg']}");
+    white-space: nowrap;
+    background-color: white;
+    text-align: center;
+	text-decoration: none;
+	padding-left: 0px;
+	margin-left: 0px;
+	font-weight: normal;
+}
+
+.rf-pm-top-gr-hdr:hover {
+	font-family: "Century Gothic";
+	font-size: 13px;
+    width: 230px;
+	background-repeat: no-repeat;
+	height: 52px;
+    cursor: pointer;
+	background-image: url("#{resource['images/classic/boton_act.jpg']}");
+    white-space: nowrap;
+      background-color: white;
+    text-align: center;
+	text-decoration: none;
+	padding-left: 0px;
+	margin-left: 0px;
+	font-weight: normal;
+}
+
+    </h:outputStylesheet>
+
+	<h:outputStylesheet target="head" id="ruby"
+		rendered="#{sessionBean.skin=='ruby'}">
+.rf-pm-top-gr-hdr {
+	font-family: "Century Gothic";
+	font-size: 13px;
+    width: 230px;
+	background-repeat: no-repeat;
+	height: 52px;
+    cursor: pointer;
+    background-image: url("#{resource['images/ruby/boton_ina.jpg']}");
+    white-space: nowrap;
+    background-color: white;
+    text-align: center;
+	text-decoration: none;
+	padding-left: 0px;
+	margin-left: 0px;
+	font-weight: normal;
+}
+
+.rf-pm-top-gr-hdr:hover {
+	font-family: "Century Gothic";
+	font-size: 13px;
+    width: 230px;
+	background-repeat: no-repeat;
+	height: 52px;
+    cursor: pointer;
+	background-image: url("#{resource['images/ruby/boton_act.jpg']}");
+    white-space: nowrap;
+      background-color: white;
+    text-align: center;
+	text-decoration: none;
+	padding-left: 0px;
+	margin-left: 0px;
+	font-weight: normal;
+}
+    </h:outputStylesheet>
+
+	<div id="evento">
+		<a4j:status onstart="#{rich:component('estadoDialogo')}.show();"
+			id="panelStatus" onstop="#{rich:component('estadoDialogo')}.hide();" />
+		<rich:popupPanel id="estadoDialogo" autosized="true" modal="true">
+			<h:panelGrid columns="2">
+				<h:graphicImage value="/resources/images/connect_active.gif"  />
+				<h:outputText value="Esperando" />
+			</h:panelGrid>
+		</rich:popupPanel>
+	</div>
+
+
+	<div id="linea_sup"></div>
+	<div id="cabecera">
+		<div id="cab_izq2">
+			<!-- activar banner.png para FARCOMED -->
+			<h:graphicImage value="/resources/images/banner.png" alt="logo" />
+			<h:graphicImage value="/resources/images/gnvoice.jpg" alt="logo"
+				rendered="false" />
+		</div>
+	</div>
+
+	<div id="login">
+		<h:form>
+			<a4j:outputPanel id="panelMensajes" ajaxRendered="true">
+						﻿<rich:notifyMessages stayTime="5000" nonblocking="true"
+					style="font-family: Arial, Helvetica, sans-serif;font-size: 12px;"
+					showCloseButton="true" />
+			</a4j:outputPanel>
+			<div id="titulo_binvenidos">
+				<span class="h1">Bienvenido al <span class="h2">Portal
+						Corporativo de Transacciones</span></span>
+			</div>
+			<div id="linea_bienvenido"></div>
+			<div class="texto1" id="usuario_bienvenido">USUARIO</div>
+			<div id="textfield_bienvenido">
+				<h:inputText id="username" value="#{autenticacionBean.username}"
+					requiredMessage="USUARIO es requerido" class="textfield"
+					required="true" style="width: 300px; height: 45px" />
+
+			</div>
+			<div class="texto1" id="usuario_bienvenido">CONTRASENA</div>
+			<div id="textfield_bienvenido">
+				<h:inputSecret id="password" value="#{autenticacionBean.password}"
+					style="width: 300px; height: 45px"
+					requiredMessage="CONTRASENA es requerida" class="textfield"
+					required="true" />
+			</div>
+
+			<div id="ingresar_bienvenido">
+				<a4j:commandButton value="ENTRAR"
+					action="#{autenticacionBean.login()}" />
+			</div>
+			
+			
+			<div id="linea_bienvenido">
+				
+			</div>
+			
+			<div id="titulo_binvenidos">
+				<span class="h1"><a href="http://#{sessionBean.urlServidor}#{request.contextPath}/seguimientoFacturaPublica.jsf" 
+				style="font-family: Arial, Helvetica, sans-serif;font-size: 12px;text-align: justify;">Para Consulta de Factura Consumidor Final hacer clic aqui.</a></span>
+				<br></br>
+				<span class="h1"><a href="http://#{sessionBean.urlServidor}#{request.contextPath}/seguimientoNotaCreditoPublica.jsf" 
+				style="font-family: Arial, Helvetica, sans-serif;font-size: 12px;text-align: justify;">Para Consulta de Nota Credito Consumidor Final hacer clic aqui.</a></span>				
+				<br></br>				
+				<br></br>
+			</div>
+			<br></br>
+			<div id="texto_bienvenido">
+			<br></br>
+				<a href="http://#{sessionBean.urlServidor}#{request.contextPath}/restablecerContrasena.jsf">Si olvido su contrasena hacer clic aqui.</a>				
+			</div>
+			
+		</h:form>
+
+	</div>
+	<div class="pie_texto1" id="pie">
+		<div style="padding-top: 15px;">
+			Sistema CorporacionGPF<br /> <span class="pie_texto2">Gizlo
+				Cia. Ltda. 2014. Todos los derechos Reservados.</span>
+		</div>
+	</div>
+
+
+</h:body>
+</html>

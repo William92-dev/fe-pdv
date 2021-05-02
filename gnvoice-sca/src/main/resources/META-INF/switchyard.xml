@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<switchyard xmlns="urn:switchyard-config:switchyard:1.1"
+	xmlns:sy="urn:switchyard-config:switchyard:1.1" xmlns:bean="urn:switchyard-component-bean:config:1.1"
+	xmlns:resteasy="urn:switchyard-component-resteasy:config:1.1"
+	xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+	xmlns:soap="urn:switchyard-component-soap:config:1.1" name="gnvoice-sca"
+	targetNamespace="urn:com.gizlocorp.gnvoice:gnvoice-sca:1.0">
+	<sca:composite name="gnvoice-sca"
+		targetNamespace="urn:com.gizlocorp.gnvoice:gnvoice-sca:1.0">
+		<sca:component name="FacturaBean">
+			<bean:implementation.bean
+				class="com.gizlocorp.gnvoice.service.impl.FacturaBean" />
+			<sca:service name="Factura">
+				<sca:interface.java interface="com.gizlocorp.gnvoice.service.Factura" />
+			</sca:service>
+		</sca:component>
+		<sca:component name="GuiaBean">
+			<bean:implementation.bean
+				class="com.gizlocorp.gnvoice.service.impl.GuiaBean" />
+			<sca:service name="Guia">
+				<sca:interface.java interface="com.gizlocorp.gnvoice.service.Guia" />
+			</sca:service>
+		</sca:component>
+		<sca:component name="DescargaDocumentoBean">
+			<bean:implementation.bean
+				class="com.gizlocorp.gnvoice.service.impl.DescargaDocumentoBean" />
+			<sca:service name="DescargaDocumento">
+				<sca:interface.java
+					interface="com.gizlocorp.gnvoice.service.DescargaDocumento" />
+			</sca:service>
+		</sca:component>
+		<sca:component name="NotaCreditoBean">
+			<bean:implementation.bean
+				class="com.gizlocorp.gnvoice.service.impl.NotaCreditoBean" />
+			<sca:service name="NotaCredito">
+				<sca:interface.java interface="com.gizlocorp.gnvoice.service.NotaCredito" />
+			</sca:service>
+		</sca:component>
+		<sca:service name="DescargaDocumento"
+			promote="DescargaDocumentoBean/DescargaDocumento">
+			<sca:interface.java interface="com.gizlocorp.gnvoice.service.DescargaDocumento" />
+			<sca:binding.sca sy:clustered="true" />
+			<resteasy:binding.rest name="descargarDocumento">
+				<resteasy:interfaces>com.gizlocorp.gnvoice.service.DescargaDocumento</resteasy:interfaces>
+				<resteasy:contextPath>/facturacionServiciosGPF</resteasy:contextPath>
+			</resteasy:binding.rest>
+		</sca:service>
+		<sca:service name="FacturaPortType" promote="FacturaBean/Factura">
+			<sca:interface.wsdl
+				interface="wsdl/Factura.wsdl#wsdl.porttype(FacturaPortType)" />
+			<sca:binding.sca sy:clustered="true" />
+			<soap:binding.soap name="Factura">
+				<soap:wsdl>wsdl/Factura.wsdl</soap:wsdl>
+				<soap:socketAddr>:8330</soap:socketAddr>
+			</soap:binding.soap>
+		</sca:service>
+		<sca:service name="GuiaPortType" promote="GuiaBean/Guia">
+			<sca:interface.wsdl interface="wsdl/Guia.wsdl#wsdl.porttype(GuiaPortType)" />
+			<sca:binding.sca sy:clustered="true" name="Guia" />
+			<soap:binding.soap>
+				<soap:wsdl>wsdl/Guia.wsdl</soap:wsdl>
+				<soap:socketAddr>:8330</soap:socketAddr>
+			</soap:binding.soap>
+		</sca:service>
+		<sca:service name="NotaCreditoPortType" promote="NotaCreditoBean/NotaCredito">
+			<sca:interface.wsdl
+				interface="wsdl/NotaCredito.wsdl#wsdl.porttype(NotaCreditoPortType)" />
+			<sca:binding.sca sy:clustered="true" name="NotaCredito" />
+			<soap:binding.soap>
+				<soap:wsdl>wsdl/NotaCredito.wsdl</soap:wsdl>
+				<soap:socketAddr>:8330</soap:socketAddr>
+			</soap:binding.soap>
+		</sca:service>
+		<sca:component name="FacturaRestBean">
+			<bean:implementation.bean
+				class="com.gizlocorp.gnvoice.service.impl.FacturaRestBean" />
+			<sca:service name="FacturaRest">
+				<sca:interface.java interface="com.gizlocorp.gnvoice.service.FacturaRest" />
+			</sca:service>
+		</sca:component>
+		<sca:service name="FacturaRest" promote="FacturaRestBean/FacturaRest">
+			<sca:interface.java interface="com.gizlocorp.gnvoice.service.FacturaRest" />
+			<sca:binding.sca sy:clustered="true" />
+			<resteasy:binding.rest name="factura">
+				<resteasy:interfaces>com.gizlocorp.gnvoice.service.FacturaRest</resteasy:interfaces>
+				<resteasy:contextPath>/facturacionServiciosGPF</resteasy:contextPath>
+			</resteasy:binding.rest>
+		</sca:service>
+		<sca:component name="SeguridadBean">
+			<bean:implementation.bean
+				class="com.gizlocorp.gnvoice.service.impl.SeguridadBean" />
+			<sca:service name="Seguridad">
+				<sca:interface.java interface="com.gizlocorp.gnvoice.service.Seguridad" />
+			</sca:service>
+		</sca:component>
+		<sca:service name="Seguridad" promote="SeguridadBean/Seguridad">
+			<sca:interface.java interface="com.gizlocorp.gnvoice.service.Seguridad" />
+			<sca:binding.sca sy:clustered="true" />
+			<resteasy:binding.rest name="seguridad">
+				<resteasy:interfaces>com.gizlocorp.gnvoice.service.Seguridad</resteasy:interfaces>
+				<resteasy:contextPath>/facturacionServiciosGPF</resteasy:contextPath>
+			</resteasy:binding.rest>
+		</sca:service>
+		<sca:service name="GuiaRest" promote="GuiaRestBean/GuiaRest">
+			<sca:interface.java interface="com.gizlocorp.gnvoice.service.GuiaRest" />
+			<sca:binding.sca sy:clustered="true" />
+			<resteasy:binding.rest name="guia">
+				<resteasy:interfaces>com.gizlocorp.gnvoice.service.GuiaRest</resteasy:interfaces>
+				<resteasy:contextPath>/facturacionServiciosGPF</resteasy:contextPath>
+			</resteasy:binding.rest>
+		</sca:service>
+		<sca:component name="GuiaRestBean">
+			<bean:implementation.bean
+				class="com.gizlocorp.gnvoice.service.impl.GuiaRestBean" />
+			<sca:service name="GuiaRest">
+				<sca:interface.java interface="com.gizlocorp.gnvoice.service.GuiaRest" />
+			</sca:service>
+		</sca:component>
+		<sca:service name="NotaCreditoRest" promote="NotaCreditoRestBean/NotaCreditoRest">
+			<sca:interface.java interface="com.gizlocorp.gnvoice.service.NotaCreditoRest" />
+			<sca:binding.sca sy:clustered="true" />
+			<resteasy:binding.rest name="notaCredito">
+				<resteasy:interfaces>com.gizlocorp.gnvoice.service.NotaCreditoRest</resteasy:interfaces>
+				<resteasy:contextPath>/facturacionServiciosGPF</resteasy:contextPath>
+			</resteasy:binding.rest>
+		</sca:service>
+		<sca:component name="NotaCreditoRestBean">
+			<bean:implementation.bean
+				class="com.gizlocorp.gnvoice.service.impl.NotaCreditoRestBean" />
+			<sca:service name="NotaCreditoRest">
+				<sca:interface.java interface="com.gizlocorp.gnvoice.service.NotaCreditoRest" />
+			</sca:service>
+		</sca:component>
+		<sca:component name="GuiaCECRestBean">
+			<bean:implementation.bean
+				class="com.gizlocorp.gnvoice.service.impl.GuiaCECRestBean" />
+			<sca:service name="GuiaCECRest">
+				<sca:interface.java interface="com.gizlocorp.gnvoice.service.GuiaCECRest" />
+			</sca:service>
+		</sca:component>
+		<sca:service name="GuiaCECRest" promote="GuiaCECRestBean/GuiaCECRest">
+			<sca:interface.java interface="com.gizlocorp.gnvoice.service.GuiaCECRest" />
+			<resteasy:binding.rest name="guiaCEC">
+				<resteasy:interfaces>com.gizlocorp.gnvoice.service.GuiaCECRest</resteasy:interfaces>
+				<resteasy:contextPath>/facturacionServiciosGPF</resteasy:contextPath>
+			</resteasy:binding.rest>
+			<sca:binding.sca sy:clustered="true" />
+		</sca:service>
+		<sca:component name="FacturaORPOSBean">
+			<bean:implementation.bean
+				class="com.gizlocorp.gnvoice.orpos.service.impl.FacturaORPOSBean" />
+			<sca:service name="FacturaORPOS">
+				<sca:interface.java
+					interface="com.gizlocorp.gnvoice.orpos.service.FacturaORPOS" />
+			</sca:service>
+		</sca:component>
+		<sca:service name="FacturaORPOS" promote="FacturaORPOSBean/FacturaORPOS">
+			<sca:interface.wsdl
+				interface="wsdl/FacturaORPOS.wsdl#wsdl.porttype(FacturaORPOSPortType)" />
+			<sca:binding.sca sy:clustered="true" name="FacturaORPOS" />
+			<soap:binding.soap>
+				<soap:wsdl>wsdl/FacturaORPOS.wsdl</soap:wsdl>
+				<soap:socketAddr>:80</soap:socketAddr>
+			</soap:binding.soap>
+		</sca:service>
+		<sca:component name="NotaCreditoORPOSBean">
+			<bean:implementation.bean
+				class="com.gizlocorp.gnvoice.orpos.service.impl.NotaCreditoORPOSBean" />
+			<sca:service name="NotaCreditoORPOS">
+				<sca:interface.java
+					interface="com.gizlocorp.gnvoice.orpos.service.NotaCreditoORPOS" />
+			</sca:service>
+		</sca:component>
+		<sca:service name="NotaCreditoORPOS" promote="NotaCreditoORPOSBean/NotaCreditoORPOS">
+			<sca:interface.wsdl
+				interface="wsdl/NotaCreditoORPOS.wsdl#wsdl.porttype(NotaCreditoORPOSPortType)" />
+			<sca:binding.sca sy:clustered="true" name="NotaCreditoORPOS" />
+			<soap:binding.soap>
+				<soap:wsdl>wsdl/NotaCreditoORPOS.wsdl</soap:wsdl>
+				<soap:socketAddr>:80</soap:socketAddr>
+			</soap:binding.soap>
+		</sca:service>
+	</sca:composite>
+</switchyard>

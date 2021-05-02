@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="Guia"
+	targetNamespace="urn:com.gizlocorp.gnvoice:gnvoice-sca:1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:tns="urn:com.gizlocorp.gnvoice:gnvoice-sca:1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="urn:com.gizlocorp.gnvoice:gnvoice-sca:1.0"
+			targetNamespace="urn:com.gizlocorp.gnvoice:gnvoice-sca:1.0" version="1.0">
+			<xs:element name="guiaConsultarRequest" type="tns:guiaConsultarRequest" />
+			<xs:element name="guiaConsultarResponse" type="tns:guiaConsultarResponse" />
+			<xs:element name="guiaProcesarRequest" type="tns:guiaProcesarRequest" />
+			<xs:element name="guiaProcesarResponse" type="tns:guiaProcesarResponse" />
+			<xs:element name="guiaRecibirRequest" type="tns:guiaRecibirRequest" />
+			<xs:element name="guiaRecibirResponse" type="tns:guiaRecibirResponse" />
+			<xs:element name="guiaRemision">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="infoTributaria" type="tns:infoTributaria" />
+						<xs:element name="infoGuiaRemision">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element minOccurs="0" name="dirEstablecimiento"
+										type="xs:string" />
+									<xs:element name="dirPartida" type="xs:string" />
+									<xs:element name="razonSocialTransportista" type="xs:string" />
+									<xs:element name="tipoIdentificacionTransportista"
+										type="xs:string" />
+									<xs:element name="rucTransportista" type="xs:string" />
+									<xs:element minOccurs="0" name="rise" type="xs:string" />
+									<xs:element minOccurs="0" name="obligadoContabilidad"
+										type="xs:string" />
+									<xs:element minOccurs="0" name="contribuyenteEspecial"
+										type="xs:string" />
+									<xs:element name="fechaIniTransporte" type="xs:string" />
+									<xs:element name="fechaFinTransporte" type="xs:string" />
+									<xs:element name="placa" type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="destinatarios">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded" name="destinatario"
+										type="tns:destinatario" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element minOccurs="0" name="infoAdicional">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded" name="campoAdicional">
+										<xs:complexType>
+											<xs:simpleContent>
+												<xs:extension base="xs:string">
+													<xs:attribute name="nombre" type="xs:string" />
+												</xs:extension>
+											</xs:simpleContent>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="id" type="xs:string" use="required" />
+					<xs:attribute name="version" type="xs:NMTOKEN" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="mensajeRespuesta">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="identificador" type="xs:string" />
+						<xs:element minOccurs="0" name="mensaje" type="xs:string" />
+						<xs:element minOccurs="0" name="informacionAdicional"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="tipo" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="guiaRecibirRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="comprobanteProveedor"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="guiaRecibirResponse">
+				<xs:complexContent>
+					<xs:extension base="tns:gizloResponse">
+						<xs:sequence />
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="gizloResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="claveAccesoComprobante"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="estado" type="xs:string" />
+					<xs:element minOccurs="0" name="mensajeCliente" type="xs:string" />
+					<xs:element minOccurs="0" name="mensajeSistema" type="xs:string" />
+					<xs:element minOccurs="0" name="mensajes">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element maxOccurs="unbounded" minOccurs="0" name="mensaje">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element minOccurs="0" name="identificador"
+												type="xs:string" />
+											<xs:element minOccurs="0" name="mensaje" type="xs:string" />
+											<xs:element minOccurs="0" name="informacionAdicional"
+												type="xs:string" />
+											<xs:element minOccurs="0" name="tipo" type="xs:string" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="numeroAutorizacion"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="fechaAutorizacion" type="xs:dateTime" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="guiaConsultarRequest">
+				<xs:sequence>
+					<!-- <xs:element minOccurs="0" name="guia"> <xs:complexType> <xs:sequence> 
+						<xs:element name="infoTributaria" type="tns:infoTributaria" /> <xs:element 
+						name="infoGuiaRemision"> <xs:complexType> <xs:sequence> <xs:element minOccurs="0" 
+						name="dirEstablecimiento" type="xs:string" /> <xs:element name="dirPartida" 
+						type="xs:string" /> <xs:element name="razonSocialTransportista" type="xs:string" 
+						/> <xs:element name="tipoIdentificacionTransportista" type="xs:string" /> 
+						<xs:element name="rucTransportista" type="xs:string" /> <xs:element minOccurs="0" 
+						name="rise" type="xs:string" /> <xs:element minOccurs="0" name="obligadoContabilidad" 
+						type="xs:string" /> <xs:element minOccurs="0" name="contribuyenteEspecial" 
+						type="xs:string" /> <xs:element name="fechaIniTransporte" type="xs:string" 
+						/> <xs:element name="fechaFinTransporte" type="xs:string" /> <xs:element 
+						name="placa" type="xs:string" /> </xs:sequence> </xs:complexType> </xs:element> 
+						<xs:element name="destinatarios"> <xs:complexType> <xs:sequence> <xs:element 
+						maxOccurs="unbounded" name="destinatario" type="tns:destinatario" /> </xs:sequence> 
+						</xs:complexType> </xs:element> <xs:element minOccurs="0" name="infoAdicional"> 
+						<xs:complexType> <xs:sequence> <xs:element maxOccurs="unbounded" name="campoAdicional"> 
+						<xs:complexType> <xs:simpleContent> <xs:extension base="xs:string"> <xs:attribute 
+						name="nombre" type="xs:string" /> </xs:extension> </xs:simpleContent> </xs:complexType> 
+						</xs:element> </xs:sequence> </xs:complexType> </xs:element> </xs:sequence> 
+						<xs:attribute name="id" type="xs:string" use="required" /> <xs:attribute 
+						name="version" type="xs:NMTOKEN" use="required" /> </xs:complexType> </xs:element> -->
+					<xs:element name="ruc" type="xs:string" />
+					<xs:element name="claveAcceso" type="xs:string" />
+					<xs:element name="secuencial" type="xs:string" />
+					<xs:element name="codigoExterno" type="xs:string" />
+					<xs:element name="estado" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="infoTributaria">
+				<xs:sequence>
+					<xs:element name="ambiente" type="xs:string" />
+					<xs:element name="tipoEmision" type="xs:string" />
+					<xs:element name="razonSocial" type="xs:string" />
+					<xs:element minOccurs="0" name="nombreComercial" type="xs:string" />
+					<xs:element name="ruc" type="xs:string" />
+					<xs:element name="claveAcceso" type="xs:string" />
+					<xs:element name="codDoc" type="xs:string" />
+					<xs:element name="estab" type="xs:string" />
+					<xs:element name="ptoEmi" type="xs:string" />
+					<xs:element name="secuencial" type="xs:string" />
+					<xs:element name="dirMatriz" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="destinatario">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="identificacionDestinatario"
+						type="xs:string" />
+					<xs:element name="razonSocialDestinatario" type="xs:string" />
+					<xs:element name="dirDestinatario" type="xs:string" />
+					<xs:element name="motivoTraslado" type="xs:string" />
+					<xs:element minOccurs="0" name="docAduaneroUnico" type="xs:string" />
+					<xs:element minOccurs="0" name="codEstabDestino" type="xs:string" />
+					<xs:element minOccurs="0" name="ruta" type="xs:string" />
+					<xs:element minOccurs="0" name="codDocSustento" type="xs:string" />
+					<xs:element minOccurs="0" name="numDocSustento" type="xs:string" />
+					<xs:element minOccurs="0" name="numAutDocSustento" type="xs:string" />
+					<xs:element minOccurs="0" name="fechaEmisionDocSustento"
+						type="xs:string" />
+					<xs:element name="detalles">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element maxOccurs="unbounded" name="detalle"
+									type="tns:detalle" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="detalle">
+				<xs:sequence>
+					<xs:element name="codigoInterno" type="xs:string" />
+					<xs:element minOccurs="0" name="codigoAdicional" type="xs:string" />
+					<xs:element name="descripcion" type="xs:string" />
+					<xs:element name="cantidad" type="xs:decimal" />
+					<xs:element minOccurs="0" name="detallesAdicionales">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element maxOccurs="unbounded" minOccurs="0"
+									name="detAdicional" nillable="true">
+									<xs:complexType>
+										<xs:sequence />
+										<xs:attribute name="nombre" type="xs:string" />
+										<xs:attribute name="valor" type="xs:string" />
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="guiaConsultarResponse">
+				<xs:complexContent>
+					<xs:extension base="tns:gizloResponse">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="guias">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element maxOccurs="unbounded" minOccurs="0"
+											name="guia">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="infoTributaria" type="tns:infoTributaria" />
+													<xs:element name="infoGuiaRemision">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element minOccurs="0" name="dirEstablecimiento"
+																	type="xs:string" />
+																<xs:element name="dirPartida" type="xs:string" />
+																<xs:element name="razonSocialTransportista"
+																	type="xs:string" />
+																<xs:element name="tipoIdentificacionTransportista"
+																	type="xs:string" />
+																<xs:element name="rucTransportista" type="xs:string" />
+																<xs:element minOccurs="0" name="rise" type="xs:string" />
+																<xs:element minOccurs="0" name="obligadoContabilidad"
+																	type="xs:string" />
+																<xs:element minOccurs="0" name="contribuyenteEspecial"
+																	type="xs:string" />
+																<xs:element name="fechaIniTransporte" type="xs:string" />
+																<xs:element name="fechaFinTransporte" type="xs:string" />
+																<xs:element name="placa" type="xs:string" />
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="destinatarios">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element maxOccurs="unbounded" name="destinatario"
+																	type="tns:destinatario" />
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element minOccurs="0" name="infoAdicional">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element maxOccurs="unbounded" name="campoAdicional">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="nombre" type="xs:string" />
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="id" type="xs:string" use="required" />
+												<xs:attribute name="version" type="xs:NMTOKEN"
+													use="required" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="guiaProcesarRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="guia">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="infoTributaria" type="tns:infoTributaria" />
+								<xs:element name="infoGuiaRemision">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element minOccurs="0" name="dirEstablecimiento"
+												type="xs:string" />
+											<xs:element name="dirPartida" type="xs:string" />
+											<xs:element name="razonSocialTransportista" type="xs:string" />
+											<xs:element name="tipoIdentificacionTransportista"
+												type="xs:string" />
+											<xs:element name="rucTransportista" type="xs:string" />
+											<xs:element minOccurs="0" name="rise" type="xs:string" />
+											<xs:element minOccurs="0" name="obligadoContabilidad"
+												type="xs:string" />
+											<xs:element minOccurs="0" name="contribuyenteEspecial"
+												type="xs:string" />
+											<xs:element name="fechaIniTransporte" type="xs:string" />
+											<xs:element name="fechaFinTransporte" type="xs:string" />
+											<xs:element name="placa" type="xs:string" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="destinatarios">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element maxOccurs="unbounded" name="destinatario"
+												type="tns:destinatario" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element minOccurs="0" name="infoAdicional">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element maxOccurs="unbounded" name="campoAdicional">
+												<xs:complexType>
+													<xs:simpleContent>
+														<xs:extension base="xs:string">
+															<xs:attribute name="nombre" type="xs:string" />
+														</xs:extension>
+													</xs:simpleContent>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="id" type="xs:string" use="required" />
+							<xs:attribute name="version" type="xs:NMTOKEN" use="required" />
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="codigoExterno" type="xs:string" />
+					<xs:element name="correoElectronicoNotificacion" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="guiaProcesarResponse">
+				<xs:complexContent>
+					<xs:extension base="tns:gizloResponse">
+						<xs:sequence />
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="consultar">
+		<wsdl:part name="guiaConsultarRequest" element="tns:guiaConsultarRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="consultarResponse">
+		<wsdl:part name="guiaConsultarResponse" element="tns:guiaConsultarResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="procesar">
+		<wsdl:part name="guiaProcesarRequest" element="tns:guiaProcesarRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="procesarResponse">
+		<wsdl:part name="guiaProcesarResponse" element="tns:guiaProcesarResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="recibirResponse">
+		<wsdl:part name="guiaRecibirResponse" element="tns:guiaRecibirResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="recibir">
+		<wsdl:part name="guiaRecibirRequest" element="tns:guiaRecibirRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="GuiaPortType">
+		<wsdl:operation name="recibir">
+			<wsdl:input name="recibir" message="tns:recibir">
+			</wsdl:input>
+			<wsdl:output name="recibirResponse" message="tns:recibirResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="consultar">
+			<wsdl:input name="consultar" message="tns:consultar">
+			</wsdl:input>
+			<wsdl:output name="consultarResponse" message="tns:consultarResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="procesar">
+			<wsdl:input name="procesar" message="tns:procesar">
+			</wsdl:input>
+			<wsdl:output name="procesarResponse" message="tns:procesarResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="GuiaSoapBinding" type="tns:GuiaPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="consultar">
+			<soap:operation soapAction="consultar" style="document" />
+			<wsdl:input name="consultar">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="consultarResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="recibir">
+			<soap:operation soapAction="recibir" style="document" />
+			<wsdl:input name="recibir">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="recibirResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="procesar">
+			<soap:operation soapAction="procesar" style="document" />
+			<wsdl:input name="procesar">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="procesarResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		</wsdl:binding>
+	<wsdl:service name="Guia">
+		<wsdl:port name="GuiaPort" binding="tns:GuiaSoapBinding">
+			<soap:address location="http://localhost:18080/facturacionServiciosGPF/Guia" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

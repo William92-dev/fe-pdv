@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioCodigoBarras::#pages#formularioCodigoBarras.xhtml"
+    NAME="output" PATH="/pages/formularioCodigoBarras.xhtml"
+    TARGET="rules:#pages#formularioCodigoBarras.xhtml"
+    TITLE="formularioCodigoBarras" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#formularioParametro.xhtml"
+  PATH="/pages/formularioParametro.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:1" PATH="*" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:1" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listaCodigoBarras::#pages#listaCodigoBarras.xhtml" NAME="output"
+    PATH="/pages/listaCodigoBarras.xhtml"
+    TARGET="rules:#pages#listaCodigoBarras.xhtml"
+    TITLE="listaCodigoBarras" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:2" PATH="*" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:2" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listaConsultaEvento::#pages#listaConsultaEvento.xhtml"
+    NAME="output" PATH="/pages/listaConsultaEvento.xhtml"
+    TARGET="rules:#pages#listaConsultaEvento.xhtml"
+    TITLE="listaConsultaEvento" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#formularioPersona.xhtml"
+  PATH="/pages/formularioPersona.xhtml" SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:3" PATH="*" SHAPE="32,353,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:3" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="restablecerContrasena::#restablecerContrasena.xhtml"
+    NAME="output" PATH="/restablecerContrasena.xhtml"
+    TARGET="rules:#restablecerContrasena.xhtml"
+    TITLE="restablecerContrasena" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:4" PATH="*" SHAPE="32,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:4" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioParametro::#pages#formularioParametro.xhtml"
+    NAME="output" PATH="/pages/formularioParametro.xhtml"
+    TARGET="rules:#pages#formularioParametro.xhtml"
+    TITLE="formularioParametro" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:5" PATH="*" SHAPE="32,577,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:5" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioParametroFechaLimite::#pages#formularioParametroFechaLimite.xhtml"
+    NAME="output" PATH="/pages/formularioParametroFechaLimite.xhtml"
+    TARGET="rules:#pages#formularioParametroFechaLimite.xhtml"
+    TITLE="formularioParametroFechaLimite" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#listaPersona.xhtml"
+  PATH="/pages/listaPersona.xhtml" SHAPE="240,369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#listaUsuario.xhtml"
+  PATH="/pages/listaUsuario.xhtml" SHAPE="240,705,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#formularioUsuario.xhtml"
+  PATH="/pages/formularioUsuario.xhtml" SHAPE="240,817,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:6" PATH="*" SHAPE="32,913,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:6" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioParametroOrdenCompra::#pages#formularioParametroOrdenCompra.xhtml"
+    NAME="output" PATH="/pages/formularioParametroOrdenCompra.xhtml"
+    TARGET="rules:#pages#formularioParametroOrdenCompra.xhtml"
+    TITLE="formularioParametroOrdenCompra" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:7" PATH="*" SHAPE="32,801,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:7" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listaParametroFechaLimite::#pages#listaParametroFechaLimite.xhtml"
+    NAME="output" PATH="/pages/listaParametroFechaLimite.xhtml"
+    TARGET="rules:#pages#listaParametroFechaLimite.xhtml"
+    TITLE="listaParametroFechaLimite" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#listaPlantilla.xhtml"
+  PATH="/pages/listaPlantilla.xhtml" SHAPE="240,929,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#formularioPlantilla.xhtml"
+  PATH="/pages/formularioPlantilla.xhtml" SHAPE="240,1041,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:8" PATH="*" SHAPE="32,1025,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:8" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listaParametroOrdenCompra::#pages#listaParametroOrdenCompra.xhtml"
+    NAME="output" PATH="/pages/listaParametroOrdenCompra.xhtml"
+    TARGET="rules:#pages#listaParametroOrdenCompra.xhtml"
+    TITLE="listaParametroOrdenCompra" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:9" PATH="*" SHAPE="32,1137,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:9" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioRelacionPersona::#pages#formularioRelacionPersona.xhtml"
+    NAME="output" PATH="/pages/formularioRelacionPersona.xhtml"
+    TARGET="rules:#pages#formularioRelacionPersona.xhtml"
+    TITLE="formularioRelacionPersona" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#listaOrganizacion.xhtml"
+  PATH="/pages/listaOrganizacion.xhtml" SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#formularioOrganizacion.xhtml"
+  PATH="/pages/formularioOrganizacion.xhtml" SHAPE="240,481,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:10" PATH="*" SHAPE="32,1249,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:10" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listaRelacionPersona::#pages#listaRelacionPersona.xhtml"
+    NAME="output" PATH="/pages/listaRelacionPersona.xhtml"
+    TARGET="rules:#pages#listaRelacionPersona.xhtml"
+    TITLE="listaRelacionPersona" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:11" PATH="*" SHAPE="32,1361,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:11" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioRelacionOrganizacion::#pages#formularioRelacionOrganizacion.xhtml"
+    NAME="output" PATH="/pages/formularioRelacionOrganizacion.xhtml"
+    TARGET="rules:#pages#formularioRelacionOrganizacion.xhtml"
+    TITLE="formularioRelacionOrganizacion" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#listaTipoCatalogo.xhtml"
+  PATH="/pages/listaTipoCatalogo.xhtml" SHAPE="240,1489,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#formularioTipoCatalogo.xhtml"
+  PATH="/pages/formularioTipoCatalogo.xhtml" SHAPE="240,1601,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:12" PATH="*" SHAPE="32,1697,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:12" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listaRelacionOrganizacion::#pages#listaRelacionOrganizacion.xhtml"
+    NAME="output" PATH="/pages/listaRelacionOrganizacion.xhtml"
+    TARGET="rules:#pages#listaRelacionOrganizacion.xhtml"
+    TITLE="listaRelacionOrganizacion" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:13" PATH="*" SHAPE="32,1809,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:13" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listaParametroAplicacion::#pages#listaParametroAplicacion.xhtml"
+    NAME="output" PATH="/pages/listaParametroAplicacion.xhtml"
+    TARGET="rules:#pages#listaParametroAplicacion.xhtml"
+    TITLE="listaParametroAplicacion" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#formularioCatalogo.xhtml"
+  PATH="/pages/formularioCatalogo.xhtml" SHAPE="240,1825,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#listaCatalogo.xhtml"
+  PATH="/pages/listaCatalogo.xhtml" SHAPE="240,1713,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:14" PATH="*" SHAPE="32,1921,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:14" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioOrganizacion::#pages#formularioOrganizacion.xhtml"
+    NAME="output" PATH="/pages/formularioOrganizacion.xhtml"
+    TARGET="rules:#pages#formularioOrganizacion.xhtml"
+    TITLE="formularioOrganizacion" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:15" PATH="*" SHAPE="32,2033,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:15" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listaOrganizacion::#pages#listaOrganizacion.xhtml" NAME="output"
+    PATH="/pages/listaOrganizacion.xhtml"
+    TARGET="rules:#pages#listaOrganizacion.xhtml"
+    TITLE="listaOrganizacion" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#formularioEmisor.xhtml"
+  PATH="/pages/formularioEmisor.xhtml" SHAPE="240,2049,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#listaEmisor.xhtml"
+  PATH="/pages/listaEmisor.xhtml" SHAPE="240,1937,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:16" PATH="*" SHAPE="32,2145,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:16" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listaPersona::#pages#listaPersona.xhtml"
+    NAME="output" PATH="/pages/listaPersona.xhtml"
+    TARGET="rules:#pages#listaPersona.xhtml" TITLE="listaPersona" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#listaParametroAplicacion.xhtml"
+  PATH="/pages/listaParametroAplicacion.xhtml" SHAPE="240,1153,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:17" PATH="*" SHAPE="32,2369,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:17" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioPersona::#pages#formularioPersona.xhtml" NAME="output"
+    PATH="/pages/formularioPersona.xhtml"
+    TARGET="rules:#pages#formularioPersona.xhtml"
+    TITLE="formularioPersona" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:18" PATH="*" SHAPE="32,2257,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:18" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listaUsuario::#pages#listaUsuario.xhtml"
+    NAME="output" PATH="/pages/listaUsuario.xhtml"
+    TARGET="rules:#pages#listaUsuario.xhtml" TITLE="listaUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#formularioRelacionPersona.xhtml"
+  PATH="/pages/formularioRelacionPersona.xhtml" SHAPE="240,1265,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#listaRelacionPersona.xhtml"
+  PATH="/pages/listaRelacionPersona.xhtml" SHAPE="240,1377,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:19" PATH="*" SHAPE="32,2481,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:19" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listaUsuario_em::#pages#listaUsuario.xhtml"
+    NAME="output" PATH="/pages/listaUsuario.xhtml"
+    TARGET="rules:#pages#listaUsuario.xhtml" TITLE="listaUsuario_em" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:20" PATH="*" SHAPE="32,2593,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:20" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioUsuario::#pages#formularioUsuario.xhtml" NAME="output"
+    PATH="/pages/formularioUsuario.xhtml"
+    TARGET="rules:#pages#formularioUsuario.xhtml"
+    TITLE="formularioUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#formularioClaveContingencia.xhtml"
+  PATH="/pages/formularioClaveContingencia.xhtml" SHAPE="240,2609,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#listaClaveContingencia.xhtml"
+  PATH="/pages/listaClaveContingencia.xhtml" SHAPE="240,2497,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:21" PATH="*" SHAPE="32,2817,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:21" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioUsuario_em::#pages#formularioUsuario.xhtml"
+    NAME="output" PATH="/pages/formularioUsuario.xhtml"
+    TARGET="rules:#pages#formularioUsuario.xhtml"
+    TITLE="formularioUsuario_em" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:22" PATH="*" SHAPE="32,2705,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:22" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listaPlantilla::#pages#listaPlantilla.xhtml"
+    NAME="output" PATH="/pages/listaPlantilla.xhtml"
+    TARGET="rules:#pages#listaPlantilla.xhtml" TITLE="listaPlantilla" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#formularioRelacionOrganizacion.xhtml"
+  PATH="/pages/formularioRelacionOrganizacion.xhtml"
+  SHAPE="240,2161,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#listaRelacionOrganizacion.xhtml"
+  PATH="/pages/listaRelacionOrganizacion.xhtml" SHAPE="240,2273,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:23" PATH="*" SHAPE="32,2929,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:23" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioPlantilla::#pages#formularioPlantilla.xhtml"
+    NAME="output" PATH="/pages/formularioPlantilla.xhtml"
+    TARGET="rules:#pages#formularioPlantilla.xhtml"
+    TITLE="formularioPlantilla" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:24" PATH="*" SHAPE="32,3041,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:24" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listaTipoCatalogo::#pages#listaTipoCatalogo.xhtml" NAME="output"
+    PATH="/pages/listaTipoCatalogo.xhtml"
+    TARGET="rules:#pages#listaTipoCatalogo.xhtml"
+    TITLE="listaTipoCatalogo" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#listaConsultaEvento.xhtml"
+  PATH="/pages/listaConsultaEvento.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:25" PATH="*" SHAPE="32,3041,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:25" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioTipoCatalogo::#pages#formularioTipoCatalogo.xhtml"
+    NAME="output" PATH="/pages/formularioTipoCatalogo.xhtml"
+    TARGET="rules:#pages#formularioTipoCatalogo.xhtml"
+    TITLE="formularioTipoCatalogo" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:26" PATH="*" SHAPE="32,3153,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:26" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listaCatalogo::#pages#listaCatalogo.xhtml"
+    NAME="output" PATH="/pages/listaCatalogo.xhtml"
+    TARGET="rules:#pages#listaCatalogo.xhtml" TITLE="listaCatalogo" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:27" PATH="*" SHAPE="32,3265,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:27" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioCatalogo::#pages#formularioCatalogo.xhtml"
+    NAME="output" PATH="/pages/formularioCatalogo.xhtml"
+    TARGET="rules:#pages#formularioCatalogo.xhtml"
+    TITLE="formularioCatalogo" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:28" PATH="*" SHAPE="32,3377,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:28" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listaEmisor::#pages#listaEmisor.xhtml"
+    NAME="output" PATH="/pages/listaEmisor.xhtml"
+    TARGET="rules:#pages#listaEmisor.xhtml" TITLE="listaEmisor" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:29" PATH="*" SHAPE="32,3489,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:29" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="listaEmisor_em::#pages#listaEmisor.xhtml"
+    NAME="output" PATH="/pages/listaEmisor.xhtml"
+    TARGET="rules:#pages#listaEmisor.xhtml" TITLE="listaEmisor_em" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:30" PATH="*" SHAPE="32,3601,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:30" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioEmisor::#pages#formularioEmisor.xhtml" NAME="output"
+    PATH="/pages/formularioEmisor.xhtml"
+    TARGET="rules:#pages#formularioEmisor.xhtml"
+    TITLE="formularioEmisor" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:31" PATH="*" SHAPE="32,3601,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:31" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioEmisor_em::#pages#formularioEmisor.xhtml"
+    NAME="output" PATH="/pages/formularioEmisor.xhtml"
+    TARGET="rules:#pages#formularioEmisor.xhtml"
+    TITLE="formularioEmisor_em" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#home.xhtml" PATH="/pages/home.xhtml"
+  SHAPE="240,3617,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:32" PATH="*" SHAPE="32,3825,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:32" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listaClaveContingencia::#pages#listaClaveContingencia.xhtml"
+    NAME="output" PATH="/pages/listaClaveContingencia.xhtml"
+    TARGET="rules:#pages#listaClaveContingencia.xhtml"
+    TITLE="listaClaveContingencia" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#restablecerUsuario.xhtml"
+  PATH="/restablecerUsuario.xhtml" SHAPE="240,3729,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#restablecerContrasena.xhtml"
+  PATH="/restablecerContrasena.xhtml" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:33" PATH="*" SHAPE="32,3713,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:33" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listaClaveContingencia_em::#pages#listaClaveContingencia.xhtml"
+    NAME="output" PATH="/pages/listaClaveContingencia.xhtml"
+    TARGET="rules:#pages#listaClaveContingencia.xhtml"
+    TITLE="listaClaveContingencia_em" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:34" PATH="*" SHAPE="32,3937,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:34" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioClaveContingencia::#pages#formularioClaveContingencia.xhtml"
+    NAME="output" PATH="/pages/formularioClaveContingencia.xhtml"
+    TARGET="rules:#pages#formularioClaveContingencia.xhtml"
+    TITLE="formularioClaveContingencia" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#listaCodigoBarras.xhtml"
+  PATH="/pages/listaCodigoBarras.xhtml" SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#formularioCodigoBarras.xhtml"
+  PATH="/pages/formularioCodigoBarras.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:35" PATH="*" SHAPE="32,4049,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:35" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="formularioClaveContingencia_em::#pages#formularioClaveContingencia.xhtml"
+    NAME="output" PATH="/pages/formularioClaveContingencia.xhtml"
+    TARGET="rules:#pages#formularioClaveContingencia.xhtml"
+    TITLE="formularioClaveContingencia_em" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:36" PATH="*" SHAPE="32,4161,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:36" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="restablecerUsuario::#restablecerUsuario.xhtml" NAME="output"
+    PATH="/restablecerUsuario.xhtml"
+    TARGET="rules:#restablecerUsuario.xhtml" TITLE="restablecerUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#formularioParametroOrdenCompra.xhtml"
+  PATH="/pages/formularioParametroOrdenCompra.xhtml"
+  SHAPE="240,2385,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#listaParametroOrdenCompra.xhtml"
+  PATH="/pages/listaParametroOrdenCompra.xhtml" SHAPE="240,2721,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:37" PATH="*" SHAPE="32,4273,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:37" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="inicio::#pages#home.xhtml" NAME="output"
+    PATH="/pages/home.xhtml" TARGET="rules:#pages#home.xhtml"
+    TITLE="inicio" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#formularioParametroFechaLimite.xhtml"
+  PATH="/pages/formularioParametroFechaLimite.xhtml" SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#listaParametroFechaLimite.xhtml"
+  PATH="/pages/listaParametroFechaLimite.xhtml" SHAPE="240,2833,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

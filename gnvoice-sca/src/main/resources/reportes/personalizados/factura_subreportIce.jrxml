@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura_subreportTotales" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="510" leftMargin="0" rightMargin="85" topMargin="0" bottomMargin="0" uuid="a2b41d4a-ee15-41c9-9a49-d0e5e3e56871">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="baseImponible" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[baseImponible]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valor]]></fieldDescription>
+	</field>
+	<field name="codigoPorcentaje" class="java.lang.String">
+		<fieldDescription><![CDATA[codigoPorcentaje]]></fieldDescription>
+	</field>
+	<field name="codigo" class="java.lang.String">
+		<fieldDescription><![CDATA[codigo]]></fieldDescription>
+	</field>
+	<variable name="BASE_IMPONIBLE" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[($F{codigo}=="3" ? $F{baseImponible} :"0")]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="VALOR" class="java.lang.String">
+		<variableExpression><![CDATA[($F{codigo}=="3" ? $F{valor} :"0")]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="13">
+			<printWhenExpression><![CDATA[$F{codigo}=="3"]]></printWhenExpression>
+			<textField>
+				<reportElement uuid="55c6d5eb-edd9-41df-a30f-d4aa9b9e8044" x="14" y="0" width="51" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

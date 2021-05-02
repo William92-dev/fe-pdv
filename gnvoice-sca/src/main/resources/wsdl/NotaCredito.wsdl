@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="NotaCredito"
+	targetNamespace="urn:com.gizlocorp.gnvoice:gnvoice-sca:1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:tns="urn:com.gizlocorp.gnvoice:gnvoice-sca:1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="urn:com.gizlocorp.gnvoice:gnvoice-sca:1.0"
+			targetNamespace="urn:com.gizlocorp.gnvoice:gnvoice-sca:1.0" version="1.0">
+			<xs:element name="mensajeRespuesta">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="identificador" type="xs:string" />
+						<xs:element minOccurs="0" name="mensaje" type="xs:string" />
+						<xs:element minOccurs="0" name="informacionAdicional"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="tipo" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="notaCredito">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="infoTributaria" type="tns:infoTributaria" />
+						<xs:element name="infoNotaCredito">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="fechaEmision" type="xs:string" />
+									<xs:element minOccurs="0" name="dirEstablecimiento"
+										type="xs:string" />
+									<xs:element name="tipoIdentificacionComprador" type="xs:string" />
+									<xs:element name="razonSocialComprador" type="xs:string" />
+									<xs:element minOccurs="0" name="identificacionComprador"
+										type="xs:string" />
+									<xs:element minOccurs="0" name="contribuyenteEspecial"
+										type="xs:string" />
+									<xs:element minOccurs="0" name="obligadoContabilidad"
+										type="xs:string" />
+									<xs:element minOccurs="0" name="rise" type="xs:string" />
+									<xs:element name="codDocModificado" type="xs:string" />
+									<xs:element name="numDocModificado" type="xs:string" />
+									<xs:element name="fechaEmisionDocSustento" type="xs:string" />
+									<xs:element name="totalSinImpuestos" type="xs:decimal" />
+									<xs:element name="valorModificacion" type="xs:decimal" />
+									<xs:element minOccurs="0" name="moneda" type="xs:string" />
+									<xs:element minOccurs="0" name="compensaciones">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element maxOccurs="unbounded" name="compensacion">
+													<xs:complexType>
+														<xs:sequence>															
+															<xs:element minOccurs="0" name="codigo" type="xs:decimal" />
+															<xs:element minOccurs="0" name="tarifa" type="xs:decimal" />
+															<xs:element minOccurs="0" name="valor" type="xs:decimal" />
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="totalConImpuestos">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element maxOccurs="unbounded" name="totalImpuesto">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="codigo" type="xs:string" />
+															<xs:element name="codigoPorcentaje" type="xs:string" />
+															<xs:element name="baseImponible" type="xs:decimal" />
+															<xs:element name="valor" type="xs:decimal" />
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="motivo" type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="detalles">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded" name="detalle">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="codigoInterno" type="xs:string" />
+												<xs:element minOccurs="0" name="codigoAdicional"
+													type="xs:string" />
+												<xs:element name="descripcion" type="xs:string" />
+												<xs:element name="cantidad" type="xs:decimal" />
+												<xs:element name="precioUnitario" type="xs:decimal" />
+												<xs:element minOccurs="0" name="descuento" type="xs:decimal" />
+												<xs:element name="precioTotalSinImpuesto" type="xs:decimal" />
+												<xs:element minOccurs="0" name="detallesAdicionales">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element maxOccurs="unbounded" name="detAdicional">
+																<xs:complexType>
+																	<xs:sequence />
+																	<xs:attribute name="nombre" type="xs:string" />
+																	<xs:attribute name="valor" type="xs:string" />
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="impuestos">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element maxOccurs="unbounded" minOccurs="0"
+																name="impuesto" nillable="true" type="tns:impuesto" />
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element minOccurs="0" name="infoAdicional">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded" name="campoAdicional">
+										<xs:complexType>
+											<xs:simpleContent>
+												<xs:extension base="xs:string">
+													<xs:attribute name="nombre" type="xs:string" />
+												</xs:extension>
+											</xs:simpleContent>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="id" type="xs:string" use="required" />
+					<xs:attribute name="version" type="xs:NMTOKEN" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="notaCreditoConsultarRequest" type="tns:notaCreditoConsultarRequest" />
+			<xs:element name="notaCreditoConsultarResponse" type="tns:notaCreditoConsultarResponse" />
+			<xs:element name="notaCreditoProcesarRequest" type="tns:notaCreditoProcesarRequest" />
+			<xs:element name="notaCreditoProcesarResponse" type="tns:notaCreditoProcesarResponse" />
+			<xs:element name="notaCreditoRecibirRequest" type="tns:notaCreditoRecibirRequest" />
+			<xs:element name="notaCreditoRecibirResponse" type="tns:notaCreditoRecibirResponse" />
+			<xs:element name="totalConImpuestos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="totalImpuesto">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="codigo" type="xs:string" />
+									<xs:element name="codigoPorcentaje" type="xs:string" />
+									<xs:element name="baseImponible" type="xs:decimal" />
+									<xs:element name="valor" type="xs:decimal" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="notaCreditoRecibirRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="comprobanteProveedor"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="comprobanteProveedorPDF"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="proceso" type="xs:string" />
+					<xs:element minOccurs="0" name="tipo" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="notaCreditoRecibirResponse">
+				<xs:complexContent>
+					<xs:extension base="tns:gizloResponse">
+						<xs:sequence />
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="gizloResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="claveAccesoComprobante"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="estado" type="xs:string" />
+					<xs:element minOccurs="0" name="mensajeCliente" type="xs:string" />
+					<xs:element minOccurs="0" name="mensajeSistema" type="xs:string" />
+					<xs:element minOccurs="0" name="mensajes">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element maxOccurs="unbounded" minOccurs="0" name="mensaje">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element minOccurs="0" name="identificador"
+												type="xs:string" />
+											<xs:element minOccurs="0" name="mensaje" type="xs:string" />
+											<xs:element minOccurs="0" name="informacionAdicional"
+												type="xs:string" />
+											<xs:element minOccurs="0" name="tipo" type="xs:string" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="numeroAutorizacion"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="fechaAutorizacion" type="xs:dateTime" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="notaCreditoConsultarRequest">
+				<xs:sequence>
+					<!-- <xs:element minOccurs="0" ref="tns:notaCredito" /> -->
+					<xs:element name="ruc" type="xs:string" />
+					<xs:element name="claveAcceso" type="xs:string" />
+					<xs:element name="secuencial" type="xs:string" />
+					<xs:element name="codigoExterno" type="xs:string" />
+					<xs:element name="estado" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="infoTributaria">
+				<xs:sequence>
+					<xs:element name="ambiente" type="xs:string" />
+					<xs:element name="tipoEmision" type="xs:string" />
+					<xs:element name="razonSocial" type="xs:string" />
+					<xs:element minOccurs="0" name="nombreComercial" type="xs:string" />
+					<xs:element name="ruc" type="xs:string" />
+					<xs:element name="claveAcceso" type="xs:string" />
+					<xs:element name="codDoc" type="xs:string" />
+					<xs:element name="estab" type="xs:string" />
+					<xs:element name="ptoEmi" type="xs:string" />
+					<xs:element name="secuencial" type="xs:string" />
+					<xs:element name="dirMatriz" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="impuesto">
+				<xs:sequence>
+					<xs:element name="codigo" type="xs:string" />
+					<xs:element name="codigoPorcentaje" type="xs:string" />
+					<xs:element minOccurs="0" name="tarifa" type="xs:decimal" />
+					<xs:element name="baseImponible" type="xs:decimal" />
+					<xs:element name="valor" type="xs:decimal" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="notaCreditoConsultarResponse">
+				<xs:complexContent>
+					<xs:extension base="tns:gizloResponse">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="notasCredito">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element maxOccurs="unbounded" minOccurs="0"
+											ref="tns:notaCredito" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="notaCreditoProcesarRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" ref="tns:notaCredito" />
+					<xs:element name="codigoExterno" type="xs:string" />
+					<xs:element name="correoElectronicoNotificacion" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="notaCreditoProcesarResponse">
+				<xs:complexContent>
+					<xs:extension base="tns:gizloResponse">
+						<xs:sequence />
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="detalle">
+				<xs:sequence>
+					<xs:element name="motivoModificacion" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="consultar">
+		<wsdl:part name="notaCreditoConsultarRequest" element="tns:notaCreditoConsultarRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="consultarResponse">
+		<wsdl:part name="notaCreditoConsultarResponse" element="tns:notaCreditoConsultarResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="procesar">
+		<wsdl:part name="notaCreditoProcesarRequest" element="tns:notaCreditoProcesarRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="procesarResponse">
+		<wsdl:part name="notaCreditoProcesarResponse" element="tns:notaCreditoProcesarResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="recibirResponse">
+		<wsdl:part name="notaCreditoRecibirResponse" element="tns:notaCreditoRecibirResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="recibir">
+		<wsdl:part name="notaCreditoRecibirRequest" element="tns:notaCreditoRecibirRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="NotaCreditoPortType">
+		<wsdl:operation name="recibir">
+			<wsdl:input name="recibir" message="tns:recibir">
+			</wsdl:input>
+			<wsdl:output name="recibirResponse" message="tns:recibirResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="consultar">
+			<wsdl:input name="consultar" message="tns:consultar">
+			</wsdl:input>
+			<wsdl:output name="consultarResponse" message="tns:consultarResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="procesar">
+			<wsdl:input name="procesar" message="tns:procesar">
+			</wsdl:input>
+			<wsdl:output name="procesarResponse" message="tns:procesarResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="NotaCreditoSoapBinding" type="tns:NotaCreditoPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="consultar">
+			<soap:operation soapAction="consultar" style="document" />
+			<wsdl:input name="consultar">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="consultarResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="recibir">
+			<soap:operation soapAction="recibir" style="document" />
+			<wsdl:input name="recibir">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="recibirResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="procesar">
+			<soap:operation soapAction="procesar" style="document" />
+			<wsdl:input name="procesar">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="procesarResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="NotaCredito">
+		<wsdl:port name="NotaCreditoPort" binding="tns:NotaCreditoSoapBinding">
+			<soap:address
+				location="http://localhost:18080/facturacionServiciosGPF/NotaCredito" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

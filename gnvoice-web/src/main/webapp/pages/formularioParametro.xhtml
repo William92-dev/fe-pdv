@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+
+
+	<ui:define name="contenidoAplicacion">
+		<h:form>
+			<div id="pestanas">
+				<a href="#">Formulario Parametro</a>
+			</div>
+			<div id="contenido">
+				<rich:panel id="panel_parametro">
+
+					<h:panelGrid columns="3" width="100%" id="editGrid">
+						<h:outputLabel value="#{msg['parametro.codigo']}: *"
+							for="codigoInput" styleClass="etiquetas" />
+						<h:inputText id="codigoInput"
+							value="#{parametroDataBean.parametro.codigo}"
+							styleClass="textfield_form" required="true"
+							requiredMessage="#{msg['parametro.codigo']} es requerido"
+							disabled="true" />
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['parametro.descripcion']}:"
+							for="descripcionInput" styleClass="etiquetas" />
+						<h:inputText id="descripcionInput"
+							value="#{parametroDataBean.parametro.descripcion}"
+							styleClass="textfield_form" disabled="true" />
+						<h:outputLabel value="" />
+
+						<h:outputLabel value="#{msg['parametro.valor']}: *"
+							for="valorInput" styleClass="etiquetas" />
+						<h:inputText id="valorInput"
+							value="#{parametroDataBean.parametro.valor}"
+							styleClass="textfield_form" required="false"
+							requiredMessage="#{msg['parametro.valor']} es requerido" />
+						<h:outputLabel value="" />
+					</h:panelGrid>
+
+					<div id="espacio2"></div>
+					<h:outputLabel styleClass="texto2"
+						style="text-align: center; width:100%"
+						value="* Campos requeridos u obligatorios" />
+
+				</rich:panel>
+				<h:panelGrid columns="2" width="20%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="#{msg['boton.guardar']}" execute="@form"
+							render="editGrid evento"
+							action="#{parametroBean.guardarParametro}" />
+					</a4j:outputPanel>
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton immediate="true"
+							action="#{parametroBean.regresar()}"
+							value="#{msg['boton.regresar']}" />
+					</a4j:outputPanel>
+				</h:panelGrid>
+
+				<p class="texto1"></p>
+			</div>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+

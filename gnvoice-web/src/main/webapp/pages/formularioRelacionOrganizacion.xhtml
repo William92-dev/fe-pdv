@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+
+
+
+	<ui:define name="contenidoAplicacion">
+		<h:form>
+			<div id="pestanas">
+				<a href="#">Formulario Relacion Organizacion</a>
+			</div>
+			<div id="contenido">
+				<rich:panel id="panel_emisor">
+					<rich:collapsiblePanel header="Informacion Organizacion"
+						style=" width : 100%;">
+
+						<h:panelGrid id="panelOrganizacion" columns="3" width="100%">
+							<h:outputLabel value="#{msg['organizacion.ruc']}: *"
+								for="rucInput" styleClass="etiquetas" />
+							<h:inputText id="rucInput"
+								value="#{relacionOrganizacionDataBean.relacionOrganizacion.organizacion.ruc}"
+								styleClass="textfield_form" maxlength="13" required="true"
+								disabled="#{!relacionOrganizacionDataBean.nuevo}"
+								validatorMessage="#{msg['persona.identificacion']} debe tener 13 digitos"
+								requiredMessage="#{msg['persona.identificacion']} es requerido"
+								onkeypress="if((event.which &lt; 48 || event.which &gt; 57) &amp; event.which != 0  &amp; event.which != 9 &amp; event.which != 46 &amp; event.which != 8) return false;">
+								<f:validateLength minimum="13" maximum="13" />
+								<a4j:ajax event="blur"
+									listener="#{relacionOrganizacionBean.consultaOrganizacion()}"
+									render="panelOrganizacion"></a4j:ajax>
+							</h:inputText>
+							<h:outputText value="" />
+
+							<h:outputLabel value="#{msg['organizacion.nombre']}: *"
+								for="nombreInput" styleClass="etiquetas" />
+							<h:inputText id="nombreInput"
+								value="#{relacionOrganizacionDataBean.relacionOrganizacion.organizacion.nombre}"
+								styleClass="textfield_form" required="true"
+								disabled="#{!relacionOrganizacionDataBean.nuevo}"
+								requiredMessage="#{msg['organizacion.nombre']} es requerido" />
+							<h:outputText value="" />
+
+							<h:outputLabel value="#{msg['organizacion.acronimo']}: *"
+								for="acronimoInput" styleClass="etiquetas" />
+							<h:inputText id="acronimoInput"
+								value="#{relacionOrganizacionDataBean.relacionOrganizacion.organizacion.acronimo}"
+								styleClass="textfield_form" required="true"
+								disabled="#{!relacionOrganizacionDataBean.nuevo}"
+								requiredMessage="#{msg['organizacion.acronimo']} es requerido" />
+							<h:outputText value="" />
+
+							<h:outputLabel value="#{msg['organizacion.nombreComercial']}: *"
+								for="nombreComercialInput" styleClass="etiquetas" />
+							<h:inputText id="nombreComercialInput"
+								value="#{relacionOrganizacionDataBean.relacionOrganizacion.organizacion.nombreComercial}"
+								styleClass="textfield_form" required="true"
+								requiredMessage="#{msg['organizacion.nombreComercial']} es requerido" />
+							<h:outputText value="" />
+
+							<h:outputLabel value="#{msg['organizacion.correo']}: *"
+								for="correoInput" styleClass="etiquetas" />
+							<h:inputText id="correoInput"
+								value="#{relacionOrganizacionDataBean.relacionOrganizacion.organizacion.correoElectronico}"
+								styleClass="textfield_form" required="true"
+								requiredMessage="#{msg['organizacion.correo']} es requerido"
+								validatorMessage="#{msg['organizacion.correo']} invalido ">
+								<f:validateRegex
+									pattern="^(([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+([;.](([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+)*$" />
+							</h:inputText>
+							<h:outputText value="" />
+
+							<h:outputLabel value="#{msg['organizacion.direccion']}: "
+								for="direccionInput" styleClass="etiquetas" />
+							<h:inputText id="direccionInput"
+								value="#{relacionOrganizacionDataBean.relacionOrganizacion.organizacion.direccion}"
+								styleClass="textfield_form" />
+							<h:outputText value="" />
+
+							<h:outputLabel value="#{msg['organizacion.telefono']}: "
+								for="telefonoInput" styleClass="etiquetas" />
+							<h:inputText id="telefonoInput" maxlength="10"
+								value="#{relacionOrganizacionDataBean.relacionOrganizacion.organizacion.telefono}"
+								styleClass="textfield_form"
+								onkeypress="if((event.which &lt; 48 || event.which &gt; 57) &amp; event.which != 0  &amp; event.which != 9 &amp; event.which != 46 &amp; event.which != 8) return false;" />
+							<h:outputText value="" />
+
+							<h:outputLabel value="#{msg['persona.tipoRelacion']}: *"
+								for="estadoInput" styleClass="etiquetas" />
+							<h:selectOneMenu
+								value="#{relacionOrganizacionDataBean.relacionOrganizacion.tipoRelacion}"
+								id="estadoInput">
+								<f:selectItem itemLabel="#{msg['common.msg.select']}"
+									itemValue="" />
+								<f:selectItems value="#{relacionOrganizacionBean.tipoRelacion}" />
+							</h:selectOneMenu>
+							<h:outputLabel value="" />
+
+							<h:outputLabel value="#{msg['persona.organizacion']}: *"
+								for="tipoCatalogoInput" styleClass="etiquetas" />
+							<h:selectOneMenu id="tipoCatalogoInput" required="true"
+								requiredMessage="#{msg['catalogo.tipoCatalogo']} es requerido"
+								value="#{relacionOrganizacionDataBean.relacionOrganizacion.idOrganizacionRelacion}">
+								<f:selectItem itemLabel="#{msg['common.msg.select']}"
+									itemValue="" />
+								<f:selectItems value="#{applicationBean.organizaciones}"
+									var="tipoCatalogo" itemLabel="#{tipoCatalogo.nombre}"
+									itemValue="#{tipoCatalogo.id}" />
+								<f:ajax event="change"
+									listener="#{relacionOrganizacionBean.obtieneOrganizacion()}" />
+							</h:selectOneMenu>
+							<h:outputText value="" />
+
+						</h:panelGrid>
+					</rich:collapsiblePanel>
+
+					<rich:collapsiblePanel header="Informacion del Contacto"
+						style=" width : 100%;">
+						<h:panelGrid id="panel_persona" columns="3" width="100%">
+							<h:outputLabel value="#{msg['persona.identificacion']}: "
+								for="identificacionInput" styleClass="etiquetas" />
+							<h:inputText id="identificacionInput"
+								value="#{relacionOrganizacionDataBean.relacionOrganizacion.persona.identificacion}"
+								styleClass="textfield_form"
+								onkeypress="if((event.which &lt; 48 || event.which &gt; 57) &amp; event.which != 0  &amp; event.which != 9 &amp; event.which != 46 &amp; event.which != 8) return false;">
+								<a4j:ajax event="blur"
+									listener="#{relacionOrganizacionBean.consultaPersona()}"
+									render="panel_persona"></a4j:ajax>
+							</h:inputText>
+							<h:outputLabel value="" />
+
+							<h:outputLabel value="#{msg['persona.apellidos']}:"
+								for="apellidoInput" styleClass="etiquetas" />
+							<h:inputText id="apellidoInput"
+								value="#{relacionOrganizacionDataBean.relacionOrganizacion.persona.apellidos}"
+								styleClass="textfield_form" />
+							<h:outputLabel value="" />
+
+							<h:outputLabel value="#{msg['persona.nombres']}:"
+								for="nombrecontactoInput" styleClass="etiquetas" />
+							<h:inputText id="nombrecontactoInput"
+								value="#{relacionOrganizacionDataBean.relacionOrganizacion.persona.nombres}"
+								styleClass="textfield_form" />
+							<h:outputLabel value="" />
+						</h:panelGrid>
+					</rich:collapsiblePanel>
+
+					<h:outputLabel styleClass="texto2"
+						style="text-align: center; width:100%"
+						value="* Campos requeridos u obligatorios" />
+				</rich:panel>
+
+				<div id="espacio2"></div>
+
+				<h:panelGrid columns="2" width="20%">
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton value="#{msg['boton.guardar']}"
+							action="#{relacionOrganizacionBean.guardar()}"
+							styleClass="no-decor" render="panel_emisor evento"
+							execute="@form">
+						</a4j:commandButton>
+					</a4j:outputPanel>
+					<a4j:outputPanel layout="block">
+						<a4j:commandButton immediate="true"
+							action="#{relacionOrganizacionBean.regresar()}"
+							value="#{msg['boton.regresar']}" />
+					</a4j:outputPanel>
+				</h:panelGrid>
+
+
+
+				<rich:jQuery selector=".stable tr:odd" query="addClass('odd-row')" />
+				<rich:jQuery selector=".stable tr:even" query="addClass('even-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseover"
+					query="jQuery(this).addClass('active-row')" />
+				<rich:jQuery selector=".stable tr" event="mouseout"
+					query="jQuery(this).removeClass('active-row')" />
+				<p class="texto1"></p>
+			</div>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
+

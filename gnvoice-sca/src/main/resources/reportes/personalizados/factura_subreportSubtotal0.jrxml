@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura_subreportTotales" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="510" leftMargin="0" rightMargin="85" topMargin="0" bottomMargin="0" uuid="a2b41d4a-ee15-41c9-9a49-d0e5e3e56871">
+	<property name="ireport.zoom" value="1.9487171000000014"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="baseImponible" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[baseImponible]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valor]]></fieldDescription>
+	</field>
+	<field name="codigoPorcentaje" class="java.lang.String">
+		<fieldDescription><![CDATA[codigoPorcentaje]]></fieldDescription>
+	</field>
+	<field name="codigo" class="java.lang.String">
+		<fieldDescription><![CDATA[codigo]]></fieldDescription>
+	</field>
+	<field name="tarifa" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[tarifa]]></fieldDescription>
+	</field>
+	<variable name="BASE_IMPONIBLE" class="java.lang.String">
+		<variableExpression><![CDATA[($F{codigo}=="2"? $F{baseImponible} :"0")]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="VALOR" class="java.lang.String">
+		<variableExpression><![CDATA[($F{codigo}=="2" ? $F{baseImponible} :"0")]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="12">
+			<printWhenExpression><![CDATA[$F{codigo}=="2"]]></printWhenExpression>
+			<textField>
+				<reportElement uuid="9a6f57b0-67a3-405e-b22a-f73162f6e43d" x="14" y="1" width="51" height="10" forecolor="#000000"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{baseImponible}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

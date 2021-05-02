@@ -1,0 +1,947 @@
+@charset "UTF-8";
+/* CSS Document */
+@font-face {
+	font-family: "Century Gothic";
+	src: url(../fonts/Century Gothic);
+}
+
+body {
+	background-position: center top;
+	background-repeat: no-repeat;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 0px;
+}
+
+#linea_sup {
+	height: 6px;
+	background-color: #18171A;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+
+#cabecera {
+	height: 65px;
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#cab_izq {
+	float: left;
+	width: 230px;
+	padding-top: 10px;
+	padding-left: 20px;
+}
+
+#cab_izq2 {
+	text-align: center;
+	margin: 0px auto;
+}
+
+#cab_der {
+	float: right;
+	width: 710px;
+}
+
+#bienvenidos {
+	width: 160px;
+	float: left;
+	padding-left: 238px;
+	color: #FFF;
+	font-family: "Century Gothic";
+	font-weight: normal;
+	font-size: 11px;
+	line-height: 20px;
+	height: 20px;
+}
+
+#menu_sup {
+	width: 310px;
+	float: right;
+	background-image: url("#{resource['images/barra_negra.png']}");
+	background-repeat: no-repeat;
+	margin-top: 0px;
+	height: 22px;
+}
+
+#menu_sup a {
+	width: 18px;
+	float: left;
+	margin-top: 0px;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFF;
+	font-size: 11px;
+	padding-left: 35px;
+	margin-right: 5px;
+	line-height: 18px;
+}
+
+#menu_sup a+a {
+	width: 120px;
+	float: left;
+	margin-top: 0px;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFF;
+	font-size: 11px;
+}
+
+#menu_sup a+a+a {
+	float: left;
+	margin-top: 0px;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFF;
+	font-size: 11px;
+	width: 15px;
+}
+
+#cuerpo {
+	width: 95%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#izquierda {
+	width: 20%;
+	float: left;
+}
+
+#horizontal a:hover {
+	width: 725px;
+	float: right;
+}
+
+#usuario {
+	width: 235px;
+	float: left;
+}
+
+#avatar {
+	width: 90px;
+	height: 120px;
+	border: 1px solid #999;
+	float: left;
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#info_usuario {
+	width: 120px;
+	float: right;
+	padding-top: 0px;
+	padding-left: 10px;
+}
+
+#espacio {
+	width: 235px;
+	height: 10px;
+	float: left;
+}
+
+#espacio2 {
+	width: 100%;
+	height: 10px;
+}
+
+.texto1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #0054a6;
+	font-weight: bold;
+	line-height: 16px;
+	margin-top: 0px;
+}
+
+.texto2 {
+	font-family: "Century Gothic";
+	font-size: 12px;
+	color: #000;
+	font-weight: normal;
+}
+
+.linea {
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 9px;
+	color: #CCC;
+	font-weight: normal;
+	line-height: 18px;
+}
+
+#contenido {
+	width: 90%;
+	float: left;
+	background-color: #FFF;
+	padding-top: 20px;
+	padding-left: 60px;
+	padding-right: 60px;
+	background-image: url("#{resource['images/classic/fodo_texto2.jpg']}");
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-color: #999;
+	border-bottom-color: #999;
+	border-left-color: #999;
+}
+
+textarea {
+	height: 70px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	font-weight: normal;
+	width: 200px;
+}
+
+#derecha {
+	width: 80%;
+	float: right;
+	margin-bottom: 20px;
+}
+
+#pestanas {
+	width: 80%;
+	float: left;
+}
+
+#pestanas a {
+	width: 160px;
+	float: left;
+	text-decoration: none;
+	color: #666;
+	font-family: "Century Gothic";
+	font-size: 11px;
+	border: 1px solid #999;
+	background-color: #D5D5D4;
+	text-align: center;
+	height: 25px;
+	line-height: 25px;
+}
+
+#pestanas a:hover {
+	width: 160px;
+	float: left;
+	text-decoration: none;
+	color: #0054a6;
+	font-family: "Century Gothic";
+	font-size: 11px;
+	background-color: #FFF;
+	font-weight: bold;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-top-color: #999;
+	border-right-color: #999;
+	border-left-color: #999;
+	text-align: center;
+	line-height: 25px;
+	height: 25px;
+}
+
+#completa {
+	width: 80%;
+	margin-left: 10%;
+	margin-bottom: 20px;
+}
+
+#pestanas_completa {
+	width: 100%;
+	float: left;
+}
+
+#pestanas_completa a {
+	width: 160px;
+	float: left;
+	text-decoration: none;
+	color: #666;
+	font-family: "Century Gothic";
+	font-size: 11px;
+	border: 1px solid #999;
+	background-color: #D5D5D4;
+	text-align: center;
+	height: 25px;
+	line-height: 25px;
+}
+
+#pestanas_completa a:hover {
+	width: 160px;
+	float: left;
+	text-decoration: none;
+	color: #0054a6;
+	font-family: "Century Gothic";
+	font-size: 11px;
+	background-color: #FFF;
+	font-weight: bold;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-top-color: #999;
+	border-right-color: #999;
+	border-left-color: #999;
+	text-align: center;
+	line-height: 25px;
+	height: 25px;
+}
+
+#contenido h1 {
+	background-color: #FFF;
+	font-family: "Century Gothic";
+	font-size: 22px;
+	color: #000;
+	font-weight: bold;
+	text-align: center;
+}
+
+#contenido h3 {
+	background-color: #FFF;
+	font-family: "Century Gothic";
+	font-size: 14px;
+	color: #000;
+	font-weight: bold;
+	text-align: center;
+}
+
+#contenido h4 {
+	background-color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666;
+	font-weight: bold;
+	text-align: justify;
+}
+
+#contenido h5 {
+	background-color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666;
+	font-weight: bold;
+}
+
+.etiquetas {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666;
+	font-weight: bold;
+}
+
+#pie {
+	height: 56px;
+	background-image: url("#{resource['images/fondo_pie.jpg']}");
+	background-repeat: repeat-x;
+	width: auto;
+	clear: both;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+.pie_texto1 {
+	height: 70px;
+	width: 960px;
+	font-family: "Century Gothic";
+	font-size: 14px;
+	color: #FFF;
+	text-align: center;
+	line-height: 15px;
+}
+
+.pie_texto2 {
+	height: 20px;
+	width: 960px;
+	font-family: "Century Gothic";
+	font-size: 9px;
+	color: #FFF;
+	text-align: center;
+	font-weight: normal;
+	line-height: 0px;
+}
+
+.cerrar {
+	color: #FFF;
+	margin-top: 5px;
+}
+
+.h1 {
+	font-family: "Century Gothic";
+	font-size: 25px;
+	color: #000;
+	font-weight: bold;
+	text-align: center;
+}
+
+.h2 {
+	font-family: "Century Gothic";
+	font-size: 25px;
+	color: #0054a6;
+	font-weight: bold;
+	text-align: center;
+}
+
+#login {
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 80px;
+}
+
+#titulo_binvenidos {
+	height: 45px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+}
+
+#usuario_bienvenido {
+	height: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 282px;
+	padding-top: 7px;
+}
+
+#textfield_bienvenido {
+	height: 45px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	margin-top: 10px;
+}
+
+#ingresar_bienvenido {
+	height: 70px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 230px;
+	padding-top: 20px;
+}
+
+#ingresar_bienvenido input[type="submit"] {
+	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #FFF;
+	text-decoration: none;
+	font-weight: normal;
+	float: left;
+	background-image: url("#{resource['images/classic/boton_ina.jpg']}");
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 52px;
+	line-height: 50px;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+	background-position: center;
+}
+
+#ingresar_bienvenido input[type="submit"]:hover {
+	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #FFF;
+	text-decoration: none;
+	font-weight: bold;
+	float: left;
+	background-image: url("#{resource['images/classic/boton_act.jpg']}");
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 52px;
+	line-height: 50px;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+	background-position: center;
+}
+
+#linea_bienvenido {
+	height: 5px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	width: 420px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-top-color: #0054a6;
+}
+
+.textfield {
+	height: 30px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	font-weight: normal;
+}
+
+#texto_bienvenido {
+	margin-right: auto;
+	margin-left: auto;
+	width: 282px;
+	padding-top: 15px;
+	height: 80px;
+}
+
+#texto_bienvenido a {
+	height: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 282px;
+	padding-top: 7px;
+	font-family: "Century Gothic";
+	font-size: 12px;
+	font-weight: normal;
+	color: #333;
+	text-decoration: none;
+	font-style: italic;
+	float: left;
+	line-height: 0px;
+}
+
+#barra_evaluacion {
+	float: left;
+	background-image: url("#{resource['images/fondo_eval.jpg']}");
+	background-repeat: repeat-x;
+	height: 30px;
+	width: 692px;
+}
+
+#botonera_cierre {
+	float: left;
+	height: 50px;
+	width: 692px;
+	padding-top: 15px;
+}
+
+#botonera_cierre_izq {
+	float: left;
+	height: 30px;
+	width: 362px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+	line-height: 30px;
+	padding-left: 30px;
+	background-image: url("#{resource['images/reloj.png']}");
+	background-repeat: no-repeat;
+	background-position: 5px;
+}
+
+#botonera_cierre_der {
+	float: right;
+	width: 300px;
+}
+
+#botonera_cierre_der a {
+	float: left;
+	height: 30px;
+	width: 130px;
+	font-family: "Century Gothic";
+	font-size: 12px;
+	color: #FFF;
+	text-decoration: none;
+	background-image: url("#{resource['images/classic/boton_ina_peq.jpg']}");
+	background-repeat: no-repeat;
+	line-height: 30px;
+	text-align: center;
+	margin-right: 15px;
+}
+
+#botonera_cierre_der a:hover {
+	float: left;
+	height: 30px;
+	width: 130px;
+	font-family: "Century Gothic";
+	font-size: 12px;
+	color: #FFF;
+	text-decoration: none;
+	background-image: url("#{resource['images/classic/boton_act_peq.jpg']}");
+	background-repeat: no-repeat;
+	line-height: 30px;
+	text-align: center;
+	margin-right: 15px;
+}
+
+#barra_izq {
+	float: left;
+	height: 30px;
+	width: 175px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+	line-height: 30px;
+	padding-left: 10px;
+}
+
+#barra_cen a {
+	float: left;
+	height: 30px;
+	width: 150px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+	line-height: 30px;
+	text-align: center;
+	background-image: url("#{resource['images/notas.png']}");
+	background-repeat: no-repeat;
+	background-position: 35px;
+	text-decoration: none;
+}
+
+#barra_cen {
+	float: left;
+	height: 30px;
+	width: 150px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+	line-height: 30px;
+	text-align: center;
+	background-image: url("#{resource['images/notas.png']}");
+	background-repeat: no-repeat;
+	background-position: 35px;
+	text-decoration: none;
+}
+
+#barra_der {
+	border-radius: 10px 0px 0px 10px;
+	float: left;
+	height: 23px;
+	width: 143px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 25px;
+	color: #999;
+	background-color: #333;
+	margin-top: 4px;
+	text-indent: 13px;
+}
+
+#barra_botones {
+	float: right;
+	height: 30px;
+	width: 212px;
+}
+
+#barra_botones a {
+	float: left;
+	height: 23px;
+	width: 105px;
+	background-color: #333;
+	margin-top: 4px;
+	margin-right: 1px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFF;
+	text-decoration: none;
+	line-height: 24px;
+	background-image: url("#{resource['images/flecha_izq.png']}");
+	background-repeat: no-repeat;
+	background-position: 11px;
+	text-align: center;
+}
+
+#barra_botones a:hover {
+	float: left;
+	height: 23px;
+	width: 105px;
+	background-color: #666;
+	margin-top: 4px;
+	margin-right: 1px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFF;
+	text-decoration: none;
+	line-height: 24px;
+	background-image: url("#{resource['images/flecha_izq.png']}");
+	background-repeat: no-repeat;
+	background-position: 11px;
+	text-align: center;
+}
+
+#barra_botones a+a {
+	float: left;
+	height: 23px;
+	width: 105px;
+	background-color: #333;
+	margin-top: 4px;
+	margin-right: 1px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFF;
+	text-decoration: none;
+	line-height: 24px;
+	background-image: url("#{resource['images/flecha_der.png']}");
+	background-repeat: no-repeat;
+	background-position: 80px;
+	text-indent: -20px;
+}
+
+#barra_botones a+a:hover {
+	float: left;
+	height: 23px;
+	width: 105px;
+	background-color: #666;
+	margin-top: 4px;
+	margin-right: 1px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFF;
+	text-decoration: none;
+	line-height: 24px;
+	background-image: url("#{resource['images/flecha_der.png']}");
+	background-repeat: no-repeat;
+	background-position: 80px;
+	text-indent: -20px;
+}
+
+.panelHeader {
+	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #FFF;
+	font-weight: normal;
+	text-decoration: none;
+	padding-left: 0px;
+	margin-left: 0px;
+}
+
+.panel {
+	background-color: #FFF;
+}
+
+}
+#menu {
+	text-decoration: none;
+	float: left;
+	width: 235px;
+}
+
+#menuRich {
+	text-decoration: none;
+	float: left;
+	width: 235px;
+}
+
+#menu a {
+	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #FFF;
+	font-weight: normal;
+	background-image: url("#{resource['images/classic/boton_ina.jpg']}");
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 52px;
+	line-height: 50px;
+	text-align: center;
+	text-decoration: none;
+	padding-left: 0px;
+	margin-left: 0px;
+	float: left;
+}
+
+#menu a:hover {
+	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #FFF;
+	font-weight: normal;
+	background-image: url("#{resource['images/classic/boton_act.jpg']}");
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 52px;
+	line-height: 50px;
+	text-align: center;
+	text-decoration: none;
+	padding-left: 0px;
+	margin-left: 0px;
+	float: left;
+}
+
+#menu ul ul a {
+	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #666;
+	font-weight: normal;
+	float: left;
+	background-image: url("#{resource['images/boton_desplegable.jpg']}");
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 39px;
+	line-height: 50px;
+	text-align: left;
+	text-decoration: none;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	text-indent: 70px;
+}
+
+#menu ul ul a:hover {
+	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #666;
+	font-weight: bold;
+	float: left;
+	background-image: url("#{resource['images/boton_desplegable.jpg']}");
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 39px;
+	line-height: 50px;
+	text-align: left;
+	text-decoration: none;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	text-indent: 70px;
+}
+
+#menu ul ul ul a {
+	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #666;
+	font-weight: normal;
+	float: left;
+	background-image: url("#{resource['images/boton_desplegable.jpg']}");
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 39px;
+	line-height: 50px;
+	text-decoration: none;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	text-indent: 100px;
+	text-align: left;
+}
+
+#menu ul ul ul a:hover {
+	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #666;
+	font-weight: bold;
+	float: left;
+	background-image: url("#{resource['images/boton_desplegable.jpg']}");
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 39px;
+	line-height: 50px;
+	text-decoration: none;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	text-align: left;
+	text-indent: 100px;
+}
+
+#menu ul ul ul ul a {
+	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #666;
+	font-weight: normal;
+	float: left;
+	background-image: url("#{resource['images/boton_desplegable.jpg']}");
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 39px;
+	line-height: 50px;
+	text-decoration: none;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	text-indent: 120px;
+	text-align: left;
+}
+
+#menu ul ul ul ul a:hover {
+	font-family: "Century Gothic";
+	font-size: 13px;
+	color: #666;
+	font-weight: bold;
+	float: left;
+	background-image: url("#{resource['images/boton_desplegable.jpg']}");
+	width: 230px;
+	background-repeat: no-repeat;
+	height: 39px;
+	line-height: 50px;
+	text-decoration: none;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	text-indent: 120px;
+	text-align: left;
+}
+
+#menu ul {
+	text-decoration: none;
+	font-family: "Century Gothic";
+	font-size: 12px;
+	color: #FFF;
+	padding-left: 0px;
+}
+
+#menu ul ul {
+	display: none;
+	padding-left: 0;
+}
+
+#menu li:hover>ul {
+	display: block;
+}
+
+input[type="submit"] {
+	font-family: "Century Gothic";
+	font-size: 11px;
+	color: #FFF;
+	text-decoration: none;
+	font-weight: normal;
+	float: left;
+	background-image: url("#{resource['images/classic/boton_act_peq.jpg']}");
+	width: 100px;
+	background-repeat: no-repeat;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	background-position: center;
+}
+
+input[type="submit"]:hover {
+	font-family: "Century Gothic";
+	font-size: 11px;
+	color: #FFF;
+	text-decoration: none;
+	float: left;
+	background-image: url("#{resource['images/classic/boton_act_peq.jpg']}");
+	width: 100px;
+	background-repeat: no-repeat;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	background-position: center;
+	font-weight: bold;
+}
+
+input[type="file"] {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	font-weight: normal;
+}
+
+input[type="text"],input[type="password"],select {
+	height: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	font-weight: normal;
+	width: 200px;
+}

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listafactura" pageWidth="1057" pageHeight="595" orientation="Landscape" columnWidth="1017" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fec2923d-2a7f-4e6e-aadc-19d0c878f665">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="prueba" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="LOGO" class="java.io.InputStream"/>
+	<parameter name="FECHA" class="java.lang.String"/>
+	<parameter name="USUARIO" class="java.lang.String"/>
+	<parameter name="TITULO" class="java.lang.String"/>
+	<field name="codSecuencial" class="java.lang.String"/>
+	<field name="identificacionComprador" class="java.lang.String"/>
+	<field name="razonSocialComprador" class="java.lang.String"/>
+	<field name="totalSinImpuestos" class="java.math.BigDecimal"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="tareaActual.descripcion" class="java.lang.String"/>
+	<field name="numeroAutorizacion" class="java.lang.String"/>
+	<field name="fechaAutorizacion" class="java.util.Date"/>
+	<field name="fechaEmisionDb" class="java.util.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="120">
+			<image hAlign="Left" isUsingCache="true" onErrorType="Blank">
+				<reportElement uuid="4bf7a098-de9d-4698-80c5-6360e61fb42c" x="12" y="10" width="179" height="98"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="a14f648e-5236-4000-aef4-5209b6095bf2" x="212" y="55" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e5da3a04-52e9-4aba-a764-14d4c9ff43da" x="212" y="75" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usuario:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="fcf7159d-b7db-4f08-a94b-34b9c93b0afc" x="312" y="75" width="124" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{USUARIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0b642bb9-cb2e-4339-99e6-5b2e92110ff1" x="312" y="55" width="124" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{FECHA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="793fed53-65c3-4bdc-85d5-af2e6138ccaa" x="212" y="25" width="330" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITULO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="25e43367-0fa0-4160-a4b4-77a5acdf16f7" x="358" y="0" width="209" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Razon Social Comprador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="29e9d22c-f692-4070-a15f-4a957c85315e" x="0" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Secuencial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dccef52d-d60c-4616-8914-cb1ff0b8616f" x="272" y="0" width="86" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e926539d-cda3-4843-88cb-615884d71f38" x="567" y="0" width="104" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Sin Impuesto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2a6b9dd1-63f8-499e-aa05-375fffe443a0" x="671" y="0" width="83" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2fb82ffd-c551-4f48-84d3-3d25208b0f62" x="754" y="0" width="154" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Numero Auotorizacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f0b01e9a-c0e3-44d4-9213-e46d37faf137" x="908" y="0" width="110" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Auotorizacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="494aee4c-d565-468c-944e-9dd12758358e" x="100" y="0" width="172" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Identificacion Comprador]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="04578e88-51f6-4b9a-8d8b-334cfe1278a9" x="0" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{codSecuencial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1cdba95a-59ea-4b78-b4a5-4ac1ae6c254f" x="358" y="0" width="209" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{razonSocialComprador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5b8318f4-bb35-4b3c-ae16-9918a8698d52" x="567" y="0" width="104" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{totalSinImpuestos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="154a917f-f3b1-4b6d-ba00-a69a1222679f" x="671" y="0" width="83" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="7eb35841-55ce-48bf-a756-6f26614d302a" x="754" y="0" width="154" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{numeroAutorizacion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="47325d5b-591f-40ac-bae6-dc0f86d6e1ce" x="908" y="0" width="110" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fechaAutorizacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="779d8078-7007-4961-84bc-83c34db70e75" x="100" y="0" width="172" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{identificacionComprador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="56645c81-372b-4b74-9bc6-24b9dfce8a00" x="272" y="0" width="86" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaEmisionDb}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement uuid="03214b4b-de39-4c8b-8a21-873df6faac9e" x="697" y="13" width="212" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

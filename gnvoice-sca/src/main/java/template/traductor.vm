@@ -1,0 +1,13 @@
+#set( $foo = "0000000001" )
+#set( $mas = "+" )
+#set( $cero = "0" )
+FHEAD0000000001UPINV$fecha
+THEAD00000000020000000001$Document_Type$Vendor_Document_Number$Group_ID$Vendor_Type$Vendor_ID$Vendor_Document_Date$Order_Number$Location$Location_Type$Terms$Due_Date$Payment_method$Currency_code$Exchange_rate$mas$Total_Cost$mas$Total_VAT_Amount$mas$Total_Quantity$mas$Total_Discount$Freight_Type$Paid_Ind$Multi_Location$Merchan_dise_Type$Deal_Id$Deal_Approval_Indicator$RTV_indicator$Custom_Document_Reference_1$Custom_Document_Reference_2$Custom_Document_Reference_3$Custom_Document_Reference_4
+#foreach( $pet in $petList )
+$pet.TDETL$pet.linea$foo$pet.UPC$pet.UPC_Supplement$pet.Item$pet.VPN$mas$pet.Original_Document_Quantity$mas$pet.Original_Unit_Cost$pet.Original_VAT_Code$pet.Original_VAT_rate$mas$pet.Total_Allowance
+#end
+#foreach( $petTI in $petListTotalImpuesto )
+$petTI.TVATS$petTI.linea$foo$petTI.VAT_code$petTI.VAT_rate$mas$petTI.Cost_VAT_code               
+#end
+TTAIL$finT$foo$numerolineaDestalle
+FTAIL$finF$totalLinea
